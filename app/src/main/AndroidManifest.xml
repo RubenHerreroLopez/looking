@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.rubinsoft.looking">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Looking">
+        <activity android:name=".Usuario_Tablon"></activity>
+        <activity android:name=".Usuario_Registro" />
+        <activity android:name=".Usuario_Perfil" />
+        <activity android:name=".Usuario_Opciones" />
+        <activity android:name=".Usuario_Login" />
+        <activity android:name=".Usuario_GestionAnuncio" />
+        <activity android:name=".Usuario_FiltroBusqueda" />
+        <activity android:name=".Usuario_EditarPerfil" />
+        <activity android:name=".Equipo_Registro" />
+        <activity android:name=".Equipo_PonerAnuncio" />
+        <activity android:name=".Equipo_Perfil" />
+        <activity android:name=".Equipo_Opciones" />
+        <activity android:name=".Equipo_MisAnuncios" />
+        <activity android:name=".Equipo_Login" />
+        <activity android:name=".Equipo_EditarPerfil" />
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
