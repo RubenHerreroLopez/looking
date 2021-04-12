@@ -21,10 +21,10 @@
     <!-- MENU OPCIONES EQUIPO (activiy equipo_opciones.xml) -->
 
     <!-- PERFIL EQUIPO (activity equipo_perfil.xml) -->
-    <string name="PerfilEquipo_txt_misAnuncios">MIS ANUNCIOS</string>
-    <string name="PerfilEquipo_txt_ponerAnuncio">PONER ANUNCIO</string>
-    <string name="PerfilEquipo_txt_editarPerfil">EDITAR PERFIL</string>
-    <string name="PerfilEquipo_txt_cerrarSesion">CERRAR SESION</string>
+    <string name="PerfilEquipo_btn_misAnuncios">MIS ANUNCIOS</string>
+    <string name="PerfilEquipo_btn_ponerAnuncio">PONER ANUNCIO</string>
+    <string name="PerfilEquipo_btn_editarPerfil">EDITAR PERFIL</string>
+    <string name="PerfilEquipo_btn_cerrarSesion">CERRAR SESION</string>
 
     <!-- EQUIPO PONER ANUNCIO (activity equipo_poner_anuncio.xml) -->
     <string name="PonerAnuncio_et_municipio">Municipio</string>
@@ -73,8 +73,9 @@
     <!-- OPCIONES DE USUARIO (activity usuario_opciones.xml) -->
 
     <!-- PERFIL USUARIO (activiy usuario_perfil.xml) -->
-    <string name="UsuarioPerfil_txt_editarPerfil">EDITAR PERFIL</string>
-    <string name="UsuarioPerfil_txt_cerrarSesion">CERRAR SESION</string>
+    <string name="UsuarioPerfil_btn_editarPerfil">EDITAR PERFIL</string>
+    <string name="UsuarioPerfil_btn_cerrarSesion">CERRAR SESION</string>
+    <string name="UsuarioPerfil_btn_mensajes">MENSAJES</string>
 
     <!-- MENU USUARIO REGISTRO (activity usuario_registro.xml) -->
     <string name="UsuarioRegistro_btn_registro">REGISTRARME</string>
