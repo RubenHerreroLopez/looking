@@ -1,3 +1,90 @@
 <resources>
+    <!-- APP NOMBRE -->
     <string name="app_name">Looking</string>
+
+    <!-- MENU EDITAR PERFIL EQUIPO (activity equipo_editar_perfil.xml) -->
+    <string name="EquipoEditarPerfil_et_nombre">Nuevo nombre del equipo</string>
+    <string name="EquipoEditarPerfil_et_deporte">Nuevo deporte</string>
+    <string name="EquipoEditarPerfil_et_municipio">Nuevo municipio</string>
+    <string name="EquipoEditarPerfil_et_liga">Nueva liga</string>
+    <string name="EquipoEditarPerfil_btn_confirmar">CONFIRMAR</string>
+    <string name="EquipoEditarPerfil_btn_descartar">DESCARTAR</string>
+
+    <!-- MENU EQUIPO LOGIN (activity_equipo_login.xml) -->
+    <string name="EquipoLogin_btn_login">INICIA SESION</string>
+    <string name="EquipoLogin_txt_registro">Para registrar un equipo, haz login como usuario</string>
+    <string name="EquipoLogin_et_usuario">Nombre del equipo</string>
+    <string name="EquipoLogin_et_pass">Contraseña</string>
+
+    <!-- MENU ANUNCIOS DEL EQUIPO (activity equipo_mis_anuncios.xml) -->
+
+    <!-- MENU OPCIONES EQUIPO (activiy equipo_opciones.xml) -->
+
+    <!-- PERFIL EQUIPO (activity equipo_perfil.xml) -->
+    <string name="PerfilEquipo_txt_misAnuncios">MIS ANUNCIOS</string>
+    <string name="PerfilEquipo_txt_ponerAnuncio">PONER ANUNCIO</string>
+    <string name="PerfilEquipo_txt_editarPerfil">EDITAR PERFIL</string>
+    <string name="PerfilEquipo_txt_cerrarSesion">CERRAR SESION</string>
+
+    <!-- EQUIPO PONER ANUNCIO (activity equipo_poner_anuncio.xml) -->
+    <string name="PonerAnuncio_et_municipio">Municipio</string>
+    <string name="PonerAnuncio_et_dia">Día de juego</string>
+    <string name="PonerAnuncio_et_posicion">Posición de juego</string>
+    <string name="PonerAnuncio_et_descripcion">Descripción del anuncio</string>
+    <string name="PonerAnuncio_btn_publicar">PUBLICAR</string>
+
+    <!-- MENU EQUIPO REGISTRO (activity equipo_registro.xml) -->
+    <string name="EquipoRegistro_btn_registro">REGISTRAR</string>
+    <string name="EquipoRegistro_et_equipo">Nombre del equipo</string>
+    <string name="EquipoRegistro_et_deporte">Deporte</string>
+    <string name="EquipoRegistro_et_municipio">Municipio</string>
+    <string name="EquipoRegistro_et_liga">Liga</string>
+    <string name="EquipoRegistro_et_pass">Contraseña</string>
+
+    <!-- MAIN (activity main.xml) -->
+    <string name="Main_txt_inicioJugaror">Accede como jugador</string>
+    <string name="Main_txt_inicioEquipo">Accede como equipo</string>
+
+    <!-- EDITAR PERFIL USUARIO (activity usuario_editar_perfil.xml) -->
+    <string name="UsuarioEditarPerfil_et_nombre">Nuevo nombre: </string>
+    <string name="UsuarioEditarPerfil_et_apellido">Nuevo apellido: </string>
+    <string name="UsuarioEditarPerfil_et_edad">Nueva edad: </string>
+    <string name="UsuarioEditarPerfil_et_pass">Nueva contraseña: </string>
+    <string name="UsuarioEditarPerfil_btn_confirmar">CONFIRMAR</string>
+    <string name="UsuarioPerfil_btn_descartar">DESCARTAR</string>
+
+    <!-- FILTROS BUSQUEDA ANUNCIOS (activity usuario_filtro_busqueda.xml) -->
+    <string name="FiltroBusqueda_et_municipio">Municipio</string>
+    <string name="FiltroBusqueda_et_deporte">Deporte</string>
+    <string name="FiltroBusqueda_et_posicion">Posicion</string>
+    <string name="FiltroBusqueda_et_dia">Dia de juego</string>
+    <string name="FiltroBusqueda_btn_buscar">BUSCAR</string>
+
+    <!-- GESTION ANUNCIOS USUARIO activity usuario_gestion_anuncio.xml) -->
+    <string name="UsuarioGestionAnuncios_txt_detalles">Detalles</string>
+    <string name="UsuarioGestionAnuncios_txt_personaContacto">Persona de contacto: </string>
+
+    <!-- MENU USUARIO LOGIN (activity usuario_login.xml) -->
+    <string name="UsuarioLogin_btn_login">INICIA SESION</string>
+    <string name="UsuarioLogin_btn_registro">REGISTRATE</string>
+    <string name="UsuarioLogin_et_usuario">Usuario</string>
+    <string name="UsuarioLogin_et_pass">Contraseña</string>
+
+    <!-- OPCIONES DE USUARIO (activity usuario_opciones.xml) -->
+
+    <!-- PERFIL USUARIO (activiy usuario_perfil.xml) -->
+    <string name="UsuarioPerfil_txt_editarPerfil">EDITAR PERFIL</string>
+    <string name="UsuarioPerfil_txt_cerrarSesion">CERRAR SESION</string>
+
+    <!-- MENU USUARIO REGISTRO (activity usuario_registro.xml) -->
+    <string name="UsuarioRegistro_btn_registro">REGISTRARME</string>
+    <string name="UsuarioRegistro_et_correo">Correo electrónico</string>
+    <string name="UsuarioRegistro_et_nombre">Nombre</string>
+    <string name="UsuarioRegistro_et_apellidos">Apellidos</string>
+    <string name="UsuarioRegistro_et_edad">Edad</string>
+    <string name="UsuarioRegistro_et_usuario">Usuario</string>
+    <string name="UsuarioRegistro_et_pass">Contraseña</string>
+
+    <!-- TABLON USUARIO (activity usuario_tablon.xml) -->
+
 </resources>
