@@ -14,6 +14,68 @@
         android:background="#fff"
         android:padding="25dp">
 
+        <!-- LOGO -->
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="280dp"
+            android:layout_height="80dp"
+            android:src="@drawable/logo"
+            android:layout_marginBottom="30dp"/>
+
+        <!-- USUARIO -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/EquipoLogin_usuario"
+                android:hint="@string/EquipoLogin_et_usuario"
+                android:inputType="text"
+                android:autofillHints="false"
+                android:background="#fff"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- CONTRASEÑA -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            app:passwordToggleEnabled="true">
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/EquipoLogin_pass"
+                android:hint="@string/EquipoLogin_et_pass"
+                android:inputType="textPassword"
+                android:autofillHints="false"
+                android:background="#fff"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- BOTON LOGIN -->
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/EquipoLogin_btn_login"
+            android:layout_marginTop="25dp"
+            android:background="@drawable/button_style"
+            android:text="@string/EquipoLogin_btn_login"
+            android:textColor="#fff"/>
+
+        <!-- LABEL REGISTRO -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:textAlignment="center">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/EquipoLogin_txt_registro"
+                android:text="@string/EquipoLogin_txt_registro"
+                android:textAlignment="center"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
     </androidx.appcompat.widget.LinearLayoutCompat>
 
 </RelativeLayout>

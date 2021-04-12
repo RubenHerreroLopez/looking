@@ -8,12 +8,12 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Looking">
-        <activity android:name=".Usuario_Tablon"></activity>
+        android:theme="@style/Theme.AppCompat.Light.DarkActionBar">
+        <activity android:name=".Usuario_Login"></activity>
+        <activity android:name=".Usuario_Tablon" />
         <activity android:name=".Usuario_Registro" />
         <activity android:name=".Usuario_Perfil" />
         <activity android:name=".Usuario_Opciones" />
-        <activity android:name=".Usuario_Login" />
         <activity android:name=".Usuario_GestionAnuncio" />
         <activity android:name=".Usuario_FiltroBusqueda" />
         <activity android:name=".Usuario_EditarPerfil" />

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -9,10 +10,69 @@
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="#fff"
         android:orientation="vertical"
         android:gravity="center"
-        android:background="#fff"
-        android:padding="25dp">
+        android:padding="20dp">
+
+        <!-- LOGO -->
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="280dp"
+            android:layout_height="80dp"
+            android:src="@drawable/logo"
+            android:layout_marginBottom="30dp"/>
+
+        <!-- USUARIO -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
+            <EditText
+                android:id="@+id/UsuarioLogin_et_usuario"
+                android:hint="@string/UsuarioLogin_et_usuario"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:autofillHints="false"
+                android:background="#fff"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- CONTRASEÑA -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            app:passwordToggleEnabled="true">
+            <EditText
+                android:id="@+id/UsuarioLogin_et_pass"
+                android:hint="@string/UsuarioLogin_et_pass"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:autofillHints="false"
+                android:background="#fff"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- BOTON LOGIN -->
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/UsuarioLogin_btn_login"
+            android:layout_marginTop="25dp"
+            android:background="@drawable/button_style"
+            android:text="@string/UsuarioLogin_btn_login"
+            android:textColor="#fff"/>
+
+        <!-- BOTON REGISTRO -->
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/UsuarioLogin_btn_registro"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/button_style"
+            android:text="@string/UsuarioLogin_btn_registro"
+            android:textColor="#fff"/>
 
     </androidx.appcompat.widget.LinearLayoutCompat>
+
 </RelativeLayout>
