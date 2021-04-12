@@ -8,11 +8,97 @@
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         android:gravity="center"
-        android:background="#fff"
+        android:background="@color/fondo"
         android:padding="25dp">
+
+        <!-- NOMBRE EQUIPO -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@color/edit_text">
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/EquipoRegistro_et_equipo"
+                android:hint="@string/EquipoRegistro_et_equipo"
+                android:inputType="text"
+                android:autofillHints="false"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- DEPORTE -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@color/edit_text">
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/EquipoRegistro_et_deporte"
+                android:hint="@string/EquipoRegistro_et_deporte"
+                android:inputType="text"
+                android:autofillHints="false"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- MUNICIPIO -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@color/edit_text">
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/EquipoRegistro_et_municipio"
+                android:hint="@string/EquipoRegistro_et_municipio"
+                android:inputType="text"
+                android:autofillHints="false"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- LIGA -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@color/edit_text">
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/EquipoRegistro_et_liga"
+                android:hint="@string/EquipoRegistro_et_liga"
+                android:inputType="text"
+                android:autofillHints="false"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- CONTRASEÑA -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@color/edit_text"
+            app:passwordToggleEnabled="true">
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/EquipoRegistro_et_pass"
+                android:hint="@string/EquipoRegistro_et_pass"
+                android:inputType="textPassword"
+                android:autofillHints="false"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- BOTON REGISTRO -->
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/EquipoRegistro_btn_registro"
+            android:text="@string/EquipoRegistro_btn_registro"
+            android:background="@drawable/button_style"
+            android:textColor="#fff"
+            android:layout_marginTop="25dp"/>
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 </ScrollView>
