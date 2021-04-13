@@ -11,7 +11,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:gravity="center"
-        android:background="@color/fondo"
+        android:background="@color/Color_fondo"
         android:padding="25dp">
 
         <!-- LOGO -->
@@ -26,7 +26,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:background="@color/edit_text">
+            android:background="@color/Color_EditText_Fondo">
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -43,7 +43,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             app:passwordToggleEnabled="true"
-            android:background="@color/edit_text">
+            android:background="@color/Color_EditText_Fondo">
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -62,7 +62,7 @@
             android:layout_marginTop="25dp"
             android:background="@drawable/button_style"
             android:text="@string/EquipoLogin_btn_login"
-            android:textColor="#fff"/>
+            android:textColor="@color/Color_Button_Texto"/>
 
         <!-- LABEL REGISTRO -->
         <com.google.android.material.textfield.TextInputLayout

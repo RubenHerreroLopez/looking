@@ -4,14 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Usuario_Registro">
+    tools:context=".Usuario_Registro"
+    android:background="@color/Color_fondo">
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:gravity="center"
-        android:background="@color/fondo"
+        android:background="@color/Color_fondo"
         android:padding="25dp">
 
         <!-- CORREO -->
@@ -19,7 +20,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:background="@color/edit_text">
+            android:background="@color/Color_EditText_Fondo">
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -34,7 +35,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:background="@color/edit_text">
+            android:background="@color/Color_EditText_Fondo">
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -49,7 +50,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:background="@color/edit_text">
+            android:background="@color/Color_EditText_Fondo">
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -64,7 +65,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:background="@color/edit_text">
+            android:background="@color/Color_EditText_Fondo">
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -79,7 +80,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:background="@color/edit_text">
+            android:background="@color/Color_EditText_Fondo">
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -94,7 +95,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:background="@color/edit_text"
+            android:background="@color/Color_EditText_Fondo"
             app:passwordToggleEnabled="true">
             <EditText
                 android:layout_width="match_parent"
@@ -112,7 +113,7 @@
             android:id="@+id/UsuarioRegistro_btn_registro"
             android:text="@string/UsuarioRegistro_btn_registro"
             android:background="@drawable/button_style"
-            android:textColor="#fff"
+            android:textColor="@color/Color_Button_Texto"
             android:layout_marginTop="25dp"/>
 
     </androidx.appcompat.widget.LinearLayoutCompat>

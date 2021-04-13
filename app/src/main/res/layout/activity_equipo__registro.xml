@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:gravity="center"
-        android:background="@color/fondo"
+        android:background="@color/Color_fondo"
         android:padding="25dp">
 
         <!-- NOMBRE EQUIPO -->
@@ -19,7 +19,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:background="@color/edit_text">
+            android:background="@color/Color_EditText_Fondo">
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -34,7 +34,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:background="@color/edit_text">
+            android:background="@color/Color_EditText_Fondo">
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -49,7 +49,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:background="@color/edit_text">
+            android:background="@color/Color_EditText_Fondo">
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -64,7 +64,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:background="@color/edit_text">
+            android:background="@color/Color_EditText_Fondo">
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -79,7 +79,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:background="@color/edit_text"
+            android:background="@color/Color_EditText_Fondo"
             app:passwordToggleEnabled="true">
             <EditText
                 android:layout_width="match_parent"
@@ -97,7 +97,7 @@
             android:id="@+id/EquipoRegistro_btn_registro"
             android:text="@string/EquipoRegistro_btn_registro"
             android:background="@drawable/button_style"
-            android:textColor="#fff"
+            android:textColor="@color/Color_Button_Texto"
             android:layout_marginTop="25dp"/>
 
     </androidx.appcompat.widget.LinearLayoutCompat>

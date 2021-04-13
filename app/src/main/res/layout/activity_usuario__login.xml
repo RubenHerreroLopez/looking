@@ -10,7 +10,7 @@
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/fondo"
+        android:background="@color/Color_fondo"
         android:orientation="vertical"
         android:gravity="center"
         android:padding="20dp">
@@ -26,15 +26,15 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp">
+            android:layout_marginTop="10dp"
+            android:background="@color/Color_EditText_Fondo">
             <EditText
                 android:id="@+id/UsuarioLogin_et_usuario"
                 android:hint="@string/UsuarioLogin_et_usuario"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="text"
-                android:autofillHints="false"
-                android:background="#fff"/>
+                android:autofillHints="false" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <!-- CONTRASEÑA -->
@@ -42,15 +42,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            app:passwordToggleEnabled="true">
+            app:passwordToggleEnabled="true"
+            android:background="@color/Color_EditText_Fondo">
             <EditText
                 android:id="@+id/UsuarioLogin_et_pass"
                 android:hint="@string/UsuarioLogin_et_pass"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPassword"
-                android:autofillHints="false"
-                android:background="#fff"/>
+                android:autofillHints="false"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <!-- BOTON LOGIN -->
@@ -61,7 +61,7 @@
             android:layout_marginTop="25dp"
             android:background="@drawable/button_style"
             android:text="@string/UsuarioLogin_btn_login"
-            android:textColor="@color/fondo"/>
+            android:textColor="@color/Color_Button_Texto"/>
 
         <!-- BOTON REGISTRO -->
         <Button
@@ -71,7 +71,7 @@
             android:layout_marginTop="10dp"
             android:background="@drawable/button_style"
             android:text="@string/UsuarioLogin_btn_registro"
-            android:textColor="#fff"/>
+            android:textColor="@color/Color_Button_Texto"/>
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 
