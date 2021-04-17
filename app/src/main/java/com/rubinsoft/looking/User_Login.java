@@ -9,7 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-public class Usuario_Login extends AppCompatActivity {
+public class User_Login extends AppCompatActivity {
 
     EditText et_usuario, et_pass;
     Button btn_login, btn_registro;
@@ -18,7 +18,7 @@ public class Usuario_Login extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_usuario__login);
+        setContentView(R.layout.activity_user__login);
 
         et_usuario = findViewById(R.id.UsuarioLogin_et_usuario);
         et_pass = findViewById(R.id.UsuarioLogin_et_pass);
@@ -35,7 +35,7 @@ public class Usuario_Login extends AppCompatActivity {
         btn_registro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(Usuario_Login.this, Usuario_Registro.class));
+                startActivity(new Intent(User_Login.this, User_Registro.class));
             }
         });
     }

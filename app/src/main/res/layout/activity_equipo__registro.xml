@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Equipo_Registro">
+    tools:context=".Equipo_Registro"
+    android:background="@color/Color_fondo">
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
@@ -19,75 +20,85 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:background="@color/Color_EditText_Fondo">
+            android:background="@drawable/edit_text_style">
             <EditText
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
                 android:id="@+id/EquipoRegistro_et_equipo"
                 android:hint="@string/EquipoRegistro_et_equipo"
                 android:inputType="text"
-                android:autofillHints="false"/>
+                android:autofillHints="false"
+                android:background="@drawable/edit_text_style"
+                android:layout_marginStart="10dp"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <!-- DEPORTE -->
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:background="@color/Color_EditText_Fondo">
+            android:layout_marginTop="15dp"
+            android:background="@drawable/edit_text_style">
             <EditText
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
                 android:id="@+id/EquipoRegistro_et_deporte"
                 android:hint="@string/EquipoRegistro_et_deporte"
                 android:inputType="text"
-                android:autofillHints="false"/>
+                android:autofillHints="false"
+                android:background="@drawable/edit_text_style"
+                android:layout_marginStart="10dp"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <!-- MUNICIPIO -->
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:background="@color/Color_EditText_Fondo">
+            android:layout_marginTop="15dp"
+            android:background="@drawable/edit_text_style">
             <EditText
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
                 android:id="@+id/EquipoRegistro_et_municipio"
                 android:hint="@string/EquipoRegistro_et_municipio"
                 android:inputType="text"
-                android:autofillHints="false"/>
+                android:autofillHints="false"
+                android:background="@drawable/edit_text_style"
+                android:layout_marginStart="10dp"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <!-- LIGA -->
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:background="@color/Color_EditText_Fondo">
+            android:layout_marginTop="15dp"
+            android:background="@drawable/edit_text_style">
             <EditText
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
                 android:id="@+id/EquipoRegistro_et_liga"
                 android:hint="@string/EquipoRegistro_et_liga"
                 android:inputType="text"
-                android:autofillHints="false"/>
+                android:autofillHints="false"
+                android:background="@drawable/edit_text_style"
+                android:layout_marginStart="10dp"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <!-- CONTRASEÑA -->
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:background="@color/Color_EditText_Fondo"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/edit_text_style"
             app:passwordToggleEnabled="true">
             <EditText
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
                 android:id="@+id/EquipoRegistro_et_pass"
                 android:hint="@string/EquipoRegistro_et_pass"
                 android:inputType="textPassword"
-                android:autofillHints="false"/>
+                android:autofillHints="false"
+                android:background="@drawable/edit_text_style"
+                android:layout_marginStart="10dp"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <!-- BOTON REGISTRO -->
@@ -98,7 +109,7 @@
             android:text="@string/EquipoRegistro_btn_registro"
             android:background="@drawable/button_style"
             android:textColor="@color/Color_Button_Texto"
-            android:layout_marginTop="25dp"/>
+            android:layout_marginTop="30dp"/>
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 </ScrollView>

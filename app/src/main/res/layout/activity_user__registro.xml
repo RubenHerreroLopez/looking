@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Usuario_Registro"
+    tools:context=".User_Registro"
     android:background="@color/Color_fondo">
 
     <androidx.appcompat.widget.LinearLayoutCompat
@@ -20,90 +20,102 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:background="@color/Color_EditText_Fondo">
+            android:background="@drawable/edit_text_style">
             <EditText
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
                 android:id="@+id/UsuarioRegistro_et_correo"
                 android:hint="@string/UsuarioRegistro_et_correo"
                 android:inputType="textEmailAddress"
-                android:autofillHints="false"/>
+                android:autofillHints="false"
+                android:background="@drawable/edit_text_style"
+                android:layout_marginStart="10dp"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <!-- NOMBRE -->
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:background="@color/Color_EditText_Fondo">
+            android:layout_marginTop="15dp"
+            android:background="@drawable/edit_text_style">
             <EditText
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
                 android:id="@+id/UsuarioRegistro_et_nombre"
                 android:hint="@string/UsuarioRegistro_et_nombre"
                 android:inputType="text"
-                android:autofillHints="false"/>
+                android:autofillHints="false"
+                android:background="@drawable/edit_text_style"
+                android:layout_marginStart="10dp"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <!-- APELLIDOS -->
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:background="@color/Color_EditText_Fondo">
+            android:layout_marginTop="15dp"
+            android:background="@drawable/edit_text_style">
             <EditText
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
                 android:id="@+id/UsuarioRegistro_et_apellidos"
                 android:hint="@string/UsuarioRegistro_et_apellidos"
                 android:inputType="text"
-                android:autofillHints="false"/>
+                android:autofillHints="false"
+                android:background="@drawable/edit_text_style"
+                android:layout_marginStart="10dp"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <!-- EDAD -->
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:background="@color/Color_EditText_Fondo">
+            android:layout_marginTop="15dp"
+            android:background="@drawable/edit_text_style">
             <EditText
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
                 android:id="@+id/UsuarioRegistro_et_edad"
                 android:hint="@string/UsuarioRegistro_et_edad"
                 android:inputType="number"
-                android:autofillHints="false"/>
+                android:autofillHints="false"
+                android:background="@drawable/edit_text_style"
+                android:layout_marginStart="10dp"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <!-- USUARIO -->
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:background="@color/Color_EditText_Fondo">
+            android:layout_marginTop="15dp"
+            android:background="@drawable/edit_text_style">
             <EditText
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
                 android:id="@+id/UsuarioRegistro_et_usuario"
                 android:hint="@string/UsuarioRegistro_et_usuario"
                 android:inputType="text"
-                android:autofillHints="false"/>
+                android:autofillHints="false"
+                android:background="@drawable/edit_text_style"
+                android:layout_marginStart="10dp"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <!-- CONTRASEÑA -->
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:background="@color/Color_EditText_Fondo"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/edit_text_style"
             app:passwordToggleEnabled="true">
             <EditText
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
                 android:id="@+id/UsuarioRegistro_et_pass"
                 android:hint="@string/UsuarioRegistro_et_pass"
                 android:inputType="textPassword"
-                android:autofillHints="false"/>
+                android:autofillHints="false"
+                android:background="@drawable/edit_text_style"
+                android:layout_marginStart="10dp"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <!-- BOTON REGISTRAR -->
@@ -114,7 +126,6 @@
             android:text="@string/UsuarioRegistro_btn_registro"
             android:background="@drawable/button_style"
             android:textColor="@color/Color_Button_Texto"
-            android:layout_marginTop="25dp"/>
-
+            android:layout_marginTop="30dp"/>
     </androidx.appcompat.widget.LinearLayoutCompat>
 </ScrollView>

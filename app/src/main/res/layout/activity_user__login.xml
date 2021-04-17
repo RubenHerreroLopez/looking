@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Usuario_Login">
+    tools:context=".User_Login">
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
@@ -27,30 +27,34 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:background="@color/Color_EditText_Fondo">
+            android:background="@drawable/edit_text_style">
             <EditText
                 android:id="@+id/UsuarioLogin_et_usuario"
                 android:hint="@string/UsuarioLogin_et_usuario"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
                 android:inputType="text"
-                android:autofillHints="false" />
+                android:autofillHints="false"
+                android:background="@drawable/edit_text_style"
+                android:layout_marginStart="10dp"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <!-- CONTRASEÑA -->
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="15dp"
             app:passwordToggleEnabled="true"
-            android:background="@color/Color_EditText_Fondo">
+            android:background="@drawable/edit_text_style">
             <EditText
                 android:id="@+id/UsuarioLogin_et_pass"
                 android:hint="@string/UsuarioLogin_et_pass"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
                 android:inputType="textPassword"
-                android:autofillHints="false"/>
+                android:autofillHints="false"
+                android:background="@drawable/edit_text_style"
+                android:layout_marginStart="10dp"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <!-- BOTON LOGIN -->
@@ -58,7 +62,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/UsuarioLogin_btn_login"
-            android:layout_marginTop="25dp"
+            android:layout_marginTop="30dp"
             android:background="@drawable/button_style"
             android:text="@string/UsuarioLogin_btn_login"
             android:textColor="@color/Color_Button_Texto"/>
@@ -68,7 +72,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/UsuarioLogin_btn_registro"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="15dp"
             android:background="@drawable/button_style"
             android:text="@string/UsuarioLogin_btn_registro"
             android:textColor="@color/Color_Button_Texto"/>

@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
         btn_jugador.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, Usuario_Login.class));
+                startActivity(new Intent(MainActivity.this, User_Login.class));
             }
         });
 

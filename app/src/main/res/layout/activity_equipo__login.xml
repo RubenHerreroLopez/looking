@@ -26,32 +26,34 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:background="@color/Color_EditText_Fondo">
+            android:background="@drawable/edit_text_style">
             <EditText
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
                 android:id="@+id/EquipoLogin_usuario"
                 android:hint="@string/EquipoLogin_et_usuario"
                 android:inputType="text"
                 android:autofillHints="false"
-                />
+                android:background="@drawable/edit_text_style"
+                android:layout_marginStart="10dp"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <!-- CONTRASEÑA -->
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="15dp"
             app:passwordToggleEnabled="true"
-            android:background="@color/Color_EditText_Fondo">
+            android:background="@drawable/edit_text_style">
             <EditText
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
                 android:id="@+id/EquipoLogin_pass"
                 android:hint="@string/EquipoLogin_et_pass"
                 android:inputType="textPassword"
                 android:autofillHints="false"
-                />
+                android:background="@drawable/edit_text_style"
+                android:layout_marginStart="10dp"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <!-- BOTON LOGIN -->
@@ -59,7 +61,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/EquipoLogin_btn_login"
-            android:layout_marginTop="25dp"
+            android:layout_marginTop="30dp"
             android:background="@drawable/button_style"
             android:text="@string/EquipoLogin_btn_login"
             android:textColor="@color/Color_Button_Texto"/>
