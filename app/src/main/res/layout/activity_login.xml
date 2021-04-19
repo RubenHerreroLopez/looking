@@ -5,22 +5,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".User_Login">
+    tools:context=".LoginActivity">
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/Color_fondo"
+        android:background="@drawable/gradient_background"
         android:orientation="vertical"
         android:gravity="center"
-        android:padding="20dp">
+        android:padding="25dp">
 
         <!-- LOGO -->
         <androidx.appcompat.widget.AppCompatImageView
-            android:layout_width="280dp"
-            android:layout_height="80dp"
+            android:layout_width="340dp"
+            android:layout_height="100dp"
             android:src="@drawable/logo"
-            android:layout_marginBottom="30dp"/>
+            android:layout_marginBottom="50dp"/>
 
         <!-- USUARIO -->
         <com.google.android.material.textfield.TextInputLayout
@@ -36,7 +36,8 @@
                 android:inputType="text"
                 android:autofillHints="false"
                 android:background="@drawable/edit_text_style"
-                android:layout_marginStart="10dp"/>
+                android:layout_marginStart="10dp"
+                android:maxLines="1"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <!-- CONTRASEÑA -->
@@ -54,8 +55,26 @@
                 android:inputType="textPassword"
                 android:autofillHints="false"
                 android:background="@drawable/edit_text_style"
-                android:layout_marginStart="10dp"/>
+                android:layout_marginStart="10dp"
+                android:maxLines="1"/>
         </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- SPINNER SELECCION USUARIO/EQUIPO -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edit_text_style"
+            android:layout_marginTop="15dp">
+
+            <Spinner
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:id="@+id/Login_spinner"
+                android:spinnerMode="dropdown"
+                android:background="@drawable/edit_text_style"
+                android:entries="@array/Login_spinner"
+                android:layout_marginStart="5dp"/>
+        </LinearLayout>
 
         <!-- BOTON LOGIN -->
         <Button

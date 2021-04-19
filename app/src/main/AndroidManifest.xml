@@ -9,7 +9,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.DarkActionBar">
-        <activity android:name=".User_Login"></activity>
+        <activity android:name=".LoginActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".User_Home" />
         <activity android:name=".User_Registro" />
         <activity android:name=".User_Perfil" />
@@ -22,14 +27,7 @@
         <activity android:name=".Equipo_Perfil" />
         <activity android:name=".Equipo_Opciones" />
         <activity android:name=".Equipo_MisAnuncios" />
-        <activity android:name=".Equipo_Login" />
         <activity android:name=".Equipo_EditarPerfil" />
-        <activity android:name=".MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
     </application>
 
 </manifest>

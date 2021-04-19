@@ -8,6 +8,4 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="Color_Button_Texto">#FFFFFFFF</color>
-    <color name="Color_EditText_Fondo">#FFFFFFFF</color>
-    <color name="Color_fondo">#DAF1FF</color>
 </resources>

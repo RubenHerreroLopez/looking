@@ -5,15 +5,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".User_Registro"
-    android:background="@color/Color_fondo">
+    android:background="@drawable/gradient_background">
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:gravity="center"
-        android:background="@color/Color_fondo"
-        android:padding="25dp">
+        android:padding="25dp"
+        android:scrollbars="vertical">
 
         <!-- CORREO -->
         <com.google.android.material.textfield.TextInputLayout
@@ -29,7 +29,8 @@
                 android:inputType="textEmailAddress"
                 android:autofillHints="false"
                 android:background="@drawable/edit_text_style"
-                android:layout_marginStart="10dp"/>
+                android:layout_marginStart="10dp"
+                android:maxLines="1"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <!-- NOMBRE -->
@@ -46,7 +47,8 @@
                 android:inputType="text"
                 android:autofillHints="false"
                 android:background="@drawable/edit_text_style"
-                android:layout_marginStart="10dp"/>
+                android:layout_marginStart="10dp"
+                android:maxLines="1"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <!-- APELLIDOS -->
@@ -63,7 +65,8 @@
                 android:inputType="text"
                 android:autofillHints="false"
                 android:background="@drawable/edit_text_style"
-                android:layout_marginStart="10dp"/>
+                android:layout_marginStart="10dp"
+                android:maxLines="1"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <!-- EDAD -->
@@ -80,9 +83,32 @@
                 android:inputType="number"
                 android:autofillHints="false"
                 android:background="@drawable/edit_text_style"
-                android:layout_marginStart="10dp"/>
+                android:layout_marginStart="10dp"
+                android:maxLines="1"/>
         </com.google.android.material.textfield.TextInputLayout>
 
+        <!-- SEXO -->
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:background="@drawable/edit_text_style"
+            android:layout_marginTop="15dp"
+            android:checkedButton="@id/UsuarioRegistro_rb_hombre">
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/UsuarioRegistro_rb_hombre"
+                android:text="@string/UsuarioRegistro_rb_hombre"
+                android:layout_marginEnd="20dp"/>
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/UsuarioRegistro_rb_mujer"
+                android:text="@string/UsuarioRegistro_rb_mujer" />
+
+        </RadioGroup>
         <!-- USUARIO -->
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
@@ -97,7 +123,8 @@
                 android:inputType="text"
                 android:autofillHints="false"
                 android:background="@drawable/edit_text_style"
-                android:layout_marginStart="10dp"/>
+                android:layout_marginStart="10dp"
+                android:maxLines="1"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <!-- CONTRASEÑA -->
@@ -115,7 +142,8 @@
                 android:inputType="textPassword"
                 android:autofillHints="false"
                 android:background="@drawable/edit_text_style"
-                android:layout_marginStart="10dp"/>
+                android:layout_marginStart="10dp"
+                android:maxLines="1"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <!-- BOTON REGISTRAR -->
@@ -128,4 +156,5 @@
             android:textColor="@color/Color_Button_Texto"
             android:layout_marginTop="30dp"/>
     </androidx.appcompat.widget.LinearLayoutCompat>
+
 </ScrollView>

@@ -5,14 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Equipo_Registro"
-    android:background="@color/Color_fondo">
+    android:background="@drawable/gradient_background">
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:gravity="center"
-        android:background="@color/Color_fondo"
         android:padding="25dp">
 
         <!-- NOMBRE EQUIPO -->
@@ -29,7 +28,8 @@
                 android:inputType="text"
                 android:autofillHints="false"
                 android:background="@drawable/edit_text_style"
-                android:layout_marginStart="10dp"/>
+                android:layout_marginStart="10dp"
+                android:maxLines="1"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <!-- DEPORTE -->
@@ -46,7 +46,8 @@
                 android:inputType="text"
                 android:autofillHints="false"
                 android:background="@drawable/edit_text_style"
-                android:layout_marginStart="10dp"/>
+                android:layout_marginStart="10dp"
+                android:maxLines="1"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <!-- MUNICIPIO -->
@@ -63,7 +64,8 @@
                 android:inputType="text"
                 android:autofillHints="false"
                 android:background="@drawable/edit_text_style"
-                android:layout_marginStart="10dp"/>
+                android:layout_marginStart="10dp"
+                android:maxLines="1"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <!-- LIGA -->
@@ -80,7 +82,8 @@
                 android:inputType="text"
                 android:autofillHints="false"
                 android:background="@drawable/edit_text_style"
-                android:layout_marginStart="10dp"/>
+                android:layout_marginStart="10dp"
+                android:maxLines="1"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <!-- CONTRASEÑA -->
@@ -98,7 +101,8 @@
                 android:inputType="textPassword"
                 android:autofillHints="false"
                 android:background="@drawable/edit_text_style"
-                android:layout_marginStart="10dp"/>
+                android:layout_marginStart="10dp"
+                android:maxLines="1"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <!-- BOTON REGISTRO -->

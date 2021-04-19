@@ -2,6 +2,17 @@
     <!-- APP NOMBRE -->
     <string name="app_name">Looking</string>
 
+    <!-- MENU USUARIO LOGIN (activity__login.xml) -->
+    <string name="UsuarioLogin_btn_login">INICIA SESION</string>
+    <string name="UsuarioLogin_btn_registro">REGISTRATE</string>
+    <string name="UsuarioLogin_et_usuario">Usuario</string>
+    <string name="UsuarioLogin_et_pass">Contraseña</string>
+    <string-array name="Login_spinner">
+        <item>(Seleccionar)</item>
+        <item>Jugador</item>
+        <item>Equipo</item>
+    </string-array>
+
     <!-- MENU EDITAR PERFIL EQUIPO (activity_equipo_editar_perfil.xml) -->
     <string name="EquipoEditarPerfil_et_nombre">Nuevo nombre del equipo</string>
     <string name="EquipoEditarPerfil_et_deporte">Nuevo deporte</string>
@@ -9,12 +20,6 @@
     <string name="EquipoEditarPerfil_et_liga">Nueva liga</string>
     <string name="EquipoEditarPerfil_btn_confirmar">CONFIRMAR</string>
     <string name="EquipoEditarPerfil_btn_descartar">DESCARTAR</string>
-
-    <!-- MENU EQUIPO LOGIN (activity_equipo_login.xml) -->
-    <string name="EquipoLogin_btn_login">INICIA SESION</string>
-    <string name="EquipoLogin_txt_registro">Para registrar un equipo, haz login como usuario</string>
-    <string name="EquipoLogin_et_usuario">Nombre del equipo</string>
-    <string name="EquipoLogin_et_pass">Contraseña</string>
 
     <!-- MENU ANUNCIOS DEL EQUIPO (activity_equipo_mis_anuncios.xml) -->
 
@@ -41,10 +46,6 @@
     <string name="EquipoRegistro_et_liga">Liga</string>
     <string name="EquipoRegistro_et_pass">Contraseña</string>
 
-    <!-- MAIN (activity_main.xml) -->
-    <string name="Main_txt_inicioJugaror">Accede como jugador</string>
-    <string name="Main_txt_inicioEquipo">Accede como equipo</string>
-
     <!-- EDITAR PERFIL USUARIO (activity_user_editar_perfil.xml) -->
     <string name="UsuarioEditarPerfil_et_nombre">Nuevo nombre: </string>
     <string name="UsuarioEditarPerfil_et_apellido">Nuevo apellido: </string>
@@ -66,12 +67,6 @@
 
     <!-- TABLON USUARIO (activity_user_home.xml) -->
 
-    <!-- MENU USUARIO LOGIN (activity_user_login.xml) -->
-    <string name="UsuarioLogin_btn_login">INICIA SESION</string>
-    <string name="UsuarioLogin_btn_registro">REGISTRATE</string>
-    <string name="UsuarioLogin_et_usuario">Usuario</string>
-    <string name="UsuarioLogin_et_pass">Contraseña</string>
-
     <!-- OPCIONES DE USUARIO (activity_user_opciones.xml) -->
 
     <!-- PERFIL USUARIO (activiy_user_perfil.xml) -->
@@ -85,6 +80,8 @@
     <string name="UsuarioRegistro_et_nombre">Nombre</string>
     <string name="UsuarioRegistro_et_apellidos">Apellidos</string>
     <string name="UsuarioRegistro_et_edad">Edad</string>
+    <string name="UsuarioRegistro_rb_hombre">Hombre</string>
+    <string name="UsuarioRegistro_rb_mujer">Mujer</string>
     <string name="UsuarioRegistro_et_usuario">Usuario</string>
     <string name="UsuarioRegistro_et_pass">Contraseña</string>
 
