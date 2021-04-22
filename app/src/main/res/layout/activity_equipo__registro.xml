@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Equipo_Registro"
+    tools:context=".activitys.Equipo_Registro"
     android:background="@drawable/gradient_background">
 
     <androidx.appcompat.widget.LinearLayoutCompat

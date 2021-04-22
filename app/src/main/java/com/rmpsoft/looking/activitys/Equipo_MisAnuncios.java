@@ -1,9 +1,11 @@
-package com.rubinsoft.looking;
+package com.rmpsoft.looking.activitys;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
+
+import com.rmpsoft.looking.R;
 
 public class Equipo_MisAnuncios extends AppCompatActivity {
 

@@ -1,16 +1,18 @@
-package com.rubinsoft.looking;
+package com.rmpsoft.looking.activitys;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 
-public class User_Home extends AppCompatActivity {
+import com.rmpsoft.looking.R;
+
+public class Equipo_PonerAnuncio extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_user__home);
+        setContentView(R.layout.activity_equipo__poner_anuncio);
     }
 }

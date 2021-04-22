@@ -1,4 +1,4 @@
-package com.rubinsoft.looking;
+package com.rmpsoft.looking;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -10,6 +10,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
+
+import com.rmpsoft.looking.activitys.Equipo_Registro;
+import com.rmpsoft.looking.activitys.User_Registro;
 
 public class LoginActivity extends AppCompatActivity {
 

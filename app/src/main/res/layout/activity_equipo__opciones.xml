@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Equipo_Opciones">
+    tools:context=".activitys.Equipo_Opciones">
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"

@@ -1,4 +1,4 @@
-package com.rubinsoft.looking;
+package com.rmpsoft.looking;
 
 import org.junit.Test;
 
