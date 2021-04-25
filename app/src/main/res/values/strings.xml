@@ -40,6 +40,7 @@
 
     <!-- MENU EQUIPO REGISTRO (activity_equipo_registro.xml) -->
     <string name="EquipoRegistro_btn_registro">REGISTRAR</string>
+    <string name="EquipoRegistro_et_correo">Correo</string>
     <string name="EquipoRegistro_et_equipo">Nombre del equipo</string>
     <string name="EquipoRegistro_et_deporte">Deporte</string>
     <string name="EquipoRegistro_et_municipio">Municipio</string>

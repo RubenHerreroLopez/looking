@@ -9,25 +9,26 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.DarkActionBar">
-        <activity android:name="com.rmpsoft.looking.LoginActivity">
+        <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.rmpsoft.looking.activitys.User_Home" />
-        <activity android:name="com.rmpsoft.looking.activitys.User_Registro" />
-        <activity android:name="com.rmpsoft.looking.activitys.User_Perfil" />
-        <activity android:name="com.rmpsoft.looking.activitys.User_Opciones" />
-        <activity android:name="com.rmpsoft.looking.activitys.User_GestionAnuncio" />
-        <activity android:name="com.rmpsoft.looking.activitys.User_FiltroBusqueda" />
-        <activity android:name="com.rmpsoft.looking.activitys.User_EditarPerfil" />
-        <activity android:name="com.rmpsoft.looking.activitys.Equipo_Registro" />
-        <activity android:name="com.rmpsoft.looking.activitys.Equipo_PonerAnuncio" />
-        <activity android:name="com.rmpsoft.looking.activitys.Equipo_Perfil" />
-        <activity android:name="com.rmpsoft.looking.activitys.Equipo_Opciones" />
-        <activity android:name="com.rmpsoft.looking.activitys.Equipo_MisAnuncios" />
-        <activity android:name="com.rmpsoft.looking.activitys.Equipo_EditarPerfil" />
+        <activity android:name=".activitys.User_Home" />
+        <activity android:name=".activitys.User_Registro" />
+        <activity android:name=".activitys.User_Perfil" />
+        <activity android:name=".activitys.User_Opciones" />
+        <activity android:name=".activitys.User_GestionAnuncio" />
+        <activity android:name=".activitys.User_FiltroBusqueda" />
+        <activity android:name=".activitys.User_EditarPerfil" />
+        <activity android:name=".activitys.Equipo_Registro" />
+        <activity android:name=".activitys.Equipo_PonerAnuncio" />
+        <activity android:name=".activitys.Equipo_Perfil" />
+        <activity android:name=".activitys.Equipo_Opciones" />
+        <activity android:name=".activitys.Equipo_MisAnuncios" />
+        <activity android:name=".activitys.Equipo_EditarPerfil" />
     </application>
 
 </manifest>
