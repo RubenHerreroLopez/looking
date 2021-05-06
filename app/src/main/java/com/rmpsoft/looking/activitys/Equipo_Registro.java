@@ -10,10 +10,8 @@ import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -22,6 +20,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.rmpsoft.looking.LoginActivity;
 import com.rmpsoft.looking.R;
+import com.rmpsoft.looking.utils.Toast_Manager;
 
 import java.util.HashMap;
 
@@ -56,7 +55,7 @@ public class Equipo_Registro extends AppCompatActivity {
 
                 /* Validamos el formato del correo y la contraseña */
                 if(!Patterns.EMAIL_ADDRESS.matcher(correo).matches()) {
-                    et_correo.setError("Correo no válido");
+                    et_correo.setError("Introduzca un correo válido");
                     et_correo.setFocusable(true);
                 } else if (pass.length()<6) {
                     et_pass.setError("La contraseña debe ser mayor a seis caracteres");
@@ -99,25 +98,15 @@ public class Equipo_Registro extends AppCompatActivity {
                     FirebaseDatabase database = FirebaseDatabase.getInstance();
                     DatabaseReference reference = database.getReference("DATABASE_LOOKING");
                     reference.child(uid).setValue(datosEquipo);
-                    showToast("El registro se realizó correctamente");
+                    Toast_Manager.showToast(Equipo_Registro.this,"El registro se realizó correctamente");
 
                     startActivity(new Intent(Equipo_Registro.this, LoginActivity.class));
 
                 } else {
-                    showToast("No se pudo realizar el registro");
+                    Toast_Manager.showToast(Equipo_Registro.this, "No se pudo realizar el registro");
                 }
-
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                showToast(e.getMessage());
             }
         });
     }
 
-    private void showToast(String mensaje) {
-        Toast.makeText(Equipo_Registro.this, mensaje, Toast.LENGTH_SHORT).show();
-    }
-
-    }
+}

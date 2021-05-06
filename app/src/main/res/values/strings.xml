@@ -5,13 +5,17 @@
     <!-- MENU USUARIO LOGIN (activity__login.xml) -->
     <string name="UsuarioLogin_btn_login">INICIA SESION</string>
     <string name="UsuarioLogin_btn_registro">REGISTRATE</string>
-    <string name="UsuarioLogin_et_usuario">Usuario</string>
+    <string name="UsuarioLogin_et_usuario">Correo electronico</string>
     <string name="UsuarioLogin_et_pass">Contraseña</string>
     <string-array name="Login_spinner">
         <item>(Seleccionar)</item>
         <item>Jugador</item>
         <item>Equipo</item>
     </string-array>
+
+    <!-- DIALOGO NO INICIO SESION -->
+    <string name="DialogNoInicio_Error">No pudo inciciar sesión, inténtelo de nuevo</string>
+    <string name="DialogNoInicio_btn_ok">ENTENDIDO</string>
 
     <!-- MENU EDITAR PERFIL EQUIPO (activity_equipo_editar_perfil.xml) -->
     <string name="EquipoEditarPerfil_et_nombre">Nuevo nombre del equipo</string>
@@ -40,7 +44,7 @@
 
     <!-- MENU EQUIPO REGISTRO (activity_equipo_registro.xml) -->
     <string name="EquipoRegistro_btn_registro">REGISTRAR</string>
-    <string name="EquipoRegistro_et_correo">Correo</string>
+    <string name="EquipoRegistro_et_correo">Correo electrónico</string>
     <string name="EquipoRegistro_et_equipo">Nombre del equipo</string>
     <string name="EquipoRegistro_et_deporte">Deporte</string>
     <string name="EquipoRegistro_et_municipio">Municipio</string>
@@ -67,6 +71,7 @@
     <string name="UsuarioGestionAnuncios_txt_personaContacto">Persona de contacto: </string>
 
     <!-- TABLON USUARIO (activity_user_home.xml) -->
+    <string name="UserHome_btn_cerrarSesion">CERRAR SESION</string>
 
     <!-- OPCIONES DE USUARIO (activity_user_opciones.xml) -->
 
