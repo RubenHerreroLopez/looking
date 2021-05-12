@@ -22,6 +22,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.rmpsoft.looking.activitys.Equipo_Home;
 import com.rmpsoft.looking.activitys.Equipo_Registro;
 import com.rmpsoft.looking.activitys.User_Home;
 import com.rmpsoft.looking.activitys.User_Registro;
@@ -43,9 +44,6 @@ public class LoginActivity extends AppCompatActivity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
-       /* Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar); */
 
         et_correo = findViewById(R.id.UsuarioLogin_et_usuario);
         et_pass = findViewById(R.id.UsuarioLogin_et_pass);
@@ -121,10 +119,13 @@ public class LoginActivity extends AppCompatActivity {
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()) {
                         progressdialog.dismiss();
-                        FirebaseUser user = firebaseauth.getCurrentUser();
-
-                        startActivity(new Intent(LoginActivity.this, User_Home.class));
-                        finish();
+                        if (seleccion.equals("Jugador")) {
+                            startActivity(new Intent(LoginActivity.this, User_Home.class));
+                            finish();
+                        } else if (seleccion.equals("Equipo")) {
+                            startActivity(new Intent(LoginActivity.this, Equipo_Home.class));
+                            finish();
+                        }
 
                     } else {
                         progressdialog.dismiss();
@@ -142,6 +143,8 @@ public class LoginActivity extends AppCompatActivity {
             });
 
         }
+
+
 
     private void dialogNoInicio () {
         Button btn_ok;

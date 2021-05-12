@@ -20,10 +20,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.rmpsoft.looking.LoginActivity;
-import com.rmpsoft.looking.Persona;
 import com.rmpsoft.looking.R;
 import com.rmpsoft.looking.utils.Toast_Manager;
 
@@ -32,11 +30,12 @@ import java.util.HashMap;
 public class User_Registro extends AppCompatActivity {
 
     EditText et_correo, et_nombre, et_apellido, et_user, et_edad, et_pass;
-    RadioButton rb_hombre, rb_mujer;
+    RadioButton rb_masculino, rb_femenino;
     Button btn_registo;
     FirebaseAuth firebaseauth;
     FirebaseFirestore firestore;
     private ProgressDialog progressdialog;
+    String sexo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,8 +49,8 @@ public class User_Registro extends AppCompatActivity {
         et_edad = findViewById(R.id.UsuarioRegistro_et_edad);
         et_user = findViewById(R.id.UsuarioRegistro_et_usuario);
         et_pass = findViewById(R.id.UsuarioRegistro_et_pass);
-        rb_hombre = findViewById(R.id.UsuarioRegistro_rb_hombre);
-        rb_mujer = findViewById(R.id.UsuarioRegistro_rb_mujer);
+        rb_masculino = findViewById(R.id.UsuarioRegistro_rb_masculino);
+        rb_femenino = findViewById(R.id.UsuarioRegistro_rb_femenino);
         btn_registo = findViewById(R.id.UsuarioRegistro_btn_registro);
 
         firebaseauth = FirebaseAuth.getInstance();
@@ -81,7 +80,10 @@ public class User_Registro extends AppCompatActivity {
                 } else if (apellido.isEmpty()) {
                     et_apellido.setError("El campo es obligatorio");
                     et_apellido.setFocusable(true);
-                } else if (edad.isEmpty()) {
+                } else if (!rb_masculino.isChecked() && !rb_femenino.isChecked()) {
+                    rb_femenino.setError("Debes seleccionar una opcion");
+                    rb_femenino.setFocusable(true);
+                }else if (edad.isEmpty()) {
                     et_edad.setError("El campo es obligatorio");
                     et_edad.setFocusable(true);
                 } else if (usuario.isEmpty()) {
@@ -93,11 +95,12 @@ public class User_Registro extends AppCompatActivity {
             }
         });
     }
-
+    /* Método para registrar los usuarios en la BBDD */
     private void registrar (String correo, String pass) {
 
         progressdialog.setCancelable(false);
         progressdialog.show();
+
         firebaseauth.createUserWithEmailAndPassword(correo, pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
@@ -105,7 +108,6 @@ public class User_Registro extends AppCompatActivity {
                 if (task.isSuccessful()) {
                     progressdialog.dismiss();
                     FirebaseUser firebaseuser = firebaseauth.getCurrentUser();
-                    String sexo;
 
                     assert firebaseuser != null;
                     String uid = firebaseuser.getUid();
@@ -116,10 +118,11 @@ public class User_Registro extends AppCompatActivity {
                     String edad = et_edad.getText().toString();
                     String usuario = et_user.getText().toString();
 
-                    if (rb_hombre.isChecked()) {
-                        sexo = rb_hombre.getText().toString();
-                    } else {
-                        sexo = rb_mujer.getText().toString();
+                    if (rb_masculino.isChecked()) {
+                        sexo = rb_masculino.getText().toString();
+                    }
+                    if (rb_femenino.isChecked()) {
+                        sexo = rb_femenino.getText().toString();
                     }
 
                     HashMap<Object, String> datosUser = new HashMap<>();
@@ -132,8 +135,6 @@ public class User_Registro extends AppCompatActivity {
                     datosUser.put("apellido", apellido);
                     datosUser.put("edad", edad);
                     datosUser.put("sexo", sexo);
-
-                    Persona p = new Persona (uid, nombre, apellido);
 
                     firestore.collection("Usuarios").document(uid).set(datosUser).addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
@@ -149,7 +150,7 @@ public class User_Registro extends AppCompatActivity {
                             Toast_Manager.showToast(User_Registro.this, "No se pudo realizar el registro");
                         }
                     });
-                    
+
                 } else {
                     progressdialog.dismiss();
                     Toast_Manager.showToast(User_Registro.this, "No se pudo realizar el registro");

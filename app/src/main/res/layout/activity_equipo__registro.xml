@@ -27,7 +27,7 @@
                 android:hint="@string/EquipoRegistro_et_correo"
                 android:inputType="textEmailAddress"
                 android:autofillHints="false"
-                android:background="@drawable/edit_text_style"
+                android:background="@color/white"
                 android:layout_marginStart="10dp"
                 android:maxLines="1"/>
         </com.google.android.material.textfield.TextInputLayout>
@@ -46,7 +46,7 @@
                 android:hint="@string/EquipoRegistro_et_equipo"
                 android:inputType="text"
                 android:autofillHints="false"
-                android:background="@drawable/edit_text_style"
+                android:background="@color/white"
                 android:layout_marginStart="10dp"
                 android:maxLines="1"/>
         </com.google.android.material.textfield.TextInputLayout>
@@ -64,7 +64,7 @@
                 android:hint="@string/EquipoRegistro_et_deporte"
                 android:inputType="text"
                 android:autofillHints="false"
-                android:background="@drawable/edit_text_style"
+                android:background="@color/white"
                 android:layout_marginStart="10dp"
                 android:maxLines="1"/>
         </com.google.android.material.textfield.TextInputLayout>
@@ -82,7 +82,7 @@
                 android:hint="@string/EquipoRegistro_et_municipio"
                 android:inputType="text"
                 android:autofillHints="false"
-                android:background="@drawable/edit_text_style"
+                android:background="@color/white"
                 android:layout_marginStart="10dp"
                 android:maxLines="1"/>
         </com.google.android.material.textfield.TextInputLayout>
@@ -100,7 +100,25 @@
                 android:hint="@string/EquipoRegistro_et_liga"
                 android:inputType="text"
                 android:autofillHints="false"
-                android:background="@drawable/edit_text_style"
+                android:background="@color/white"
+                android:layout_marginStart="10dp"
+                android:maxLines="1"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- DIA DE JUEGO -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/edit_text_style">
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:id="@+id/EquipoRegistro_et_dia"
+                android:hint="@string/EquipoRegistro_et_diaDeJuego"
+                android:inputType="text"
+                android:autofillHints="false"
+                android:background="@color/white"
                 android:layout_marginStart="10dp"
                 android:maxLines="1"/>
         </com.google.android.material.textfield.TextInputLayout>
@@ -119,7 +137,7 @@
                 android:hint="@string/EquipoRegistro_et_pass"
                 android:inputType="textPassword"
                 android:autofillHints="false"
-                android:background="@drawable/edit_text_style"
+                android:background="@color/white"
                 android:layout_marginStart="10dp"
                 android:maxLines="1"/>
         </com.google.android.material.textfield.TextInputLayout>

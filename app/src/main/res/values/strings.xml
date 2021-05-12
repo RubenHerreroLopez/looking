@@ -29,11 +29,10 @@
 
     <!-- MENU OPCIONES EQUIPO (activiy_equipo_opciones.xml) -->
 
-    <!-- PERFIL EQUIPO (activity equipo_perfil.xml) -->
-    <string name="PerfilEquipo_btn_misAnuncios">MIS ANUNCIOS</string>
-    <string name="PerfilEquipo_btn_ponerAnuncio">PONER ANUNCIO</string>
-    <string name="PerfilEquipo_btn_editarPerfil">EDITAR PERFIL</string>
-    <string name="PerfilEquipo_btn_cerrarSesion">CERRAR SESION</string>
+    <!-- HOME EQUIPO (activity equipo_home.xml) -->
+    <string name="EquipoHome_btn_misAnuncios">MIS ANUNCIOS</string>
+    <string name="EquipoHome_btn_ponerAnuncio">PONER ANUNCIO</string>
+    <string name="EquipoHome_tv_user"> </string>
 
     <!-- EQUIPO PONER ANUNCIO (activity_equipo_poner_anuncio.xml) -->
     <string name="PonerAnuncio_et_municipio">Municipio</string>
@@ -50,6 +49,7 @@
     <string name="EquipoRegistro_et_municipio">Municipio</string>
     <string name="EquipoRegistro_et_liga">Liga</string>
     <string name="EquipoRegistro_et_pass">Contraseña</string>
+    <string name="EquipoRegistro_et_diaDeJuego">Día de juego</string>
 
     <!-- EDITAR PERFIL USUARIO (activity_user_editar_perfil.xml) -->
     <string name="UsuarioEditarPerfil_et_nombre">Nuevo nombre: </string>
@@ -70,8 +70,10 @@
     <string name="UsuarioGestionAnuncios_txt_detalles">Detalles</string>
     <string name="UsuarioGestionAnuncios_txt_personaContacto">Persona de contacto: </string>
 
-    <!-- TABLON USUARIO (activity_user_home.xml) -->
-    <string name="UserHome_btn_cerrarSesion">CERRAR SESION</string>
+    <!-- HOME USUARIO (activity_user_home.xml) -->
+    <string name="UserHome_menu_cerrarSesion">Cerrar sesión</string>
+    <string name="UserHome_menu_editarPerfil">Editar perfil</string>
+    <string name="UserHome_tv_user"> </string>
 
     <!-- OPCIONES DE USUARIO (activity_user_opciones.xml) -->
 
@@ -86,8 +88,9 @@
     <string name="UsuarioRegistro_et_nombre">Nombre</string>
     <string name="UsuarioRegistro_et_apellidos">Apellidos</string>
     <string name="UsuarioRegistro_et_edad">Edad</string>
-    <string name="UsuarioRegistro_rb_hombre">Hombre</string>
-    <string name="UsuarioRegistro_rb_mujer">Mujer</string>
+    <string name="UsuarioRegistro_tv_categoria">Categoria</string>
+    <string name="UsuarioRegistro_rb_hombre">Masculina</string>
+    <string name="UsuarioRegistro_rb_mujer">Femenina</string>
     <string name="UsuarioRegistro_et_usuario">Usuario</string>
     <string name="UsuarioRegistro_et_pass">Contraseña</string>
 

@@ -4,13 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activitys.User_Home">
+    tools:context=".activitys.Equipo_Home">
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:background="@color/white"
+        android:gravity="top"
+        android:background="#fff"
         android:padding="25dp">
 
         <!-- LL DATOS USUARIO -->
@@ -23,36 +24,32 @@
             <ImageView
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                android:id="@+id/UserHome_image_perfil"
-                android:src="@drawable/ic_userhome_perfil"
+                android:id="@+id/EquipoHome_image_perfil"
+                android:src="@drawable/ic_equipohome_perfil"
                 android:scaleType="fitCenter"/>
             <!-- NOMBRE DE USUARIO -->
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/UserHome_tv_user"
+                android:id="@+id/EquipoHome_tv_user"
                 android:layout_marginStart="15dp"
                 android:layout_marginTop="35dp"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                android:text="@string/UserHome_tv_user"/>
+                android:text="@string/EquipoHome_tv_user"/>
         </LinearLayout>
 
         <Space
             android:layout_width="match_parent"
             android:layout_height="15dp"/>
 
-        <!-- LL LISTA DE ANUNCIOS -->
+        <!-- LL MENU -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <ListView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
         </LinearLayout>
 
     </androidx.appcompat.widget.LinearLayoutCompat>
-
 </RelativeLayout>

@@ -1,6 +1,5 @@
 package com.rmpsoft.looking.activitys;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -9,43 +8,31 @@ import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
-import com.google.firebase.firestore.auth.User;
 import com.rmpsoft.looking.LoginActivity;
 import com.rmpsoft.looking.R;
 import com.rmpsoft.looking.utils.Toast_Manager;
 
-import java.util.Objects;
-
-public class User_Home extends AppCompatActivity {
+public class Equipo_Home extends AppCompatActivity {
 
     FirebaseAuth firebaseauth;
     FirebaseUser firebaseuser;
     FirebaseFirestore firestore;
 
-    TextView tv_nombreUser;
-
-    String nombreUsuario;
-    String apellidoUsuario;
-    String nombreCompleto;
+    TextView tv_nombreEquipo;
+    String nombreEquipo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_user__home);
+        setContentView(R.layout.activity_equipo__home);
 
         firebaseauth = FirebaseAuth.getInstance();
         firebaseuser = firebaseauth.getCurrentUser();
@@ -58,23 +45,22 @@ public class User_Home extends AppCompatActivity {
         firebaseuser = firebaseauth.getCurrentUser();
         firestore = FirebaseFirestore.getInstance();
 
-        tv_nombreUser = findViewById(R.id.UserHome_tv_user);
-
+        tv_nombreEquipo = findViewById(R.id.EquipoHome_tv_user);
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_userhome, menu);
+        getMenuInflater().inflate(R.menu.menu_equipohome, menu);
         return true;
     }
 
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        if (id == R.id.UserHome_menu_cerrarSesion) {
+        if (id == R.id.EquipoHome_menu_cerrarSesion) {
             signOut();
         }
-        if (id == R.id.UserHome_menu_editarPerfil) {
-            startActivity(new Intent(User_Home.this, User_EditarPerfil.class));
+        if (id == R.id.EquipoHome_menu_editarPerfil) {
+            startActivity(new Intent(Equipo_Home.this, Equipo_EditarPerfil.class));
         }
 
         return super.onOptionsItemSelected(item);
@@ -105,18 +91,16 @@ public class User_Home extends AppCompatActivity {
         finish();
     }
 
-    /* Este método obtiene el nombre y apellidos del usuario actual y los asigna al TextView */
+    /* Este método obtiene el nombre del equipo actual y lo asigna al TextView */
     private void getDataUser() {
         String uid = firebaseuser.getUid();
 
-        firestore.collection("Usuarios").document(uid).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+        firestore.collection("Equipos").document(uid).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 if (documentSnapshot.exists()) {
-                    nombreUsuario = documentSnapshot.getString("nombre");
-                    apellidoUsuario = documentSnapshot.getString("apellido");
-                    nombreCompleto = " " + nombreUsuario + " " + apellidoUsuario + " ";
-                    tv_nombreUser.setText(nombreCompleto);
+                    nombreEquipo = documentSnapshot.getString("equipo");
+                    tv_nombreEquipo.setText(nombreEquipo);
                 }
             }
         });
