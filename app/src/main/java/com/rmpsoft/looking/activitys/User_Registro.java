@@ -1,6 +1,7 @@
 package com.rmpsoft.looking.activitys;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
@@ -29,7 +30,7 @@ import java.util.HashMap;
 
 public class User_Registro extends AppCompatActivity {
 
-    EditText et_correo, et_nombre, et_apellido, et_user, et_edad, et_pass;
+    EditText et_correo, et_nombre, et_apellido, et_edad, et_pass;
     RadioButton rb_masculino, rb_femenino;
     Button btn_registo;
     FirebaseAuth firebaseauth;
@@ -43,11 +44,15 @@ public class User_Registro extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user__registro);
 
+        ActionBar actionbar = getSupportActionBar();
+        assert actionbar != null;
+        actionbar.setDisplayShowHomeEnabled(true);
+        actionbar.setTitle(" ");
+
         et_correo = findViewById(R.id.UsuarioRegistro_et_correo);
         et_nombre = findViewById(R.id.UsuarioRegistro_et_nombre);
         et_apellido = findViewById(R.id.UsuarioRegistro_et_apellidos);
         et_edad = findViewById(R.id.UsuarioRegistro_et_edad);
-        et_user = findViewById(R.id.UsuarioRegistro_et_usuario);
         et_pass = findViewById(R.id.UsuarioRegistro_et_pass);
         rb_masculino = findViewById(R.id.UsuarioRegistro_rb_masculino);
         rb_femenino = findViewById(R.id.UsuarioRegistro_rb_femenino);
@@ -65,7 +70,6 @@ public class User_Registro extends AppCompatActivity {
                 String nombre = et_nombre.getText().toString();
                 String apellido = et_apellido.getText().toString();
                 String edad = et_edad.getText().toString();
-                String usuario = et_user.getText().toString();
 
                 /* Validamos el formato del correo y la contraseña así como que los campos están rellenados*/
                 if(!Patterns.EMAIL_ADDRESS.matcher(correo).matches()) {
@@ -86,15 +90,13 @@ public class User_Registro extends AppCompatActivity {
                 }else if (edad.isEmpty()) {
                     et_edad.setError("El campo es obligatorio");
                     et_edad.setFocusable(true);
-                } else if (usuario.isEmpty()) {
-                    et_user.setError("El campo es obligatorio");
-                    et_user.setFocusable(true);
-                }else {
+                } else {
                     registrar(correo, pass);
                 }
             }
         });
     }
+
     /* Método para registrar los usuarios en la BBDD */
     private void registrar (String correo, String pass) {
 
@@ -116,7 +118,6 @@ public class User_Registro extends AppCompatActivity {
                     String nombre = et_nombre.getText().toString();
                     String apellido = et_apellido.getText().toString();
                     String edad = et_edad.getText().toString();
-                    String usuario = et_user.getText().toString();
 
                     if (rb_masculino.isChecked()) {
                         sexo = rb_masculino.getText().toString();
@@ -128,7 +129,6 @@ public class User_Registro extends AppCompatActivity {
                     HashMap<Object, String> datosUser = new HashMap<>();
 
                     datosUser.put("uid", uid);
-                    datosUser.put("usuario", usuario);
                     datosUser.put("correo", correo);
                     datosUser.put("pass", pass);
                     datosUser.put("nombre", nombre);

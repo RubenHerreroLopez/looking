@@ -11,10 +11,9 @@
         android:theme="@style/Theme.AppCompat.Light.DarkActionBar">
         <activity android:name=".Splash"/>
         <activity android:name=".activitys.User_Perfil" />
-        <activity android:name=".LoginActivity" >
+        <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

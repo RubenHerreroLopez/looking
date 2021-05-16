@@ -6,11 +6,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -26,7 +26,10 @@ public class Equipo_Home extends AppCompatActivity {
     FirebaseFirestore firestore;
 
     TextView tv_nombreEquipo;
+    FloatingActionButton fab_edit, fab_add, fab_exit;
+
     String nombreEquipo;
+    Boolean sesionIniciada = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,31 +42,40 @@ public class Equipo_Home extends AppCompatActivity {
 
         ActionBar actionbar = getSupportActionBar();
         assert actionbar != null;
-        actionbar.setTitle("Home");
+        actionbar.setDisplayShowHomeEnabled(true);
+        actionbar.setTitle(" ");
+        actionbar.setIcon(R.drawable.ic_logo_actionbar);
 
         firebaseauth = FirebaseAuth.getInstance();
         firebaseuser = firebaseauth.getCurrentUser();
         firestore = FirebaseFirestore.getInstance();
 
         tv_nombreEquipo = findViewById(R.id.EquipoHome_tv_user);
-    }
+        fab_edit = findViewById(R.id.EquipoHome_fab_edit);
+        fab_add = findViewById(R.id.EquipoHome_fab_add);
+        fab_exit = findViewById(R.id.EquipoHome_fab_exit);
 
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_equipohome, menu);
-        return true;
-    }
+        fab_edit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Equipo_Home.this, Equipo_EditarPerfil.class));
+            }
+        });
 
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
+        fab_add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Equipo_Home.this, Equipo_PonerAnuncio.class));
+            }
+        });
 
-        if (id == R.id.EquipoHome_menu_cerrarSesion) {
-            signOut();
-        }
-        if (id == R.id.EquipoHome_menu_editarPerfil) {
-            startActivity(new Intent(Equipo_Home.this, Equipo_EditarPerfil.class));
-        }
+        fab_exit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                signOut();
+            }
+        });
 
-        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -75,17 +87,23 @@ public class Equipo_Home extends AppCompatActivity {
 
     /* Verifica que un usuario ha iniciado sesión, de lo contrario, cierra la activity */
     private void verificarInicioSesion() {
-        if (firebaseuser != null) {
-            Toast_Manager.showToast(this, "Se ha iniciado sesión correctamente");
-        } else {
-            startActivity(new Intent(this, LoginActivity.class));
-            finish();
-        }
+       if (sesionIniciada) {
+
+       } else {
+           if (firebaseuser != null) {
+               Toast_Manager.showToast(this, "Se ha iniciado sesión correctamente");
+               sesionIniciada = true;
+           } else {
+               startActivity(new Intent(this, LoginActivity.class));
+               finish();
+           }
+       }
     }
 
     /* Método que cierra la sesión actual */
     private void signOut() {
         firebaseauth.signOut();
+        sesionIniciada = false;
         Toast_Manager.showToast(this, "Has cerrado sesion");
         startActivity(new Intent(this, LoginActivity.class));
         finish();

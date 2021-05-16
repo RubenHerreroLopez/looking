@@ -126,24 +126,6 @@
             </RadioGroup>
         </LinearLayout>
 
-        <!-- USUARIO -->
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:background="@drawable/edit_text_style">
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:id="@+id/UsuarioRegistro_et_usuario"
-                android:hint="@string/UsuarioRegistro_et_usuario"
-                android:inputType="text"
-                android:autofillHints="false"
-                android:background="@drawable/edit_text_style"
-                android:layout_marginStart="10dp"
-                android:maxLines="1"/>
-        </com.google.android.material.textfield.TextInputLayout>
-
         <!-- CONTRASEÑA -->
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"

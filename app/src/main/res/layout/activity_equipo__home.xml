@@ -26,7 +26,8 @@
                 android:layout_height="100dp"
                 android:id="@+id/EquipoHome_image_perfil"
                 android:src="@drawable/ic_equipohome_perfil"
-                android:scaleType="fitCenter"/>
+                android:scaleType="fitCenter"
+                android:contentDescription="@string/EquipoHome_iv_perfil" />
             <!-- NOMBRE DE USUARIO -->
             <TextView
                 android:layout_width="match_parent"
@@ -41,15 +42,66 @@
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="15dp"/>
+            android:layout_height="20dp"/>
 
-        <!-- LL MENU -->
+        <!-- LL FLOAT BUTTONS -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/EquipoHome_fab_add"
+                android:src="@drawable/ic_add"
+                android:layout_margin="16dp"
+                app:borderWidth="0dp"
+                android:elevation="0dp"
+                android:backgroundTint="@color/principal"
+                android:contentDescription="@string/EquipoHome_fab_add" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/EquipoHome_fab_edit"
+                android:src="@drawable/ic_edit"
+                android:layout_margin="16dp"
+                app:borderWidth="0dp"
+                android:elevation="0dp"
+                android:backgroundTint="@color/principal"
+                android:contentDescription="@string/EquipoHome_fab_edit" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/EquipoHome_fab_exit"
+                android:src="@drawable/ic_exit"
+                android:layout_margin="16dp"
+                app:borderWidth="0dp"
+                android:elevation="0dp"
+                android:backgroundTint="@color/principal"
+                android:contentDescription="@string/EquipoHome_fab_exit" />
+        </LinearLayout>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="20dp"/>
+
+        <!-- LL ANUNCIOS -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
 
+            <ListView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
         </LinearLayout>
 
     </androidx.appcompat.widget.LinearLayoutCompat>
+
 </RelativeLayout>

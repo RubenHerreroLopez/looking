@@ -30,8 +30,10 @@
     <!-- MENU OPCIONES EQUIPO (activiy_equipo_opciones.xml) -->
 
     <!-- HOME EQUIPO (activity equipo_home.xml) -->
-    <string name="EquipoHome_btn_misAnuncios">MIS ANUNCIOS</string>
-    <string name="EquipoHome_btn_ponerAnuncio">PONER ANUNCIO</string>
+    <string name="EquipoHome_fab_edit">Editar Perfil</string>
+    <string name="EquipoHome_fab_add">Añadir Anuncio</string>
+    <string name="EquipoHome_fab_exit">Cerrar Sesión</string>
+    <string name="EquipoHome_iv_perfil">Imagen de Perfil</string>
     <string name="EquipoHome_tv_user"> </string>
 
     <!-- EQUIPO PONER ANUNCIO (activity_equipo_poner_anuncio.xml) -->
@@ -71,8 +73,10 @@
     <string name="UsuarioGestionAnuncios_txt_personaContacto">Persona de contacto: </string>
 
     <!-- HOME USUARIO (activity_user_home.xml) -->
-    <string name="UserHome_menu_cerrarSesion">Cerrar sesión</string>
-    <string name="UserHome_menu_editarPerfil">Editar perfil</string>
+    <string name="UserHome_fab_edit">Editar Perfil</string>
+    <string name="UserHome_fab_filter">Filtrar Búsqueda</string>
+    <string name="UserHome_fab_exit">Cerrar Sesión</string>
+    <string name="UserHome_iv_perfil">Imagen de Perfil</string>
     <string name="UserHome_tv_user"> </string>
 
     <!-- OPCIONES DE USUARIO (activity_user_opciones.xml) -->
@@ -91,7 +95,6 @@
     <string name="UsuarioRegistro_tv_categoria">Categoria</string>
     <string name="UsuarioRegistro_rb_hombre">Masculina</string>
     <string name="UsuarioRegistro_rb_mujer">Femenina</string>
-    <string name="UsuarioRegistro_et_usuario">Usuario</string>
     <string name="UsuarioRegistro_et_pass">Contraseña</string>
 
 </resources>

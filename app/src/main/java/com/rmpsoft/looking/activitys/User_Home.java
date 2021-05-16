@@ -1,33 +1,23 @@
 package com.rmpsoft.looking.activitys;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
-import com.google.firebase.firestore.auth.User;
 import com.rmpsoft.looking.LoginActivity;
 import com.rmpsoft.looking.R;
 import com.rmpsoft.looking.utils.Toast_Manager;
-
-import java.util.Objects;
 
 public class User_Home extends AppCompatActivity {
 
@@ -36,10 +26,12 @@ public class User_Home extends AppCompatActivity {
     FirebaseFirestore firestore;
 
     TextView tv_nombreUser;
+    FloatingActionButton fab_edit, fab_filter, fab_exit;
 
     String nombreUsuario;
     String apellidoUsuario;
     String nombreCompleto;
+    Boolean sesionIniciada = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,32 +44,39 @@ public class User_Home extends AppCompatActivity {
 
         ActionBar actionbar = getSupportActionBar();
         assert actionbar != null;
-        actionbar.setTitle("Home");
+        actionbar.setDisplayShowHomeEnabled(true);
+        actionbar.setTitle(" ");
+        actionbar.setIcon(R.drawable.ic_logo_actionbar);
 
         firebaseauth = FirebaseAuth.getInstance();
         firebaseuser = firebaseauth.getCurrentUser();
         firestore = FirebaseFirestore.getInstance();
 
         tv_nombreUser = findViewById(R.id.UserHome_tv_user);
+        fab_edit = findViewById(R.id.UserHome_fab_edit);
+        fab_filter = findViewById(R.id.UseroHome_fab_filter);
+        fab_exit = findViewById(R.id.UserHome_fab_exit);
 
-    }
+        fab_edit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(User_Home.this, User_EditarPerfil.class));
+            }
+        });
 
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_userhome, menu);
-        return true;
-    }
+        fab_filter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(User_Home.this, User_FiltroBusqueda.class));
+            }
+        });
 
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-
-        if (id == R.id.UserHome_menu_cerrarSesion) {
-            signOut();
-        }
-        if (id == R.id.UserHome_menu_editarPerfil) {
-            startActivity(new Intent(User_Home.this, User_EditarPerfil.class));
-        }
-
-        return super.onOptionsItemSelected(item);
+        fab_exit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               signOut();
+            }
+        });
     }
 
     @Override
@@ -89,11 +88,16 @@ public class User_Home extends AppCompatActivity {
 
     /* Verifica que un usuario ha iniciado sesión, de lo contrario, cierra la activity */
     private void verificarInicioSesion() {
-        if (firebaseuser != null) {
-            Toast_Manager.showToast(this, "Se ha iniciado sesión correctamente");
+        if (sesionIniciada) {
+
         } else {
-            startActivity(new Intent(this, LoginActivity.class));
-            finish();
+            if (firebaseuser != null) {
+                Toast_Manager.showToast(this, "Se ha iniciado sesión correctamente");
+                sesionIniciada = true;
+            } else {
+                startActivity(new Intent(this, LoginActivity.class));
+                finish();
+            }
         }
     }
 

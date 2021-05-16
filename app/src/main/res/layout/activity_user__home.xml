@@ -25,7 +25,9 @@
                 android:layout_height="100dp"
                 android:id="@+id/UserHome_image_perfil"
                 android:src="@drawable/ic_userhome_perfil"
-                android:scaleType="fitCenter"/>
+                android:scaleType="fitCenter"
+                android:contentDescription="@string/UserHome_iv_perfil" />
+
             <!-- NOMBRE DE USUARIO -->
             <TextView
                 android:layout_width="match_parent"
@@ -40,7 +42,52 @@
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="15dp"/>
+            android:layout_height="20dp"/>
+
+        <!-- LL FLOAT BUTTONS -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/UseroHome_fab_filter"
+                android:src="@drawable/ic_filter"
+                android:layout_margin="16dp"
+                app:borderWidth="0dp"
+                android:elevation="0dp"
+                android:backgroundTint="@color/principal"
+                android:contentDescription="@string/UserHome_fab_filter" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/UserHome_fab_edit"
+                android:src="@drawable/ic_edit"
+                android:layout_margin="16dp"
+                app:borderWidth="0dp"
+                android:elevation="0dp"
+                android:backgroundTint="@color/principal"
+                android:contentDescription="@string/UserHome_fab_edit" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/UserHome_fab_exit"
+                android:src="@drawable/ic_exit"
+                android:layout_margin="16dp"
+                app:borderWidth="0dp"
+                android:elevation="0dp"
+                android:backgroundTint="@color/principal"
+                android:contentDescription="@string/UserHome_fab_exit" />
+        </LinearLayout>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="20dp"/>
 
         <!-- LL LISTA DE ANUNCIOS -->
         <LinearLayout

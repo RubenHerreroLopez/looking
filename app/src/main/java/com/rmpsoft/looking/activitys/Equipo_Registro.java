@@ -1,6 +1,7 @@
 package com.rmpsoft.looking.activitys;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
@@ -40,6 +41,11 @@ public class Equipo_Registro extends AppCompatActivity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_equipo__registro);
+
+        ActionBar actionbar = getSupportActionBar();
+        assert actionbar != null;
+        actionbar.setDisplayShowHomeEnabled(true);
+        actionbar.setTitle(" ");
 
         et_correo = findViewById(R.id.EquipoRegistro_et_correo);
         et_equipo = findViewById(R.id.EquipoRegistro_et_equipo);

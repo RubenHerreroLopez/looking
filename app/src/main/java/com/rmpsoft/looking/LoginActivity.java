@@ -1,6 +1,7 @@
 package com.rmpsoft.looking;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Dialog;
@@ -21,7 +22,6 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.rmpsoft.looking.activitys.Equipo_Home;
 import com.rmpsoft.looking.activitys.Equipo_Registro;
 import com.rmpsoft.looking.activitys.User_Home;
@@ -44,6 +44,10 @@ public class LoginActivity extends AppCompatActivity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        ActionBar actionbar = getSupportActionBar();
+        assert actionbar != null;
+        actionbar.setTitle(" ");
 
         et_correo = findViewById(R.id.UsuarioLogin_et_usuario);
         et_pass = findViewById(R.id.UsuarioLogin_et_pass);
@@ -143,8 +147,6 @@ public class LoginActivity extends AppCompatActivity {
             });
 
         }
-
-
 
     private void dialogNoInicio () {
         Button btn_ok;
