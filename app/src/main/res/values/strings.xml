@@ -37,11 +37,10 @@
     <string name="EquipoHome_tv_user"> </string>
 
     <!-- EQUIPO PONER ANUNCIO (activity_equipo_poner_anuncio.xml) -->
-    <string name="PonerAnuncio_et_municipio">Municipio</string>
-    <string name="PonerAnuncio_et_dia">Día de juego</string>
-    <string name="PonerAnuncio_et_posicion">Posición de juego</string>
+    <string name="PonerAnuncio_et_contacto">Persona de contacto</string>
     <string name="PonerAnuncio_et_descripcion">Descripción del anuncio</string>
     <string name="PonerAnuncio_btn_publicar">PUBLICAR</string>
+    <string name="PonerAnuncio_btn_descartar">DESCARTAR</string>
 
     <!-- MENU EQUIPO REGISTRO (activity_equipo_registro.xml) -->
     <string name="EquipoRegistro_btn_registro">REGISTRAR</string>

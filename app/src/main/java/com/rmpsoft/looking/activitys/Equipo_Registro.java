@@ -32,6 +32,7 @@ public class Equipo_Registro extends AppCompatActivity {
 
     EditText et_correo, et_equipo, et_deporte, et_municipio, et_liga, et_dia, et_pass;
     Button btn_registro;
+
     FirebaseAuth firebaseauth;
     FirebaseFirestore firestore;
     private ProgressDialog progressdialog;

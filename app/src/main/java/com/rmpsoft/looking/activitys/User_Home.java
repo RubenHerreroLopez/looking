@@ -6,6 +6,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
@@ -26,7 +28,8 @@ public class User_Home extends AppCompatActivity {
     FirebaseFirestore firestore;
 
     TextView tv_nombreUser;
-    FloatingActionButton fab_edit, fab_filter, fab_exit;
+    //R FloatingActionButton fab_edit, fab_filter, fab_exit;
+    FloatingActionButton fab_filter, fab_edit;
 
     String nombreUsuario;
     String apellidoUsuario;
@@ -53,16 +56,8 @@ public class User_Home extends AppCompatActivity {
         firestore = FirebaseFirestore.getInstance();
 
         tv_nombreUser = findViewById(R.id.UserHome_tv_user);
+        fab_filter = findViewById(R.id.UserHome_fab_filter);
         fab_edit = findViewById(R.id.UserHome_fab_edit);
-        fab_filter = findViewById(R.id.UseroHome_fab_filter);
-        fab_exit = findViewById(R.id.UserHome_fab_exit);
-
-        fab_edit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(User_Home.this, User_EditarPerfil.class));
-            }
-        });
 
         fab_filter.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,12 +66,37 @@ public class User_Home extends AppCompatActivity {
             }
         });
 
+        fab_edit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(User_Home.this, User_EditarPerfil.class));
+            }
+        });
+
+  /*R      fab_exit = findViewById(R.id.UserHome_fab_exit);
+
         fab_exit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                signOut();
             }
-        });
+        }); R*/
+    }
+
+
+    public boolean onCreateOptionsMenu (Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_userhome, menu);
+        return true;
+    }
+
+    public boolean onOptionsItemSelected (MenuItem item) {
+        int id = item.getItemId();
+
+        if(id == R.id.UserHome_ic_exit) {
+            signOut();
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     @Override

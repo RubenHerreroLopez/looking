@@ -4,15 +4,72 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activitys.Equipo_PonerAnuncio">
+    tools:context=".activitys.Equipo_PonerAnuncio"
+    android:background="@color/white">
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         android:gravity="center"
-        android:background="#fff"
         android:padding="25dp">
+
+        <!-- PERSONA DE CONTACTO -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp">
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/PonerAnuncio_et_contacto"
+                android:hint="@string/PonerAnuncio_et_contacto"
+                android:inputType="text"
+                android:autofillHints="false"
+                android:layout_marginStart="10dp"
+                android:maxLines="1"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- DESCRIPCION -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp">
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/PonerAunncio_et_descripcion"
+                android:inputType="text"
+                android:autofillHints="false"
+                android:hint="@string/PonerAnuncio_et_descripcion"
+                android:layout_marginStart="10dp"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- LL BOTONES -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginTop="20dp">
+            <!-- BOTON DESCARTAR -->
+            <Button
+                android:layout_width="130dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/PonerAnuncio_btn_descartar"
+                android:text="@string/PonerAnuncio_btn_descartar"
+                android:background="@drawable/button_style"
+                android:textColor="@color/Color_Button_Texto"
+                android:layout_marginEnd="8dp"/>
+            <Button
+                android:layout_width="130dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/PonerAnuncio_btn_publicar"
+                android:text="@string/PonerAnuncio_btn_publicar"
+                android:background="@drawable/button_style"
+                android:textColor="@color/Color_Button_Texto"
+                android:layout_marginStart="8dp"/>
+        </LinearLayout>
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 </ScrollView>
