@@ -8,6 +8,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -39,7 +41,7 @@ public class Equipo_Home extends AppCompatActivity {
     FirebaseFirestore firestore;
 
     TextView tv_nombreEquipo, ll_tv_contacto, ll_tv_posicion, ll_tv_descripcion;
-    FloatingActionButton fab_edit, fab_add, fab_exit;
+    FloatingActionButton fab_add;
     ImageButton btn_ll_actualizar, btn_ll_eliminar, btn_ll_cerrar;
 
     String nombreEquipo;
@@ -71,9 +73,7 @@ public class Equipo_Home extends AppCompatActivity {
         firestore = FirebaseFirestore.getInstance();
 
         tv_nombreEquipo = findViewById(R.id.EquipoHome_tv_user);
-        fab_edit = findViewById(R.id.EquipoHome_fab_edit);
         fab_add = findViewById(R.id.EquipoHome_fab_add);
-        fab_exit = findViewById(R.id.EquipoHome_fab_exit);
 
         rv_Anuncios = findViewById(R.id.EquipoHome_rv_anuncios);
         rv_Anuncios.setLayoutManager(new LinearLayoutManager(this));
@@ -97,25 +97,10 @@ public class Equipo_Home extends AppCompatActivity {
             }
         }); R*/
 
-        fab_edit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(Equipo_Home.this, Equipo_EditarPerfil.class));
-            }
-        });
-
-
         fab_add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(Equipo_Home.this, Equipo_PonerAnuncio.class));
-            }
-        });
-
-        fab_exit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                signOut();
             }
         });
 
@@ -143,6 +128,25 @@ public class Equipo_Home extends AppCompatActivity {
 
         getAnuncios();
 
+    }
+
+    public boolean onCreateOptionsMenu (Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_equipohome, menu);
+        return true;
+    }
+
+    public boolean onOptionsItemSelected (MenuItem item) {
+        int id = item.getItemId();
+
+        if(id == R.id.EquipoHome_ic_exit) {
+            signOut();
+        }
+
+        if (id == R.id.EquipoHome_ic_edit) {
+            startActivity(new Intent(Equipo_Home.this, User_EditarPerfil.class));
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     @Override

@@ -44,51 +44,6 @@
             android:layout_width="match_parent"
             android:layout_height="20dp"/>
 
-        <!-- LL FLOAT BUTTONS -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center">
-
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/UserHome_fab_filter"
-                android:src="@drawable/ic_filter"
-                android:layout_margin="16dp"
-                app:borderWidth="0dp"
-                android:elevation="0dp"
-                android:backgroundTint="@color/principal"
-                android:contentDescription="@string/UserHome_fab_filter" />
-
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/UserHome_fab_edit"
-                android:src="@drawable/ic_edit"
-                android:layout_margin="16dp"
-                app:borderWidth="0dp"
-                android:elevation="0dp"
-                android:backgroundTint="@color/principal"
-                android:contentDescription="@string/UserHome_fab_edit" />
-
-            <!--   <com.google.android.material.floatingactionbutton.FloatingActionButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/UserHome_fab_exit"
-                    android:src="@drawable/ic_exit"
-                    android:layout_margin="16dp"
-                    app:borderWidth="0dp"
-                    android:elevation="0dp"
-                    android:backgroundTint="@color/principal"
-                    android:contentDescription="@string/UserHome_fab_exit" /> -->
-        </LinearLayout>
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="20dp"/>
-
         <!-- LL LISTA DE ANUNCIOS -->
         <LinearLayout
             android:layout_width="match_parent"
@@ -99,8 +54,23 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:id="@+id/UserHome_rv_anuncios"/>
+
         </LinearLayout>
 
     </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <!-- BOTON FLOTANTE FILTRAR -->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/UserHome_fab_filter"
+        android:src="@drawable/ic_filter"
+        android:layout_margin="18dp"
+        app:borderWidth="0dp"
+        android:elevation="4dp"
+        android:backgroundTint="@color/principal"
+        android:contentDescription="@string/UserHome_fab_filter"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"/>
 
 </RelativeLayout>

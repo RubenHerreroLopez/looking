@@ -35,6 +35,7 @@
     <string name="EquipoHome_fab_exit">Cerrar Sesión</string>
     <string name="EquipoHome_iv_perfil">Imagen de Perfil</string>
     <string name="EquipoHome_tv_user"> </string>
+    <string name="EquipoHome_tv_misanuncios">Mis anuncios: </string>
     <string name="EquipoHome_ll_lbl_contacto">Contacto: </string>
     <string name="EquipoHome_ll_lbl_posicion">Posicion: </string>
     <string name="EquipoHome_ll_lbl_descripcion">Descripcion: </string>

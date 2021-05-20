@@ -34,7 +34,7 @@ public class User_Home extends AppCompatActivity {
     FirebaseFirestore firestore;
 
     TextView tv_nombreUser;
-    FloatingActionButton fab_filter, fab_edit;
+    FloatingActionButton fab_filter;
 
     String nombreUsuario;
     String apellidoUsuario;
@@ -65,8 +65,6 @@ public class User_Home extends AppCompatActivity {
 
         tv_nombreUser = findViewById(R.id.UserHome_tv_user);
         fab_filter = findViewById(R.id.UserHome_fab_filter);
-        fab_edit = findViewById(R.id.UserHome_fab_edit);
-
         rv_Anuncios = findViewById(R.id.UserHome_rv_anuncios);
         rv_Anuncios.setLayoutManager(new LinearLayoutManager(this));
 
@@ -76,22 +74,6 @@ public class User_Home extends AppCompatActivity {
                 startActivity(new Intent(User_Home.this, User_FiltroBusqueda.class));
             }
         });
-
-        fab_edit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(User_Home.this, User_EditarPerfil.class));
-            }
-        });
-
-  /*R      fab_exit = findViewById(R.id.UserHome_fab_exit);
-
-        fab_exit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-               signOut();
-            }
-        }); R*/
 
         getAnuncios();
     }
@@ -107,6 +89,10 @@ public class User_Home extends AppCompatActivity {
 
         if(id == R.id.UserHome_ic_exit) {
             signOut();
+        }
+
+        if (id == R.id.UserHome_ic_edit) {
+            startActivity(new Intent(User_Home.this, User_EditarPerfil.class));
         }
 
         return super.onOptionsItemSelected(item);
