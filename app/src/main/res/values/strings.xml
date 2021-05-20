@@ -35,10 +35,17 @@
     <string name="EquipoHome_fab_exit">Cerrar Sesión</string>
     <string name="EquipoHome_iv_perfil">Imagen de Perfil</string>
     <string name="EquipoHome_tv_user"> </string>
+    <string name="EquipoHome_ll_lbl_contacto">Contacto: </string>
+    <string name="EquipoHome_ll_lbl_posicion">Posicion: </string>
+    <string name="EquipoHome_ll_lbl_descripcion">Descripcion: </string>
+    <string name="EquipoHome_ll_btn_actualizar">Actualizar</string>
+    <string name="EquipoHome_ll_btn_eliminar">Eliminar</string>
+    <string name="EquipoHome_ll_btn_cerrar">Cerrar</string>
 
     <!-- EQUIPO PONER ANUNCIO (activity_equipo_poner_anuncio.xml) -->
     <string name="PonerAnuncio_et_contacto">Persona de contacto</string>
     <string name="PonerAnuncio_et_descripcion">Descripción del anuncio</string>
+    <string name="PonerAnuncio_et_posicion">Posicion</string>
     <string name="PonerAnuncio_btn_publicar">PUBLICAR</string>
     <string name="PonerAnuncio_btn_descartar">DESCARTAR</string>
 

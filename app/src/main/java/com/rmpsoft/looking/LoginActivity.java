@@ -90,7 +90,7 @@ public class LoginActivity extends AppCompatActivity {
                         et_pass.setError("La contraseña debe ser mayor a seis caracteres");
                         et_pass.setFocusable(true);
                     } else {
-                        loginUser(correo, pass);
+                        loginTeam(correo, pass);
                     }
 
                 } else {
@@ -123,13 +123,9 @@ public class LoginActivity extends AppCompatActivity {
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()) {
                         progressdialog.dismiss();
-                        if (seleccion.equals("Jugador")) {
+
                             startActivity(new Intent(LoginActivity.this, User_Home.class));
                             finish();
-                        } else if (seleccion.equals("Equipo")) {
-                            startActivity(new Intent(LoginActivity.this, Equipo_Home.class));
-                            finish();
-                        }
 
                     } else {
                         progressdialog.dismiss();
@@ -146,6 +142,34 @@ public class LoginActivity extends AppCompatActivity {
                 }
             });
 
+        }
+
+        private void loginTeam (String correo, String pass) {
+            progressdialog.setCancelable(false);
+            progressdialog.show();
+            firebaseauth.signInWithEmailAndPassword(correo, pass).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+                    if (task.isSuccessful()) {
+                        progressdialog.dismiss();
+
+                            startActivity(new Intent(LoginActivity.this, Equipo_Home.class));
+                            finish();
+                        
+                    } else {
+                        progressdialog.dismiss();
+                        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                        dialogNoInicio ();
+                        //showToast("Correo o contraseña incorrectos");
+                    }
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    progressdialog.dismiss();
+                    //showToast(e.getMessage());
+                }
+            });
         }
 
     private void dialogNoInicio () {
