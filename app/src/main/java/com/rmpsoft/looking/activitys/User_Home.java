@@ -2,6 +2,8 @@ package com.rmpsoft.looking.activitys;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
@@ -11,14 +13,18 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 import com.rmpsoft.looking.LoginActivity;
 import com.rmpsoft.looking.R;
+import com.rmpsoft.looking.adapter.AnunciosUserAdapter;
+import com.rmpsoft.looking.model.Anuncio;
 import com.rmpsoft.looking.utils.Toast_Manager;
 
 public class User_Home extends AppCompatActivity {
@@ -28,13 +34,15 @@ public class User_Home extends AppCompatActivity {
     FirebaseFirestore firestore;
 
     TextView tv_nombreUser;
-    //R FloatingActionButton fab_edit, fab_filter, fab_exit;
     FloatingActionButton fab_filter, fab_edit;
 
     String nombreUsuario;
     String apellidoUsuario;
     String nombreCompleto;
     Boolean sesionIniciada = false;
+
+    RecyclerView rv_Anuncios;
+    AnunciosUserAdapter anunciosAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +67,9 @@ public class User_Home extends AppCompatActivity {
         fab_filter = findViewById(R.id.UserHome_fab_filter);
         fab_edit = findViewById(R.id.UserHome_fab_edit);
 
+        rv_Anuncios = findViewById(R.id.UserHome_rv_anuncios);
+        rv_Anuncios.setLayoutManager(new LinearLayoutManager(this));
+
         fab_filter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -81,6 +92,8 @@ public class User_Home extends AppCompatActivity {
                signOut();
             }
         }); R*/
+
+        getAnuncios();
     }
 
 
@@ -101,9 +114,16 @@ public class User_Home extends AppCompatActivity {
 
     @Override
     protected void onStart() {
+        anunciosAdapter.startListening();
         verificarInicioSesion();
         getDataUser();
         super.onStart();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        anunciosAdapter.stopListening();
     }
 
     /* Verifica que un usuario ha iniciado sesión, de lo contrario, cierra la activity */
@@ -127,6 +147,19 @@ public class User_Home extends AppCompatActivity {
         Toast_Manager.showToast(this, "Has cerrado sesion");
         startActivity(new Intent(this, LoginActivity.class));
         finish();
+    }
+
+    /* Este método obtiene los datos de los anuncios */
+    private void getAnuncios() {
+        Query query = firestore.collection("Anuncios");
+
+        FirestoreRecyclerOptions<Anuncio> firestoreRecyclerOptions = new FirestoreRecyclerOptions.Builder<Anuncio>()
+                .setQuery(query, Anuncio.class).build();
+
+        anunciosAdapter = new AnunciosUserAdapter(firestoreRecyclerOptions);
+        anunciosAdapter.notifyDataSetChanged();
+        rv_Anuncios.setAdapter(anunciosAdapter);
+
     }
 
     /* Este método obtiene el nombre y apellidos del usuario actual y los asigna al TextView */
