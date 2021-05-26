@@ -42,7 +42,7 @@ public class User_Home extends AppCompatActivity {
     FirebaseUser firebaseuser;
     FirebaseFirestore firestore;
 
-    TextView tv_nombreUser, ll_tv_contacto, ll_tv_descripcion;
+    TextView tv_nombreUser, ll_tv_contacto, ll_tv_equipo, ll_tv_descripcion;
     ImageButton btn_ll_chat, btn_ll_cerrar;
     FloatingActionButton fab_filter;
 
@@ -84,6 +84,7 @@ public class User_Home extends AppCompatActivity {
 
         ll_anuncioSeleccionado = findViewById(R.id.UserHome_ll_anuncioSelected);
         ll_tv_contacto = findViewById(R.id.UserHome_ll_tv_contacto);
+        ll_tv_equipo = findViewById(R.id.UserHome_ll_tv_equipo);
         ll_tv_descripcion = findViewById(R.id.UserHome_ll_tv_descripcion);
         btn_ll_chat = findViewById(R.id.UserHome_ll_btn_chat);
         btn_ll_cerrar = findViewById(R.id.UserHome_ll_btn_cerrar);
@@ -255,15 +256,26 @@ public class User_Home extends AppCompatActivity {
         anunciosAdapter = new AnunciosUserAdapter(firestoreRecyclerOptions);
         anunciosAdapter.notifyDataSetChanged();
 
-        anunciosAdapter.setOnClickListener(new View.OnClickListener() {
+        rv_Anuncios.setAdapter(anunciosAdapter);
+
+        anunciosAdapter.setOnItemClickListener(new AnunciosUserAdapter.OnItemClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onItemClick(DocumentSnapshot documentSnapshot, int position) {
+                anuncioSeleccionado = null;
+                anuncioSeleccionado = documentSnapshot.toObject(Anuncio.class);
 
                 ll_anuncioSeleccionado.setVisibility(View.VISIBLE);
+
+                String id = documentSnapshot.getId();
+                String contacto = anuncioSeleccionado.getContacto();
+                String equipo = anuncioSeleccionado.getEquipo();
+                String descripcion = anuncioSeleccionado.getDescripcion();
+
+                ll_tv_contacto.setText(contacto);
+                ll_tv_equipo.setText(equipo);
+                ll_tv_descripcion.setText(descripcion);
             }
         });
-
-        rv_Anuncios.setAdapter(anunciosAdapter);
 
     }
 
@@ -278,6 +290,25 @@ public class User_Home extends AppCompatActivity {
         anunciosAdapter = new AnunciosUserAdapter(firestoreRecyclerOptions);
         anunciosAdapter.notifyDataSetChanged();
         rv_Anuncios.setAdapter(anunciosAdapter);
+
+        anunciosAdapter.setOnItemClickListener(new AnunciosUserAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(DocumentSnapshot documentSnapshot, int position) {
+                anuncioSeleccionado = null;
+                anuncioSeleccionado = documentSnapshot.toObject(Anuncio.class);
+
+                ll_anuncioSeleccionado.setVisibility(View.VISIBLE);
+
+                String id = documentSnapshot.getId();
+                String contacto = anuncioSeleccionado.getContacto();
+                String equipo = anuncioSeleccionado.getEquipo();
+                String descripcion = anuncioSeleccionado.getDescripcion();
+
+                ll_tv_contacto.setText(contacto);
+                ll_tv_equipo.setText(equipo);
+                ll_tv_descripcion.setText(descripcion);
+            }
+        });
     }
 
     private void getAdvicesByCity(String municipio) {
@@ -289,6 +320,25 @@ public class User_Home extends AppCompatActivity {
         anunciosAdapter = new AnunciosUserAdapter(firestoreRecyclerOptions);
         anunciosAdapter.notifyDataSetChanged();
         rv_Anuncios.setAdapter(anunciosAdapter);
+
+        anunciosAdapter.setOnItemClickListener(new AnunciosUserAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(DocumentSnapshot documentSnapshot, int position) {
+                anuncioSeleccionado = null;
+                anuncioSeleccionado = documentSnapshot.toObject(Anuncio.class);
+
+                ll_anuncioSeleccionado.setVisibility(View.VISIBLE);
+
+                String id = documentSnapshot.getId();
+                String contacto = anuncioSeleccionado.getContacto();
+                String equipo = anuncioSeleccionado.getEquipo();
+                String descripcion = anuncioSeleccionado.getDescripcion();
+
+                ll_tv_contacto.setText(contacto);
+                ll_tv_equipo.setText(equipo);
+                ll_tv_descripcion.setText(descripcion);
+            }
+        });
     }
 
     private void getAdvicesByPosition(String posicion) {
@@ -300,6 +350,25 @@ public class User_Home extends AppCompatActivity {
         anunciosAdapter = new AnunciosUserAdapter(firestoreRecyclerOptions);
         anunciosAdapter.notifyDataSetChanged();
         rv_Anuncios.setAdapter(anunciosAdapter);
+
+        anunciosAdapter.setOnItemClickListener(new AnunciosUserAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(DocumentSnapshot documentSnapshot, int position) {
+                anuncioSeleccionado = null;
+                anuncioSeleccionado = documentSnapshot.toObject(Anuncio.class);
+
+                ll_anuncioSeleccionado.setVisibility(View.VISIBLE);
+
+                String id = documentSnapshot.getId();
+                String contacto = anuncioSeleccionado.getContacto();
+                String equipo = anuncioSeleccionado.getEquipo();
+                String descripcion = anuncioSeleccionado.getDescripcion();
+
+                ll_tv_contacto.setText(contacto);
+                ll_tv_equipo.setText(equipo);
+                ll_tv_descripcion.setText(descripcion);
+            }
+        });
     }
 
     private void getAdvicesBySportByCity (String deporte, String municipio) {
@@ -311,6 +380,25 @@ public class User_Home extends AppCompatActivity {
         anunciosAdapter = new AnunciosUserAdapter(firestoreRecyclerOptions);
         anunciosAdapter.notifyDataSetChanged();
         rv_Anuncios.setAdapter(anunciosAdapter);
+
+        anunciosAdapter.setOnItemClickListener(new AnunciosUserAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(DocumentSnapshot documentSnapshot, int position) {
+                anuncioSeleccionado = null;
+                anuncioSeleccionado = documentSnapshot.toObject(Anuncio.class);
+
+                ll_anuncioSeleccionado.setVisibility(View.VISIBLE);
+
+                String id = documentSnapshot.getId();
+                String contacto = anuncioSeleccionado.getContacto();
+                String equipo = anuncioSeleccionado.getEquipo();
+                String descripcion = anuncioSeleccionado.getDescripcion();
+
+                ll_tv_contacto.setText(contacto);
+                ll_tv_equipo.setText(equipo);
+                ll_tv_descripcion.setText(descripcion);
+            }
+        });
     }
 
     private void getAdvicesBySportByPosition (String deporte, String posicion) {
@@ -322,6 +410,25 @@ public class User_Home extends AppCompatActivity {
         anunciosAdapter = new AnunciosUserAdapter(firestoreRecyclerOptions);
         anunciosAdapter.notifyDataSetChanged();
         rv_Anuncios.setAdapter(anunciosAdapter);
+
+        anunciosAdapter.setOnItemClickListener(new AnunciosUserAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(DocumentSnapshot documentSnapshot, int position) {
+                anuncioSeleccionado = null;
+                anuncioSeleccionado = documentSnapshot.toObject(Anuncio.class);
+
+                ll_anuncioSeleccionado.setVisibility(View.VISIBLE);
+
+                String id = documentSnapshot.getId();
+                String contacto = anuncioSeleccionado.getContacto();
+                String equipo = anuncioSeleccionado.getEquipo();
+                String descripcion = anuncioSeleccionado.getDescripcion();
+
+                ll_tv_contacto.setText(contacto);
+                ll_tv_equipo.setText(equipo);
+                ll_tv_descripcion.setText(descripcion);
+            }
+        });
     }
 
     private void getAdvicesByCityByPosition (String municipio, String posicion) {
@@ -333,6 +440,25 @@ public class User_Home extends AppCompatActivity {
         anunciosAdapter = new AnunciosUserAdapter(firestoreRecyclerOptions);
         anunciosAdapter.notifyDataSetChanged();
         rv_Anuncios.setAdapter(anunciosAdapter);
+
+        anunciosAdapter.setOnItemClickListener(new AnunciosUserAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(DocumentSnapshot documentSnapshot, int position) {
+                anuncioSeleccionado = null;
+                anuncioSeleccionado = documentSnapshot.toObject(Anuncio.class);
+
+                ll_anuncioSeleccionado.setVisibility(View.VISIBLE);
+
+                String id = documentSnapshot.getId();
+                String contacto = anuncioSeleccionado.getContacto();
+                String equipo = anuncioSeleccionado.getEquipo();
+                String descripcion = anuncioSeleccionado.getDescripcion();
+
+                ll_tv_contacto.setText(contacto);
+                ll_tv_equipo.setText(equipo);
+                ll_tv_descripcion.setText(descripcion);
+            }
+        });
     }
 
     private void getAdvicesBySportByCityByPosition (String deporte, String municipio, String posicion) {
@@ -345,6 +471,25 @@ public class User_Home extends AppCompatActivity {
         anunciosAdapter = new AnunciosUserAdapter(firestoreRecyclerOptions);
         anunciosAdapter.notifyDataSetChanged();
         rv_Anuncios.setAdapter(anunciosAdapter);
+
+        anunciosAdapter.setOnItemClickListener(new AnunciosUserAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(DocumentSnapshot documentSnapshot, int position) {
+                anuncioSeleccionado = null;
+                anuncioSeleccionado = documentSnapshot.toObject(Anuncio.class);
+
+                ll_anuncioSeleccionado.setVisibility(View.VISIBLE);
+
+                String id = documentSnapshot.getId();
+                String contacto = anuncioSeleccionado.getContacto();
+                String equipo = anuncioSeleccionado.getEquipo();
+                String descripcion = anuncioSeleccionado.getDescripcion();
+
+                ll_tv_contacto.setText(contacto);
+                ll_tv_equipo.setText(equipo);
+                ll_tv_descripcion.setText(descripcion);
+            }
+        });
     }
 
     /* Este método obtiene el nombre y apellidos del usuario actual y los asigna al TextView */

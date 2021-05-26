@@ -2,7 +2,7 @@
     <!-- APP NOMBRE -->
     <string name="app_name">Looking</string>
     <!-- VERSION -->
-    <string name="version">Beta 1.2.3</string>
+    <string name="version">Beta 1.2.4</string>
 
     <!-- MENU USUARIO LOGIN (activity__login.xml) -->
     <string name="Login_btn_login">INICIA SESION</string>
@@ -89,6 +89,7 @@
     <string name="UserHome_iv_perfil">Imagen de Perfil</string>
     <string name="UserHome_tv_user"> </string>
     <string name="UserHome_ll_lbl_contacto">Contacto: </string>
+    <string name="UserHome_ll_lbl_equipo">Equipo: </string>
     <string name="UserHome_ll_lbl_descripcion">Descripcion: </string>
     <string name="UserHome_ll_btn_chat">Chat</string>
     <string name="UserHome_ll_btn_cerrar">Cerrar</string>

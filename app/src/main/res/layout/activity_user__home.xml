@@ -57,7 +57,7 @@
                 android:id="@+id/UserHome_ll_anuncioSelected"
                 android:orientation="vertical"
                 android:background="@drawable/style_selected_anuncio"
-                android:visibility="visible">
+                android:visibility="gone">
 
                 <!-- Datos del anuncio -->
                 <!-- Contacto -->
@@ -78,6 +78,29 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/UserHome_ll_tv_contacto"
+                        android:textSize="18sp"
+                        android:layout_marginStart="10dp"/>
+
+                </LinearLayout>
+
+                <!-- Equipo -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="5dp"
+                    android:weightSum="1">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/UserHome_ll_lbl_equipo"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/UserHome_ll_tv_equipo"
                         android:textSize="18sp"
                         android:layout_marginStart="10dp"/>
 

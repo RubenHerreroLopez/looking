@@ -15,9 +15,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.rmpsoft.looking.R;
 import com.rmpsoft.looking.model.Anuncio;
 
-public class AnunciosAdapter extends FirestoreRecyclerAdapter<Anuncio, AnunciosAdapter.ViewHolder> /* implements View.OnClickListener */ {
-
-    //private View.OnClickListener llistener;
+public class AnunciosAdapter extends FirestoreRecyclerAdapter<Anuncio, AnunciosAdapter.ViewHolder>  {
 
     private OnItemClickListener listener;
     
@@ -35,20 +33,8 @@ public class AnunciosAdapter extends FirestoreRecyclerAdapter<Anuncio, AnunciosA
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
         View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.list_anuncios_equipohome, viewGroup, false);
-       /* view.setOnClickListener(AnunciosAdapter.this); */
         return new ViewHolder(view);
     }
-
-   /*R public void setOnClickListener (View.OnClickListener listener) {
-        this.listener = listener;
-    }
-
-    @Override
-    public void onClick(View view) {
-        if (listener != null) {
-            listener.onClick(view);
-        }
-    } */
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView tv_contacto;

@@ -10,12 +10,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.rmpsoft.looking.R;
 import com.rmpsoft.looking.model.Anuncio;
 
-public class AnunciosUserAdapter extends FirestoreRecyclerAdapter<Anuncio, AnunciosUserAdapter.ViewHolder> implements View.OnClickListener {
+public class AnunciosUserAdapter extends FirestoreRecyclerAdapter<Anuncio, AnunciosUserAdapter.ViewHolder> {
 
-    private View.OnClickListener listener;
+    private OnItemClickListener listener;
 
     public AnunciosUserAdapter(@NonNull FirestoreRecyclerOptions<Anuncio> options) {
         super(options);
@@ -32,24 +33,12 @@ public class AnunciosUserAdapter extends FirestoreRecyclerAdapter<Anuncio, Anunc
 
     @NonNull
     @Override
-    public AnunciosUserAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
         View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.list_anuncios_userhome, viewGroup, false);
-        view.setOnClickListener(this);
         return new ViewHolder(view);
     }
 
-    public void setOnClickListener (View.OnClickListener listener) {
-        this.listener = listener;
-    }
-
-    @Override
-    public void onClick(View view) {
-        if (listener != null) {
-            listener.onClick(view);
-        }
-    }
-
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder {
         TextView tv_equipo;
         TextView tv_deporte;
         TextView tv_municipio;
@@ -64,6 +53,24 @@ public class AnunciosUserAdapter extends FirestoreRecyclerAdapter<Anuncio, Anunc
             tv_municipio = itemView.findViewById(R.id.ListAnunciosUser_lbl_municipio);
             tv_contacto = itemView.findViewById(R.id.ListAnunciosUser_lbl_contacto);
             tv_posicion = itemView.findViewById(R.id.ListAnunciosUser_lbl_posicion);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int position = getAbsoluteAdapterPosition();
+                    if (position != RecyclerView.NO_POSITION && listener != null) {
+                        listener.onItemClick(getSnapshots().getSnapshot(position), position);
+                    }
+                }
+            });
         }
+    }
+
+    public interface OnItemClickListener {
+        void onItemClick(DocumentSnapshot documentSnapshot, int position);
+    }
+
+    public void setOnItemClickListener(AnunciosUserAdapter.OnItemClickListener listener) {
+        this.listener = listener;
     }
 }

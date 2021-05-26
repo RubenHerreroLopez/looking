@@ -188,23 +188,12 @@ public class Equipo_Home extends AppCompatActivity {
         anunciosAdapter = new AnunciosAdapter(firestoreRecyclerOptions);
         anunciosAdapter.notifyDataSetChanged();
 
-       /* anunciosAdapter.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                / * Toast.makeText(getApplicationContext(),
-                        "Seleccion: " + firestoreRecyclerOptions.get(rv_Anuncios.getChildAdapterPosition(view)).getContacto,
-                         Toast.LENGTH_SHORT).show(); * /
-
-
-                ll_anuncioSeleccionado.setVisibility(View.VISIBLE);
-            }
-        }); */
-
         rv_Anuncios.setAdapter(anunciosAdapter);
 
         anunciosAdapter.setOnItemClickListener(new AnunciosAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(DocumentSnapshot documentSnapshot, int position) {
+                anuncioSeleccionado = null;
                 anuncioSeleccionado = documentSnapshot.toObject(Anuncio.class);
 
                 ll_anuncioSeleccionado.setVisibility(View.VISIBLE);
