@@ -1,12 +1,14 @@
 <resources>
     <!-- APP NOMBRE -->
     <string name="app_name">Looking</string>
+    <!-- VERSION -->
+    <string name="version">Beta 1.2.3</string>
 
     <!-- MENU USUARIO LOGIN (activity__login.xml) -->
-    <string name="UsuarioLogin_btn_login">INICIA SESION</string>
-    <string name="UsuarioLogin_btn_registro">REGISTRATE</string>
-    <string name="UsuarioLogin_et_usuario">Correo electronico</string>
-    <string name="UsuarioLogin_et_pass">Contraseña</string>
+    <string name="Login_btn_login">INICIA SESION</string>
+    <string name="Login_btn_registro">REGISTRATE</string>
+    <string name="Login_et_usuario">Correo electronico</string>
+    <string name="Login_et_pass">Contraseña</string>
     <string-array name="Login_spinner">
         <item>(Seleccionar)</item>
         <item>Jugador</item>
@@ -18,12 +20,12 @@
     <string name="DialogNoInicio_btn_ok">ENTENDIDO</string>
 
     <!-- MENU EDITAR PERFIL EQUIPO (activity_equipo_editar_perfil.xml) -->
-    <string name="EquipoEditarPerfil_et_nombre">Nuevo nombre del equipo</string>
-    <string name="EquipoEditarPerfil_et_deporte">Nuevo deporte</string>
-    <string name="EquipoEditarPerfil_et_municipio">Nuevo municipio</string>
-    <string name="EquipoEditarPerfil_et_liga">Nueva liga</string>
-    <string name="EquipoEditarPerfil_btn_confirmar">CONFIRMAR</string>
-    <string name="EquipoEditarPerfil_btn_descartar">DESCARTAR</string>
+    <string name="EqEditPerfil_et_nombre">Nuevo nombre del equipo</string>
+    <string name="EqEditPerfil_et_deporte">Nuevo deporte</string>
+    <string name="EqEditPerfil_et_municipio">Nuevo municipio</string>
+    <string name="EqEditPerfil_et_liga">Nueva liga</string>
+    <string name="EqEditPerfil_btn_confirmar">CONFIRMAR</string>
+    <string name="EqEditPerfil_btn_descartar">DESCARTAR</string>
 
     <!-- MENU ANUNCIOS DEL EQUIPO (activity_equipo_mis_anuncios.xml) -->
 
@@ -69,11 +71,12 @@
     <string name="UsuarioPerfil_btn_descartar">DESCARTAR</string>
 
     <!-- FILTROS BUSQUEDA ANUNCIOS (activity_user_filtro_busqueda.xml) -->
-    <string name="FiltroBusqueda_et_municipio">Municipio</string>
-    <string name="FiltroBusqueda_et_deporte">Deporte</string>
-    <string name="FiltroBusqueda_et_posicion">Posicion</string>
+    <string name="FiltroBusqueda_et_municipio">Busca por municipio</string>
+    <string name="FiltroBusqueda_et_deporte">Busca por deporte</string>
+    <string name="FiltroBusqueda_et_posicion">Busca por posicion</string>
     <string name="FiltroBusqueda_et_dia">Dia de juego</string>
-    <string name="FiltroBusqueda_btn_buscar">BUSCAR</string>
+    <string name="FiltroBusqueda_btn_buscar">APLICAR FILTROS</string>
+    <string name="FiltroBusqueda_btn_cerrar">Cerrar</string>
 
     <!-- GESTION ANUNCIOS USUARIO activity_user_gestion_anuncio.xml) -->
     <string name="UsuarioGestionAnuncios_txt_detalles">Detalles</string>
@@ -85,6 +88,10 @@
     <string name="UserHome_fab_exit">Cerrar Sesión</string>
     <string name="UserHome_iv_perfil">Imagen de Perfil</string>
     <string name="UserHome_tv_user"> </string>
+    <string name="UserHome_ll_lbl_contacto">Contacto: </string>
+    <string name="UserHome_ll_lbl_descripcion">Descripcion: </string>
+    <string name="UserHome_ll_btn_chat">Chat</string>
+    <string name="UserHome_ll_btn_cerrar">Cerrar</string>
 
     <!-- OPCIONES DE USUARIO (activity_user_opciones.xml) -->
 

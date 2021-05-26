@@ -19,7 +19,7 @@
         <androidx.appcompat.widget.AppCompatImageView
             android:layout_width="280dp"
             android:layout_height="80dp"
-            android:src="@drawable/logo"
+            android:src="@drawable/looking_logo"
             android:layout_marginBottom="40dp"/>
 
         <!-- CORREO -->
@@ -30,7 +30,7 @@
             android:background="@drawable/style_edit_text">
             <EditText
                 android:id="@+id/UsuarioLogin_et_usuario"
-                android:hint="@string/UsuarioLogin_et_usuario"
+                android:hint="@string/Login_et_usuario"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:inputType="textEmailAddress"
@@ -49,7 +49,7 @@
             android:background="@drawable/style_edit_text">
             <EditText
                 android:id="@+id/UsuarioLogin_et_pass"
-                android:hint="@string/UsuarioLogin_et_pass"
+                android:hint="@string/Login_et_pass"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:inputType="textPassword"
@@ -83,7 +83,7 @@
             android:id="@+id/UsuarioLogin_btn_login"
             android:layout_marginTop="30dp"
             android:background="@drawable/style_button"
-            android:text="@string/UsuarioLogin_btn_login"
+            android:text="@string/Login_btn_login"
             android:textColor="@color/Color_Button_Texto"/>
 
         <!-- BOTON REGISTRO -->
@@ -93,8 +93,16 @@
             android:id="@+id/UsuarioLogin_btn_registro"
             android:layout_marginTop="15dp"
             android:background="@drawable/style_button"
-            android:text="@string/UsuarioLogin_btn_registro"
+            android:text="@string/Login_btn_registro"
             android:textColor="@color/Color_Button_Texto"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/version"
+            android:textAlignment="center"
+            android:layout_marginTop="30dp"
+            android:textSize="14sp"/>
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 

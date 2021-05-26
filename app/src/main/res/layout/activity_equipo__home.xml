@@ -25,19 +25,36 @@
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:id="@+id/EquipoHome_image_perfil"
-                android:src="@drawable/ic_equipohome_perfil"
+                android:src="@drawable/ic_perfil_equipo"
                 android:scaleType="fitCenter"
                 android:contentDescription="@string/EquipoHome_iv_perfil" />
-            <!-- NOMBRE DEL EQUIPO -->
-            <TextView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/EquipoHome_tv_user"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="35dp"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:text="@string/EquipoHome_tv_user"/>
+                android:orientation="vertical"
+                android:gravity="center">
+                <!-- NOMBRE DEL EQUIPO -->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/EquipoHome_tv_user"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="15dp"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:text="@string/EquipoHome_tv_user"/>
+                <!-- CIUDAD -->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/EquipoHome_tv_municipio"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="5dp"
+                    android:textSize="18sp"
+                    android:textStyle="italic"
+                    android:text=" "/>
+            </LinearLayout>
+
         </LinearLayout>
 
         <Space
@@ -50,12 +67,13 @@
             android:layout_height="wrap_content"
             android:text="@string/EquipoHome_tv_misanuncios"
             android:textSize="18sp"
-            android:textStyle="italic"/>
+            android:textStyle="italic"
+            android:layout_marginStart="10dp"/>
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="20dp"/>
-        
+            android:layout_height="10dp"/>
+
         <!-- LL ANUNCIOS -->
         <LinearLayout
             android:layout_width="match_parent"
@@ -79,18 +97,20 @@
                     android:orientation="horizontal"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="5dp"
-                    android:weightSum="1">
+                    >
                     <TextView
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/EquipoHome_ll_lbl_contacto"
                         android:textSize="18sp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                       />
                     <TextView
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/EquipoHome_ll_tv_contacto"
-                        android:textSize="18sp" />
+                        android:textSize="18sp"
+                        android:layout_marginStart="10dp"/>
 
                 </LinearLayout>
 
@@ -102,16 +122,17 @@
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="5dp">
                     <TextView
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/EquipoHome_ll_lbl_posicion"
                         android:textSize="18sp"
                         android:textStyle="bold"/>
                     <TextView
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/EquipoHome_ll_tv_posicion"
-                        android:textSize="18sp"/>
+                        android:textSize="18sp"
+                        android:layout_marginStart="10dp"/>
                 </LinearLayout>
 
                 <!-- Descripcion -->
@@ -122,16 +143,17 @@
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="5dp">
                     <TextView
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/EquipoHome_ll_lbl_descripcion"
                         android:textSize="18sp"
                         android:textStyle="bold"/>
                     <TextView
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/EquipoHome_ll_tv_descripcion"
-                        android:textSize="18sp"/>
+                        android:textSize="18sp"
+                        android:layout_marginStart="10dp"/>
                 </LinearLayout>
 
                 <!-- Botones del anuncio -->
@@ -147,7 +169,7 @@
                         android:layout_width="40dp"
                         android:layout_height="40dp"
                         android:id="@+id/EquipoHome_ll_btn_actualizar"
-                        android:src="@drawable/ic_baseline_update_24"
+                        android:src="@drawable/ic_action_update"
                         android:tint="@color/white"
                         android:layout_marginStart="5dp"
                         android:layout_marginEnd="5dp"
@@ -158,7 +180,7 @@
                         android:layout_width="40dp"
                         android:layout_height="40dp"
                         android:id="@+id/EquipoHome_ll_btn_eliminar"
-                        android:src="@drawable/ic_baseline_delete_24"
+                        android:src="@drawable/ic_action_delete"
                         android:tint="@color/white"
                         android:layout_marginStart="5dp"
                         android:layout_marginEnd="5dp"
@@ -169,7 +191,7 @@
                         android:layout_width="40dp"
                         android:layout_height="40dp"
                         android:id="@+id/EquipoHome_ll_btn_cerrar"
-                        android:src="@drawable/ic_baseline_close_24"
+                        android:src="@drawable/ic_action_close"
                         android:tint="@color/white"
                         android:layout_marginStart="5dp"
                         android:layout_marginEnd="5dp"
@@ -193,7 +215,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/EquipoHome_fab_add"
-        android:src="@drawable/ic_add"
+        android:src="@drawable/ic_action_add"
         android:layout_margin="18dp"
         app:borderWidth="0dp"
         android:elevation="4dp"

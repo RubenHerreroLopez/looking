@@ -21,6 +21,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.rmpsoft.looking.R;
 import com.rmpsoft.looking.utils.Toast_Manager;
 
+import java.text.Normalizer;
 import java.util.HashMap;
 
 public class Equipo_PonerAnuncio extends AppCompatActivity {
@@ -36,7 +37,6 @@ public class Equipo_PonerAnuncio extends AppCompatActivity {
     private String equipo;
     private String deporte;
     private String municipio;
-    private String posicion;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +48,7 @@ public class Equipo_PonerAnuncio extends AppCompatActivity {
         assert actionbar != null;
         actionbar.setDisplayShowHomeEnabled(true);
         actionbar.setTitle(" ");
-        actionbar.setIcon(R.drawable.ic_logo_actionbar);
+        actionbar.setIcon(R.drawable.ic_actionbar_logo);
 
         et_contacto = findViewById(R.id.PonerAnuncio_et_contacto);
         et_posicion = findViewById(R.id.PonerAnuncio_et_posicion);
@@ -72,9 +72,9 @@ public class Equipo_PonerAnuncio extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                String contacto = et_contacto.getText().toString();
-                String posicion = et_posicion.getText().toString();
-                String descripcion = et_descripcion.getText().toString();
+                String contacto = formatoString(et_contacto.getText().toString());
+                String posicion = formatoString(et_posicion.getText().toString());
+                String descripcion = formatoString(et_descripcion.getText().toString());
 
                 /* Validamos que los campos están rellenados */
                 if (contacto.isEmpty()) {
@@ -93,7 +93,6 @@ public class Equipo_PonerAnuncio extends AppCompatActivity {
                 publicarAnuncio(contacto, posicion, descripcion);
             }
         });
-
     }
 
     @Override
@@ -150,5 +149,15 @@ public class Equipo_PonerAnuncio extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    private static String formatoString (String textoUsuario) {
+
+        String textoMinusculas = textoUsuario.toLowerCase();
+        char[] arr = textoMinusculas.toCharArray();
+        arr[0] = Character.toUpperCase(arr[0]);
+        String textoMayuscula = String.valueOf(arr);
+        textoMayuscula = Normalizer.normalize(textoMayuscula, Normalizer.Form.NFD);
+        return textoMayuscula.replaceAll("[\\p{InCombiningDiacriticalMarks}]", "");
     }
 }

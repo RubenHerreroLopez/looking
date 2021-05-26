@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@null">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/UserHome_ll_filter"
+        android:background="@drawable/style_selected_anuncio"
+        android:orientation="vertical"
+        android:layout_margin="10dp"
+        android:padding="10dp">
+
+        <!-- FILTRO DEPORTE -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/style_edit_text"
+            android:layout_marginBottom="5dp">
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:id="@+id/UserHome_ll_filter_et_deporte"
+                android:hint="@string/FiltroBusqueda_et_deporte"
+                android:inputType="text"
+                android:autofillHints="false"
+                android:background="@drawable/style_edit_text"
+                android:layout_marginStart="10dp"
+                android:maxLines="1"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- FILTRO MUNICIPIO -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/style_edit_text"
+            android:layout_marginBottom="5dp">
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:id="@+id/UserHome_ll_filter_et_municipio"
+                android:hint="@string/FiltroBusqueda_et_municipio"
+                android:inputType="text"
+                android:autofillHints="false"
+                android:background="@drawable/style_edit_text"
+                android:layout_marginStart="10dp"
+                android:maxLines="1"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- FILTRO POSICION -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/style_edit_text"
+            android:layout_marginBottom="5dp">
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:id="@+id/UserHome_ll_filter_et_posicion"
+                android:hint="@string/FiltroBusqueda_et_posicion"
+                android:inputType="text"
+                android:autofillHints="false"
+                android:background="@drawable/style_edit_text"
+                android:layout_marginStart="10dp"
+                android:maxLines="1"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- LL BOTONES -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="8dp">
+
+            <!-- BOTON CERRAR -->
+            <ImageButton
+                android:layout_width="47dp"
+                android:layout_height="47dp"
+                android:id="@+id/UserHome_ll_filter_btn_cerrar"
+                android:src="@drawable/ic_action_close"
+                android:tint="@color/white"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp"
+                android:background="@drawable/style_button"
+                android:contentDescription="@string/FiltroBusqueda_btn_cerrar" />
+
+            <!-- BOTON APLICAR -->
+            <Button
+                android:layout_width="140dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/UserHome_ll_filter_btn_aplicar"
+                android:text="@string/FiltroBusqueda_btn_buscar"
+                android:background="@drawable/style_button"
+                android:textColor="@color/Color_Button_Texto"
+                android:layout_marginStart="8dp" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

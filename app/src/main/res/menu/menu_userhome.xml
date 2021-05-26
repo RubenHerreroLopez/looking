@@ -5,11 +5,11 @@
     <item android:title="edit"
         app:showAsAction="always"
         android:id="@+id/UserHome_ic_edit"
-        android:icon="@drawable/ic_edit"/>
+        android:icon="@drawable/ic_action_edit"/>
 
     <item android:title="exit"
           app:showAsAction="always"
           android:id="@+id/UserHome_ic_exit"
-          android:icon="@drawable/ic_exit"/>
+          android:icon="@drawable/ic_action_exit"/>
 
 </menu>

@@ -1,16 +1,23 @@
 package com.rmpsoft.looking.activitys;
 
 import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
@@ -27,22 +34,29 @@ import com.rmpsoft.looking.adapter.AnunciosUserAdapter;
 import com.rmpsoft.looking.model.Anuncio;
 import com.rmpsoft.looking.utils.Toast_Manager;
 
+import java.text.Normalizer;
+
 public class User_Home extends AppCompatActivity {
 
     FirebaseAuth firebaseauth;
     FirebaseUser firebaseuser;
     FirebaseFirestore firestore;
 
-    TextView tv_nombreUser;
+    TextView tv_nombreUser, ll_tv_contacto, ll_tv_descripcion;
+    ImageButton btn_ll_chat, btn_ll_cerrar;
     FloatingActionButton fab_filter;
 
     String nombreUsuario;
     String apellidoUsuario;
     String nombreCompleto;
+
     Boolean sesionIniciada = false;
 
     RecyclerView rv_Anuncios;
     AnunciosUserAdapter anunciosAdapter;
+
+    LinearLayout ll_anuncioSeleccionado;
+    Anuncio anuncioSeleccionado;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +71,7 @@ public class User_Home extends AppCompatActivity {
         assert actionbar != null;
         actionbar.setDisplayShowHomeEnabled(true);
         actionbar.setTitle(" ");
-        actionbar.setIcon(R.drawable.ic_logo_actionbar);
+        actionbar.setIcon(R.drawable.ic_actionbar_logo);
 
         firebaseauth = FirebaseAuth.getInstance();
         firebaseuser = firebaseauth.getCurrentUser();
@@ -68,14 +82,35 @@ public class User_Home extends AppCompatActivity {
         rv_Anuncios = findViewById(R.id.UserHome_rv_anuncios);
         rv_Anuncios.setLayoutManager(new LinearLayoutManager(this));
 
+        ll_anuncioSeleccionado = findViewById(R.id.UserHome_ll_anuncioSelected);
+        ll_tv_contacto = findViewById(R.id.UserHome_ll_tv_contacto);
+        ll_tv_descripcion = findViewById(R.id.UserHome_ll_tv_descripcion);
+        btn_ll_chat = findViewById(R.id.UserHome_ll_btn_chat);
+        btn_ll_cerrar = findViewById(R.id.UserHome_ll_btn_cerrar);
+
         fab_filter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(User_Home.this, User_FiltroBusqueda.class));
+                filtrarBusqueda();
             }
         });
 
-        getAnuncios();
+        btn_ll_chat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+        btn_ll_cerrar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ll_anuncioSeleccionado.setVisibility(View.GONE);
+                anuncioSeleccionado = null;
+            }
+        });
+
+        getAllAdvices();
     }
 
 
@@ -114,9 +149,7 @@ public class User_Home extends AppCompatActivity {
 
     /* Verifica que un usuario ha iniciado sesión, de lo contrario, cierra la activity */
     private void verificarInicioSesion() {
-        if (sesionIniciada) {
-
-        } else {
+        if (!sesionIniciada) {
             if (firebaseuser != null) {
                 Toast_Manager.showToast(this, "Se ha iniciado sesión correctamente");
                 sesionIniciada = true;
@@ -135,8 +168,85 @@ public class User_Home extends AppCompatActivity {
         finish();
     }
 
-    /* Este método obtiene los datos de los anuncios */
-    private void getAnuncios() {
+    public void filtrarBusqueda() {
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(User_Home.this);
+        View view = getLayoutInflater().inflate(R.layout.layout_filter, null);
+
+        EditText et_deporte = view.findViewById(R.id.UserHome_ll_filter_et_deporte);
+        EditText et_municipio = view.findViewById(R.id.UserHome_ll_filter_et_municipio);
+        EditText et_posicion = view.findViewById(R.id.UserHome_ll_filter_et_posicion);
+        ImageButton btn_cerrar = view.findViewById(R.id.UserHome_ll_filter_btn_cerrar);
+        Button btn_aplicar = view.findViewById(R.id.UserHome_ll_filter_btn_aplicar);
+
+        builder.setView(view);
+
+        final AlertDialog dialog = builder.create();
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialog.show();
+
+        btn_cerrar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+
+        btn_aplicar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                boolean bool_deporte = true;
+                boolean bool_municipio = true;
+                boolean bool_posicion = true;
+
+                String deporte = et_deporte.getText().toString();
+                String municipio = et_municipio.getText().toString();
+                String posicion = et_posicion.getText().toString();
+
+                if (deporte.isEmpty()) {
+                    bool_deporte = false;
+                }
+                if (municipio.isEmpty()) {
+                    bool_municipio = false;
+                }
+                if (posicion.isEmpty()) {
+                    bool_posicion = false;
+                }
+
+                if (!bool_deporte && !bool_municipio && !bool_posicion) {
+                    getAllAdvices();
+
+                } else if (bool_deporte && !bool_municipio && !bool_posicion) {
+                    getAdvicesBySport(deporte);
+                    dialog.dismiss();
+                } else if (!bool_deporte && bool_municipio && !bool_posicion) {
+                    getAdvicesByCity(municipio);
+                    dialog.dismiss();
+                } else if (!bool_deporte && !bool_municipio && bool_posicion) {
+                    getAdvicesByPosition(posicion);
+                    dialog.dismiss();
+                } else if (bool_deporte && bool_municipio && !bool_posicion) {
+                    getAdvicesBySportByCity(deporte, municipio);
+                    dialog.dismiss();
+                } else if (bool_deporte && !bool_municipio && bool_posicion) {
+                    getAdvicesBySportByPosition(deporte, posicion);
+                    dialog.dismiss();
+                } else if (!bool_deporte && bool_municipio && bool_posicion) {
+                    getAdvicesByCityByPosition(municipio, posicion);
+                    dialog.dismiss();
+                } else if (bool_deporte && bool_municipio && bool_posicion) {
+                    getAdvicesBySportByCityByPosition(deporte, municipio, posicion);
+                    dialog.dismiss();
+                }
+
+            }
+        });
+    }
+
+    /* Este método obtiene los datos de todos los anuncios y los muestra en el RecyclerView*/
+    private void getAllAdvices() {
+
         Query query = firestore.collection("Anuncios");
 
         FirestoreRecyclerOptions<Anuncio> firestoreRecyclerOptions = new FirestoreRecyclerOptions.Builder<Anuncio>()
@@ -144,8 +254,97 @@ public class User_Home extends AppCompatActivity {
 
         anunciosAdapter = new AnunciosUserAdapter(firestoreRecyclerOptions);
         anunciosAdapter.notifyDataSetChanged();
+
+        anunciosAdapter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                ll_anuncioSeleccionado.setVisibility(View.VISIBLE);
+            }
+        });
+
         rv_Anuncios.setAdapter(anunciosAdapter);
 
+    }
+
+    /* Los siguientes métodos obtienen los datos de los anuncios filtrados y los muestra en el RecyclerView */
+    private void getAdvicesBySport(String deporte) {
+
+        Query query = firestore.collection("Anuncios").whereEqualTo("deporte", deporte);
+
+        FirestoreRecyclerOptions<Anuncio> firestoreRecyclerOptions = new FirestoreRecyclerOptions.Builder<Anuncio>()
+                .setQuery(query, Anuncio.class).build();
+
+        anunciosAdapter = new AnunciosUserAdapter(firestoreRecyclerOptions);
+        anunciosAdapter.notifyDataSetChanged();
+        rv_Anuncios.setAdapter(anunciosAdapter);
+    }
+
+    private void getAdvicesByCity(String municipio) {
+
+        Query query = firestore.collection("Anuncios").whereEqualTo("municipio", municipio);
+        FirestoreRecyclerOptions<Anuncio> firestoreRecyclerOptions = new FirestoreRecyclerOptions.Builder<Anuncio>()
+                .setQuery(query, Anuncio.class).build();
+
+        anunciosAdapter = new AnunciosUserAdapter(firestoreRecyclerOptions);
+        anunciosAdapter.notifyDataSetChanged();
+        rv_Anuncios.setAdapter(anunciosAdapter);
+    }
+
+    private void getAdvicesByPosition(String posicion) {
+
+        Query query = firestore.collection("Anuncios").whereEqualTo("posicion", posicion);
+        FirestoreRecyclerOptions<Anuncio> firestoreRecyclerOptions = new FirestoreRecyclerOptions.Builder<Anuncio>()
+                .setQuery(query, Anuncio.class).build();
+
+        anunciosAdapter = new AnunciosUserAdapter(firestoreRecyclerOptions);
+        anunciosAdapter.notifyDataSetChanged();
+        rv_Anuncios.setAdapter(anunciosAdapter);
+    }
+
+    private void getAdvicesBySportByCity (String deporte, String municipio) {
+
+        Query query = firestore.collection("Anuncios").whereEqualTo("deporte", deporte).whereEqualTo("municipio", municipio);
+        FirestoreRecyclerOptions<Anuncio> firestoreRecyclerOptions = new FirestoreRecyclerOptions.Builder<Anuncio>()
+                .setQuery(query, Anuncio.class).build();
+
+        anunciosAdapter = new AnunciosUserAdapter(firestoreRecyclerOptions);
+        anunciosAdapter.notifyDataSetChanged();
+        rv_Anuncios.setAdapter(anunciosAdapter);
+    }
+
+    private void getAdvicesBySportByPosition (String deporte, String posicion) {
+
+        Query query = firestore.collection("Anuncios").whereEqualTo("deporte", deporte).whereEqualTo("posicion", posicion);
+        FirestoreRecyclerOptions<Anuncio> firestoreRecyclerOptions = new FirestoreRecyclerOptions.Builder<Anuncio>()
+                .setQuery(query, Anuncio.class).build();
+
+        anunciosAdapter = new AnunciosUserAdapter(firestoreRecyclerOptions);
+        anunciosAdapter.notifyDataSetChanged();
+        rv_Anuncios.setAdapter(anunciosAdapter);
+    }
+
+    private void getAdvicesByCityByPosition (String municipio, String posicion) {
+
+        Query query = firestore.collection("Anuncios").whereEqualTo("municipio", municipio).whereEqualTo("posicion", posicion);
+        FirestoreRecyclerOptions<Anuncio> firestoreRecyclerOptions = new FirestoreRecyclerOptions.Builder<Anuncio>()
+                .setQuery(query, Anuncio.class).build();
+
+        anunciosAdapter = new AnunciosUserAdapter(firestoreRecyclerOptions);
+        anunciosAdapter.notifyDataSetChanged();
+        rv_Anuncios.setAdapter(anunciosAdapter);
+    }
+
+    private void getAdvicesBySportByCityByPosition (String deporte, String municipio, String posicion) {
+
+        Query query = firestore.collection("Anuncios").whereEqualTo("deporte", deporte).whereEqualTo("municipio", municipio)
+                .whereEqualTo("posicion", posicion);
+        FirestoreRecyclerOptions<Anuncio> firestoreRecyclerOptions = new FirestoreRecyclerOptions.Builder<Anuncio>()
+                .setQuery(query, Anuncio.class).build();
+
+        anunciosAdapter = new AnunciosUserAdapter(firestoreRecyclerOptions);
+        anunciosAdapter.notifyDataSetChanged();
+        rv_Anuncios.setAdapter(anunciosAdapter);
     }
 
     /* Este método obtiene el nombre y apellidos del usuario actual y los asigna al TextView */
@@ -163,5 +362,15 @@ public class User_Home extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    private static String formatoString (String textoUsuario) {
+
+        String textoMinusculas = textoUsuario.toLowerCase();
+        char[] arr = textoMinusculas.toCharArray();
+        arr[0] = Character.toUpperCase(arr[0]);
+        String textoMayuscula = String.valueOf(arr);
+        textoMayuscula = Normalizer.normalize(textoMayuscula, Normalizer.Form.NFD);
+        return textoMayuscula.replaceAll("[\\p{InCombiningDiacriticalMarks}]", "");
     }
 }

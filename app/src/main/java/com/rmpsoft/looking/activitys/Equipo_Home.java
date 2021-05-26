@@ -1,5 +1,6 @@
 package com.rmpsoft.looking.activitys;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -10,13 +11,13 @@ import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -32,19 +33,18 @@ import com.rmpsoft.looking.adapter.AnunciosAdapter;
 import com.rmpsoft.looking.model.Anuncio;
 import com.rmpsoft.looking.utils.Toast_Manager;
 
-import java.util.ArrayList;
-
 public class Equipo_Home extends AppCompatActivity {
 
     FirebaseAuth firebaseauth;
     FirebaseUser firebaseuser;
     FirebaseFirestore firestore;
 
-    TextView tv_nombreEquipo, ll_tv_contacto, ll_tv_posicion, ll_tv_descripcion;
+    TextView tv_nombreEquipo, tv_municipioEquipo, ll_tv_contacto, ll_tv_posicion, ll_tv_descripcion;
     FloatingActionButton fab_add;
     ImageButton btn_ll_actualizar, btn_ll_eliminar, btn_ll_cerrar;
 
     String nombreEquipo;
+    String municipioEquipo;
     Boolean sesionIniciada = false;
 
     RecyclerView rv_Anuncios;
@@ -66,13 +66,14 @@ public class Equipo_Home extends AppCompatActivity {
         assert actionbar != null;
         actionbar.setDisplayShowHomeEnabled(true);
         actionbar.setTitle(" ");
-        actionbar.setIcon(R.drawable.ic_logo_actionbar);
+        actionbar.setIcon(R.drawable.ic_actionbar_logo);
 
         firebaseauth = FirebaseAuth.getInstance();
         firebaseuser = firebaseauth.getCurrentUser();
         firestore = FirebaseFirestore.getInstance();
 
         tv_nombreEquipo = findViewById(R.id.EquipoHome_tv_user);
+        tv_municipioEquipo = findViewById(R.id.EquipoHome_tv_municipio);
         fab_add = findViewById(R.id.EquipoHome_fab_add);
 
         rv_Anuncios = findViewById(R.id.EquipoHome_rv_anuncios);
@@ -85,17 +86,6 @@ public class Equipo_Home extends AppCompatActivity {
         btn_ll_actualizar = findViewById(R.id.EquipoHome_ll_btn_actualizar);
         btn_ll_eliminar = findViewById(R.id.EquipoHome_ll_btn_eliminar);
         btn_ll_cerrar = findViewById(R.id.EquipoHome_ll_btn_cerrar);
-
-       /*R rv_Anuncios.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                anuncioSeleccionado = (Anuncio) parent.getItemAtPosition(position);
-                ll_tv_contacto.setText(anuncioSeleccionado.getContacto());
-                ll_tv_posicion.setText(anuncioSeleccionado.getPosicion());
-                ll_tv_descripcion.setText(anuncioSeleccionado.getDescripcion());
-                ll_anuncioSeleccionado.setVisibility(View.VISIBLE);
-            }
-        }); R*/
 
         fab_add.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -187,16 +177,48 @@ public class Equipo_Home extends AppCompatActivity {
         finish();
     }
 
-    /* Este método obtiene los datos de los anuncios */
+    /* Este método obtiene los datos de los anuncios del equipo actual*/
     private void getAnuncios() {
-        Query query = firestore.collection("Anuncios");
+        String uid = firebaseuser.getUid();
+        Query query = firestore.collection("Anuncios").whereEqualTo("uidcontacto", uid );
 
         FirestoreRecyclerOptions<Anuncio> firestoreRecyclerOptions = new FirestoreRecyclerOptions.Builder<Anuncio>()
                 .setQuery(query, Anuncio.class).build();
 
         anunciosAdapter = new AnunciosAdapter(firestoreRecyclerOptions);
         anunciosAdapter.notifyDataSetChanged();
+
+       /* anunciosAdapter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                / * Toast.makeText(getApplicationContext(),
+                        "Seleccion: " + firestoreRecyclerOptions.get(rv_Anuncios.getChildAdapterPosition(view)).getContacto,
+                         Toast.LENGTH_SHORT).show(); * /
+
+
+                ll_anuncioSeleccionado.setVisibility(View.VISIBLE);
+            }
+        }); */
+
         rv_Anuncios.setAdapter(anunciosAdapter);
+
+        anunciosAdapter.setOnItemClickListener(new AnunciosAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(DocumentSnapshot documentSnapshot, int position) {
+                anuncioSeleccionado = documentSnapshot.toObject(Anuncio.class);
+
+                ll_anuncioSeleccionado.setVisibility(View.VISIBLE);
+
+                String id = documentSnapshot.getId();
+                String contacto = anuncioSeleccionado.getContacto();
+                String posicion = anuncioSeleccionado.getPosicion();
+                String descripcion = anuncioSeleccionado.getDescripcion();
+
+                ll_tv_contacto.setText(contacto);
+                ll_tv_posicion.setText(posicion);
+                ll_tv_descripcion.setText(descripcion);
+            }
+        });
 
     }
 
@@ -208,7 +230,9 @@ public class Equipo_Home extends AppCompatActivity {
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 if (documentSnapshot.exists()) {
                     nombreEquipo = documentSnapshot.getString("equipo");
+                    municipioEquipo = documentSnapshot.getString("municipio");
                     tv_nombreEquipo.setText(nombreEquipo);
+                    tv_municipioEquipo.setText(municipioEquipo);
                 }
             }
         });

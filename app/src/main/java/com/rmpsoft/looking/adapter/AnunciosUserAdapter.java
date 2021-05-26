@@ -13,7 +13,9 @@ import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.rmpsoft.looking.R;
 import com.rmpsoft.looking.model.Anuncio;
 
-public class AnunciosUserAdapter extends FirestoreRecyclerAdapter<Anuncio, AnunciosUserAdapter.ViewHolder> {
+public class AnunciosUserAdapter extends FirestoreRecyclerAdapter<Anuncio, AnunciosUserAdapter.ViewHolder> implements View.OnClickListener {
+
+    private View.OnClickListener listener;
 
     public AnunciosUserAdapter(@NonNull FirestoreRecyclerOptions<Anuncio> options) {
         super(options);
@@ -32,7 +34,19 @@ public class AnunciosUserAdapter extends FirestoreRecyclerAdapter<Anuncio, Anunc
     @Override
     public AnunciosUserAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
         View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.list_anuncios_userhome, viewGroup, false);
+        view.setOnClickListener(this);
         return new ViewHolder(view);
+    }
+
+    public void setOnClickListener (View.OnClickListener listener) {
+        this.listener = listener;
+    }
+
+    @Override
+    public void onClick(View view) {
+        if (listener != null) {
+            listener.onClick(view);
+        }
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
@@ -52,5 +66,4 @@ public class AnunciosUserAdapter extends FirestoreRecyclerAdapter<Anuncio, Anunc
             tv_posicion = itemView.findViewById(R.id.ListAnunciosUser_lbl_posicion);
         }
     }
-
 }

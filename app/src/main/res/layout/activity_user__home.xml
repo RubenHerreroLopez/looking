@@ -24,7 +24,7 @@
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:id="@+id/UserHome_image_perfil"
-                android:src="@drawable/ic_userhome_perfil"
+                android:src="@drawable/ic_perfil_user"
                 android:scaleType="fitCenter"
                 android:contentDescription="@string/UserHome_iv_perfil" />
 
@@ -50,6 +50,94 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
+            <!-- LL ANUNCIO SELECCIONADO -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/UserHome_ll_anuncioSelected"
+                android:orientation="vertical"
+                android:background="@drawable/style_selected_anuncio"
+                android:visibility="visible">
+
+                <!-- Datos del anuncio -->
+                <!-- Contacto -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="5dp"
+                    android:weightSum="1">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/UserHome_ll_lbl_contacto"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/UserHome_ll_tv_contacto"
+                        android:textSize="18sp"
+                        android:layout_marginStart="10dp"/>
+
+                </LinearLayout>
+
+                <!-- Descripcion -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="5dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/UserHome_ll_lbl_descripcion"
+                        android:textSize="18sp"
+                        android:textStyle="bold"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/UserHome_ll_tv_descripcion"
+                        android:textSize="18sp"
+                        android:layout_marginStart="10dp"/>
+                </LinearLayout>
+
+                <!-- Botones del anuncio -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp">
+
+                    <ImageButton
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:id="@+id/UserHome_ll_btn_chat"
+                        android:src="@drawable/ic_action_chat"
+                        android:tint="@color/white"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:background="@drawable/style_button"
+                        android:contentDescription="@string/UserHome_ll_btn_chat" />
+
+                    <ImageButton
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:id="@+id/UserHome_ll_btn_cerrar"
+                        android:src="@drawable/ic_action_close"
+                        android:tint="@color/white"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:background="@drawable/style_button"
+                        android:contentDescription="@string/UserHome_ll_btn_cerrar" />
+                </LinearLayout>
+
+            </LinearLayout>
+
             <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -64,7 +152,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/UserHome_fab_filter"
-        android:src="@drawable/ic_filter"
+        android:src="@drawable/ic_action_filter"
         android:layout_margin="18dp"
         app:borderWidth="0dp"
         android:elevation="4dp"

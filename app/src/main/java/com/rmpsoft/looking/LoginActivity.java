@@ -131,14 +131,13 @@ public class LoginActivity extends AppCompatActivity {
                         progressdialog.dismiss();
                         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                         dialogNoInicio ();
-                        //showToast("Correo o contraseña incorrectos");
                     }
                 }
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
                 public void onFailure(@NonNull Exception e) {
                     progressdialog.dismiss();
-                    //showToast(e.getMessage());
+                    Toast_Manager.showToast(LoginActivity.this, e.getMessage());
                 }
             });
 
@@ -160,14 +159,13 @@ public class LoginActivity extends AppCompatActivity {
                         progressdialog.dismiss();
                         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                         dialogNoInicio ();
-                        //showToast("Correo o contraseña incorrectos");
                     }
                 }
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
                 public void onFailure(@NonNull Exception e) {
                     progressdialog.dismiss();
-                    //showToast(e.getMessage());
+                    Toast_Manager.showToast(LoginActivity.this, e.getMessage());
                 }
             });
         }
