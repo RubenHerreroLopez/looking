@@ -14,5 +14,223 @@
         android:background="#fff"
         android:padding="25dp">
 
+        <!-- IMAGEN DE PERFIL -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:id="@+id/EqEdit_image_perfil"
+                android:src="@drawable/ic_perfil_equipo"
+                android:scaleType="fitCenter"
+                android:contentDescription="@string/EqHome_iv_perfil" />
+            <ImageButton
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:id="@+id/EqEdit_btn_edit_IP"
+                android:src="@drawable/ic_action_edit"
+                android:background="@drawable/style_button"
+                android:layout_marginStart="10dp"
+                android:layout_gravity="bottom"
+                android:contentDescription="@string/EqEdit_btn_editIP" />
+        </LinearLayout>
+
+        <!-- EQUIPO -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:orientation="horizontal"
+            android:weightSum="4">
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="3.7">
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/EqEdit_et_equipo"
+                    android:hint="@string/EqEdit_et_nombre"
+                    android:inputType="text"
+                    android:autofillHints="false"
+                    android:maxLines="1"/>
+            </com.google.android.material.textfield.TextInputLayout>
+            <ImageButton
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:id="@+id/EqEdit_btn_edit_EQ"
+                android:src="@drawable/ic_action_edit"
+                android:background="@drawable/style_button"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:visibility="visible"
+                android:contentDescription="@string/EqEdit_btn_editEQ" />
+            <ImageButton
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:id="@+id/EqEdit_btn_OK_EQ"
+                android:src="@drawable/ic_action_ok"
+                android:background="@drawable/style_button"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:visibility="gone"
+                android:contentDescription="@string/EqEdit_btn_ok" />
+
+        </LinearLayout>
+
+        <!-- DEPORTE -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:orientation="horizontal"
+            android:weightSum="4">
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="3.7">
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/EqEdit_et_deporte"
+                    android:hint="@string/EqEdit_et_deporte"
+                    android:inputType="text"
+                    android:autofillHints="false"
+                    android:maxLines="1"/>
+            </com.google.android.material.textfield.TextInputLayout>
+            <ImageButton
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:id="@+id/EqEdit_btn_edit_DP"
+                android:src="@drawable/ic_action_edit"
+                android:background="@drawable/style_button"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:visibility="visible"
+                android:contentDescription="@string/EqEdit_btn_editDP" />
+            <ImageButton
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:id="@+id/EqEdit_btn_OK_DP"
+                android:src="@drawable/ic_action_ok"
+                android:background="@drawable/style_button"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:visibility="gone"
+                android:contentDescription="@string/EqEdit_btn_ok" />
+        </LinearLayout>
+
+        <!-- MUNICIPIO -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:orientation="horizontal"
+            android:weightSum="4">
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="3.7">
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/EqEdit_et_municipio"
+                    android:hint="@string/EqEdit_et_municipio"
+                    android:inputType="text"
+                    android:autofillHints="false"
+                    android:maxLines="1"/>
+            </com.google.android.material.textfield.TextInputLayout>
+            <ImageButton
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:id="@+id/EqEdit_btn_edit_MC"
+                android:src="@drawable/ic_action_edit"
+                android:background="@drawable/style_button"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:visibility="visible"
+                android:contentDescription="@string/EqEdit_btn_editMC" />
+            <ImageButton
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:id="@+id/EqEdit_btn_OK_MC"
+                android:src="@drawable/ic_action_ok"
+                android:background="@drawable/style_button"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:visibility="gone"
+                android:contentDescription="@string/EqEdit_btn_ok" />
+        </LinearLayout>
+
+        <!-- DIA -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:orientation="horizontal"
+            android:weightSum="4">
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="3.7">
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/EqEdit_et_dia"
+                    android:hint="@string/EqEdit_et_dia"
+                    android:inputType="text"
+                    android:autofillHints="false"
+                    android:maxLines="1"/>
+            </com.google.android.material.textfield.TextInputLayout>
+            <ImageButton
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:id="@+id/EqEdit_btn_edit_DIA"
+                android:src="@drawable/ic_action_edit"
+                android:background="@drawable/style_button"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:visibility="visible"
+                android:contentDescription="@string/EqEdit_btn_editDIA" />
+            <ImageButton
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:id="@+id/EqEdit_btn_OK_DIA"
+                android:src="@drawable/ic_action_ok"
+                android:background="@drawable/style_button"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:visibility="gone"
+                android:contentDescription="@string/EqEdit_btn_ok" />
+        </LinearLayout>
+
+        <!-- LL BOTONES -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginTop="25dp">
+            <!-- BOTON DESCARTAR -->
+            <Button
+                android:layout_width="130dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/EqEdit_btn_descartar"
+                android:text="@string/EqEdit_btn_descartar"
+                android:background="@drawable/style_button"
+                android:textColor="@color/Color_Button_Texto"
+                android:layout_marginEnd="8dp"/>
+            <Button
+                android:layout_width="130dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/EqEdit_btn_confirmar"
+                android:text="@string/EqEdit_btn_confirmar"
+                android:background="@drawable/style_button"
+                android:textColor="@color/Color_Button_Texto"
+                android:layout_marginStart="8dp"/>
+        </LinearLayout>
+
     </androidx.appcompat.widget.LinearLayoutCompat>
 </RelativeLayout>

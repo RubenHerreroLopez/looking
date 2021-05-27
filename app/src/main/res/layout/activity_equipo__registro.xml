@@ -24,7 +24,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:id="@+id/EquipoRegistro_et_correo"
-                android:hint="@string/EquipoRegistro_et_correo"
+                android:hint="@string/EqRegistro_et_correo"
                 android:inputType="textEmailAddress"
                 android:autofillHints="false"
                 android:background="@color/white"
@@ -43,7 +43,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:id="@+id/EquipoRegistro_et_equipo"
-                android:hint="@string/EquipoRegistro_et_equipo"
+                android:hint="@string/EqRegistro_et_equipo"
                 android:inputType="text"
                 android:autofillHints="false"
                 android:background="@color/white"
@@ -61,7 +61,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:id="@+id/EquipoRegistro_et_deporte"
-                android:hint="@string/EquipoRegistro_et_deporte"
+                android:hint="@string/EqRegistro_et_deporte"
                 android:inputType="text"
                 android:autofillHints="false"
                 android:background="@color/white"
@@ -79,25 +79,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:id="@+id/EquipoRegistro_et_municipio"
-                android:hint="@string/EquipoRegistro_et_municipio"
-                android:inputType="text"
-                android:autofillHints="false"
-                android:background="@color/white"
-                android:layout_marginStart="10dp"
-                android:maxLines="1"/>
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <!-- LIGA -->
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:background="@drawable/style_edit_text">
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:id="@+id/EquipoRegistro_et_liga"
-                android:hint="@string/EquipoRegistro_et_liga"
+                android:hint="@string/EqRegistro_et_municipio"
                 android:inputType="text"
                 android:autofillHints="false"
                 android:background="@color/white"
@@ -115,13 +97,50 @@
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:id="@+id/EquipoRegistro_et_dia"
-                android:hint="@string/EquipoRegistro_et_diaDeJuego"
+                android:hint="@string/EqRegistro_et_diaDeJuego"
                 android:inputType="text"
                 android:autofillHints="false"
                 android:background="@color/white"
                 android:layout_marginStart="10dp"
                 android:maxLines="1"/>
         </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- SEXO -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/style_edit_text">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="2dp"
+                android:text="@string/EqRegistro_tv_categoria"
+                android:textSize="18sp" />
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:id="@+id/EquipoRegistro_rg_sexo"
+                android:orientation="horizontal"
+                android:layout_marginTop="5dp">
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/EquipoRegistro_rb_masculino"
+                    android:text="@string/EqRegistro_rb_hombre"
+                    android:layout_marginEnd="10dp"/>
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/EquipoRegistro_rb_femenino"
+                    android:text="@string/EqRegistro_rb_mujer" />
+
+            </RadioGroup>
+        </LinearLayout>
 
         <!-- CONTRASEÑA -->
         <com.google.android.material.textfield.TextInputLayout
@@ -134,7 +153,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:id="@+id/EquipoRegistro_et_pass"
-                android:hint="@string/EquipoRegistro_et_pass"
+                android:hint="@string/EqRegistro_et_pass"
                 android:inputType="textPassword"
                 android:autofillHints="false"
                 android:background="@color/white"
@@ -147,7 +166,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/EquipoRegistro_btn_registro"
-            android:text="@string/EquipoRegistro_btn_registro"
+            android:text="@string/EqRegistro_btn_registro"
             android:background="@drawable/style_button"
             android:textColor="@color/Color_Button_Texto"
             android:layout_marginTop="30dp"/>

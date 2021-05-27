@@ -21,13 +21,13 @@
             android:orientation="horizontal">
 
             <!-- IMAGEN DE PERFIL -->
-            <ImageView
+            <androidx.appcompat.widget.AppCompatImageView
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:id="@+id/EquipoHome_image_perfil"
                 android:src="@drawable/ic_perfil_equipo"
                 android:scaleType="fitCenter"
-                android:contentDescription="@string/EquipoHome_iv_perfil" />
+                android:contentDescription="@string/EqHome_iv_perfil" />
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -42,7 +42,7 @@
                     android:layout_marginTop="15dp"
                     android:textSize="20sp"
                     android:textStyle="bold"
-                    android:text="@string/EquipoHome_tv_user"/>
+                    android:text="@string/EqHome_tv_user"/>
                 <!-- CIUDAD -->
                 <TextView
                     android:layout_width="match_parent"
@@ -65,7 +65,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/EquipoHome_tv_misanuncios"
+            android:text="@string/EqHome_tv_misanuncios"
             android:textSize="18sp"
             android:textStyle="italic"
             android:layout_marginStart="10dp"/>
@@ -101,7 +101,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/EquipoHome_ll_lbl_contacto"
+                        android:text="@string/EqHome_ll_lbl_contacto"
                         android:textSize="18sp"
                         android:textStyle="bold"
                        />
@@ -124,7 +124,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/EquipoHome_ll_lbl_posicion"
+                        android:text="@string/EqHome_ll_lbl_posicion"
                         android:textSize="18sp"
                         android:textStyle="bold"/>
                     <TextView
@@ -145,7 +145,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/EquipoHome_ll_lbl_descripcion"
+                        android:text="@string/EqHome_ll_lbl_descripcion"
                         android:textSize="18sp"
                         android:textStyle="bold"/>
                     <TextView
@@ -174,7 +174,7 @@
                         android:layout_marginStart="5dp"
                         android:layout_marginEnd="5dp"
                         android:background="@drawable/style_button"
-                        android:contentDescription="@string/EquipoHome_ll_btn_actualizar" />
+                        android:contentDescription="@string/EqHome_ll_btn_actualizar" />
 
                     <ImageButton
                         android:layout_width="40dp"
@@ -185,7 +185,7 @@
                         android:layout_marginStart="5dp"
                         android:layout_marginEnd="5dp"
                         android:background="@drawable/style_button"
-                        android:contentDescription="@string/EquipoHome_ll_btn_eliminar" />
+                        android:contentDescription="@string/EqHome_ll_btn_eliminar" />
 
                     <ImageButton
                         android:layout_width="40dp"
@@ -196,7 +196,7 @@
                         android:layout_marginStart="5dp"
                         android:layout_marginEnd="5dp"
                         android:background="@drawable/style_button"
-                        android:contentDescription="@string/EquipoHome_ll_btn_cerrar" />
+                        android:contentDescription="@string/EqHome_ll_btn_cerrar" />
                 </LinearLayout>
 
             </LinearLayout>
@@ -220,7 +220,7 @@
         app:borderWidth="0dp"
         android:elevation="4dp"
         android:backgroundTint="@color/principal"
-        android:contentDescription="@string/EquipoHome_fab_add"
+        android:contentDescription="@string/EqHome_fab_add"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"/>
 

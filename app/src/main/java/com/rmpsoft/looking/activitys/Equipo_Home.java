@@ -1,6 +1,5 @@
 package com.rmpsoft.looking.activitys;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -11,13 +10,11 @@ import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -32,6 +29,7 @@ import com.rmpsoft.looking.R;
 import com.rmpsoft.looking.adapter.AnunciosAdapter;
 import com.rmpsoft.looking.model.Anuncio;
 import com.rmpsoft.looking.utils.Toast_Manager;
+import com.squareup.picasso.Picasso;
 
 public class Equipo_Home extends AppCompatActivity {
 
@@ -42,9 +40,11 @@ public class Equipo_Home extends AppCompatActivity {
     TextView tv_nombreEquipo, tv_municipioEquipo, ll_tv_contacto, ll_tv_posicion, ll_tv_descripcion;
     FloatingActionButton fab_add;
     ImageButton btn_ll_actualizar, btn_ll_eliminar, btn_ll_cerrar;
+    ImageView image_perfil;
 
     String nombreEquipo;
     String municipioEquipo;
+    String uriImagePerfil;
     Boolean sesionIniciada = false;
 
     RecyclerView rv_Anuncios;
@@ -59,9 +59,6 @@ public class Equipo_Home extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_equipo__home);
 
-        firebaseauth = FirebaseAuth.getInstance();
-        firebaseuser = firebaseauth.getCurrentUser();
-
         ActionBar actionbar = getSupportActionBar();
         assert actionbar != null;
         actionbar.setDisplayShowHomeEnabled(true);
@@ -74,6 +71,7 @@ public class Equipo_Home extends AppCompatActivity {
 
         tv_nombreEquipo = findViewById(R.id.EquipoHome_tv_user);
         tv_municipioEquipo = findViewById(R.id.EquipoHome_tv_municipio);
+        image_perfil = findViewById(R.id.EquipoHome_image_perfil);
         fab_add = findViewById(R.id.EquipoHome_fab_add);
 
         rv_Anuncios = findViewById(R.id.EquipoHome_rv_anuncios);
@@ -133,7 +131,7 @@ public class Equipo_Home extends AppCompatActivity {
         }
 
         if (id == R.id.EquipoHome_ic_edit) {
-            startActivity(new Intent(Equipo_Home.this, User_EditarPerfil.class));
+            startActivity(new Intent(Equipo_Home.this, Equipo_EditarPerfil.class));
         }
 
         return super.onOptionsItemSelected(item);
@@ -143,7 +141,7 @@ public class Equipo_Home extends AppCompatActivity {
     protected void onStart() {
         anunciosAdapter.startListening();
         verificarInicioSesion();
-        getDataUser();
+        loadDataUser();
         super.onStart();
     }
 
@@ -212,7 +210,7 @@ public class Equipo_Home extends AppCompatActivity {
     }
 
     /* Este método obtiene el nombre del equipo actual y lo asigna al TextView */
-    private void getDataUser() {
+    private void loadDataUser() {
         String uid = firebaseuser.getUid();
         firestore.collection("Equipos").document(uid).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
@@ -220,8 +218,15 @@ public class Equipo_Home extends AppCompatActivity {
                 if (documentSnapshot.exists()) {
                     nombreEquipo = documentSnapshot.getString("equipo");
                     municipioEquipo = documentSnapshot.getString("municipio");
+                    uriImagePerfil = documentSnapshot.getString("image");
                     tv_nombreEquipo.setText(nombreEquipo);
                     tv_municipioEquipo.setText(municipioEquipo);
+
+                    try {
+                        Picasso.get().load(uriImagePerfil).placeholder(R.drawable.ic_perfil_equipo).into(image_perfil);
+                    } catch (Exception e) {
+                        Picasso.get().load(R.drawable.ic_perfil_equipo).into(image_perfil);
+                    }
                 }
             }
         });

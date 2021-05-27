@@ -27,7 +27,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:id="@+id/UsuarioRegistro_et_correo"
-                android:hint="@string/UsuarioRegistro_et_correo"
+                android:hint="@string/UserRegistro_et_correo"
                 android:inputType="textEmailAddress"
                 android:autofillHints="false"
                 android:background="@drawable/style_edit_text"
@@ -45,7 +45,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:id="@+id/UsuarioRegistro_et_nombre"
-                android:hint="@string/UsuarioRegistro_et_nombre"
+                android:hint="@string/UserRegistro_et_nombre"
                 android:inputType="text"
                 android:autofillHints="false"
                 android:background="@drawable/style_edit_text"
@@ -63,7 +63,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:id="@+id/UsuarioRegistro_et_apellidos"
-                android:hint="@string/UsuarioRegistro_et_apellidos"
+                android:hint="@string/UserRegistro_et_apellidos"
                 android:inputType="text"
                 android:autofillHints="false"
                 android:background="@drawable/style_edit_text"
@@ -81,50 +81,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:id="@+id/UsuarioRegistro_et_edad"
-                android:hint="@string/UsuarioRegistro_et_edad"
+                android:hint="@string/UserRegistro_et_edad"
                 android:inputType="number"
                 android:autofillHints="false"
                 android:background="@drawable/style_edit_text"
                 android:layout_marginStart="10dp"
                 android:maxLines="1"/>
         </com.google.android.material.textfield.TextInputLayout>
-
-        <!-- SEXO -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:layout_marginTop="15dp"
-            android:background="@drawable/style_edit_text">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="30dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="2dp"
-                android:text="@string/UsuarioRegistro_tv_categoria"
-                android:textSize="18sp" />
-            <RadioGroup
-                android:layout_width="match_parent"
-                android:layout_height="30dp"
-                android:id="@+id/UsuarioRegistro_rg_sexo"
-                android:orientation="horizontal"
-                android:layout_marginTop="5dp">
-                <RadioButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/UsuarioRegistro_rb_masculino"
-                    android:text="@string/UsuarioRegistro_rb_hombre"
-                    android:layout_marginEnd="10dp"/>
-                <RadioButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/UsuarioRegistro_rb_femenino"
-                    android:text="@string/UsuarioRegistro_rb_mujer" />
-
-            </RadioGroup>
-        </LinearLayout>
 
         <!-- CONTRASEÑA -->
         <com.google.android.material.textfield.TextInputLayout
@@ -137,7 +100,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:id="@+id/UsuarioRegistro_et_pass"
-                android:hint="@string/UsuarioRegistro_et_pass"
+                android:hint="@string/UserRegistro_et_pass"
                 android:inputType="textPassword"
                 android:autofillHints="false"
                 android:background="@drawable/style_edit_text"
@@ -150,7 +113,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/UsuarioRegistro_btn_registro"
-            android:text="@string/UsuarioRegistro_btn_registro"
+            android:text="@string/UserRegistro_btn_registro"
             android:background="@drawable/style_button"
             android:textColor="@color/Color_Button_Texto"
             android:layout_marginTop="30dp"/>

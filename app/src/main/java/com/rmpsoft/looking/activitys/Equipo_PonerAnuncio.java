@@ -19,6 +19,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.rmpsoft.looking.R;
+import com.rmpsoft.looking.model.Anuncio;
 import com.rmpsoft.looking.utils.Toast_Manager;
 
 import java.text.Normalizer;
@@ -108,18 +109,16 @@ public class Equipo_PonerAnuncio extends AppCompatActivity {
         progressdialog.setCancelable(false);
         progressdialog.show();
 
-        HashMap<Object, String> anuncio = new HashMap<>();
+        Anuncio nuevoAnuncio = new Anuncio();
+        nuevoAnuncio.setUidcontacto(uid);
+        nuevoAnuncio.setEquipo(equipo);
+        nuevoAnuncio.setDeporte(deporte);
+        nuevoAnuncio.setMunicipio(municipio);
+        nuevoAnuncio.setPosicion(posicion);
+        nuevoAnuncio.setContacto(contacto);
+        nuevoAnuncio.setDescripcion(descripcion);
 
-        anuncio.put("equipo", equipo);
-        anuncio.put("deporte", deporte);
-        anuncio.put("municipio", municipio);
-        anuncio.put("posicion", posicion);
-        anuncio.put("contacto", contacto);
-        anuncio.put("descripcion", descripcion);
-        anuncio.put("cerrado", "false");
-        anuncio.put("uidcontacto", uid);
-
-        firestore.collection("Anuncios").document().set(anuncio).addOnSuccessListener(new OnSuccessListener<Void>() {
+        firestore.collection("Anuncios").document().set(nuevoAnuncio).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
                 Toast_Manager.showToast(Equipo_PonerAnuncio.this, "El anuncio se publicó correctamente");

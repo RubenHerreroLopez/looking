@@ -2,7 +2,7 @@
     <!-- APP NOMBRE -->
     <string name="app_name">Looking</string>
     <!-- VERSION -->
-    <string name="version">Beta 1.2.4</string>
+    <string name="version">Beta 1.3.5</string>
 
     <!-- MENU USUARIO LOGIN (activity__login.xml) -->
     <string name="Login_btn_login">INICIA SESION</string>
@@ -19,31 +19,42 @@
     <string name="DialogNoInicio_Error">No pudo inciciar sesión, inténtelo de nuevo</string>
     <string name="DialogNoInicio_btn_ok">ENTENDIDO</string>
 
+    <!-- LAYOUT FILTER -->
+    <string name="Filter_et_deporte">Buscar por deporte</string>
+    <string name="Filter_et_municipio">Buscar por municipio</string>
+    <string name="Filter_et_posicion">Buscar por posicion</string>
+    <string name="Filter_btn_cerrar">Cerrar</string>
+    <string name="Filter_btn_buscar">APLICAR FILTROS</string>
+
     <!-- MENU EDITAR PERFIL EQUIPO (activity_equipo_editar_perfil.xml) -->
-    <string name="EqEditPerfil_et_nombre">Nuevo nombre del equipo</string>
-    <string name="EqEditPerfil_et_deporte">Nuevo deporte</string>
-    <string name="EqEditPerfil_et_municipio">Nuevo municipio</string>
-    <string name="EqEditPerfil_et_liga">Nueva liga</string>
-    <string name="EqEditPerfil_btn_confirmar">CONFIRMAR</string>
-    <string name="EqEditPerfil_btn_descartar">DESCARTAR</string>
-
-    <!-- MENU ANUNCIOS DEL EQUIPO (activity_equipo_mis_anuncios.xml) -->
-
-    <!-- MENU OPCIONES EQUIPO (activiy_equipo_opciones.xml) -->
+    <string name="EqEdit_btn_ok">Aceptar</string>
+    <string name="EqEdit_btn_editIP">Editar imagen de perfil</string>
+    <string name="EqEdit_btn_editEQ">Editar nombre de equipo</string>
+    <string name="EqEdit_btn_editDP">Editar deporte</string>
+    <string name="EqEdit_btn_editMC">Editar municipio</string>
+    <string name="EqEdit_btn_editDIA">Editar día de juego</string>
+    <string name="EqEdit_et_nombre">Nuevo nombre del equipo</string>
+    <string name="EqEdit_et_deporte">Nuevo deporte</string>
+    <string name="EqEdit_et_municipio">Nuevo municipio</string>
+    <string name="EqEdit_et_dia">Nuevo dia de juego</string>
+    <string name="EqEdit_btn_confirmar">CONFIRMAR</string>
+    <string name="EqEdit_btn_descartar">DESCARTAR</string>
 
     <!-- HOME EQUIPO (activity equipo_home.xml) -->
-    <string name="EquipoHome_fab_edit">Editar Perfil</string>
-    <string name="EquipoHome_fab_add">Añadir Anuncio</string>
-    <string name="EquipoHome_fab_exit">Cerrar Sesión</string>
-    <string name="EquipoHome_iv_perfil">Imagen de Perfil</string>
-    <string name="EquipoHome_tv_user"> </string>
-    <string name="EquipoHome_tv_misanuncios">Mis anuncios: </string>
-    <string name="EquipoHome_ll_lbl_contacto">Contacto: </string>
-    <string name="EquipoHome_ll_lbl_posicion">Posicion: </string>
-    <string name="EquipoHome_ll_lbl_descripcion">Descripcion: </string>
-    <string name="EquipoHome_ll_btn_actualizar">Actualizar</string>
-    <string name="EquipoHome_ll_btn_eliminar">Eliminar</string>
-    <string name="EquipoHome_ll_btn_cerrar">Cerrar</string>
+    <string name="EqHome_fab_edit">Editar Perfil</string>
+    <string name="EqHome_fab_add">Añadir Anuncio</string>
+    <string name="EqHome_fab_exit">Cerrar Sesión</string>
+    <string name="EqHome_iv_perfil">Imagen de Perfil</string>
+    <string name="EqHome_tv_user"> </string>
+    <string name="EqHome_tv_misanuncios">Mis anuncios: </string>
+    <string name="EqHome_ll_lbl_contacto">Contacto: </string>
+    <string name="EqHome_ll_lbl_posicion">Posicion: </string>
+    <string name="EqHome_ll_lbl_descripcion">Descripcion: </string>
+    <string name="EqHome_ll_btn_actualizar">Actualizar</string>
+    <string name="EqHome_ll_btn_eliminar">Eliminar</string>
+    <string name="EqHome_ll_btn_cerrar">Cerrar</string>
+
+    <!-- MENU OPCIONES EQUIPO (activiy_equipo_opciones.xml) -->
 
     <!-- EQUIPO PONER ANUNCIO (activity_equipo_poner_anuncio.xml) -->
     <string name="PonerAnuncio_et_contacto">Persona de contacto</string>
@@ -53,34 +64,26 @@
     <string name="PonerAnuncio_btn_descartar">DESCARTAR</string>
 
     <!-- MENU EQUIPO REGISTRO (activity_equipo_registro.xml) -->
-    <string name="EquipoRegistro_btn_registro">REGISTRAR</string>
-    <string name="EquipoRegistro_et_correo">Correo electrónico</string>
-    <string name="EquipoRegistro_et_equipo">Nombre del equipo</string>
-    <string name="EquipoRegistro_et_deporte">Deporte</string>
-    <string name="EquipoRegistro_et_municipio">Municipio</string>
-    <string name="EquipoRegistro_et_liga">Liga</string>
-    <string name="EquipoRegistro_et_pass">Contraseña</string>
-    <string name="EquipoRegistro_et_diaDeJuego">Día de juego</string>
+    <string name="EqRegistro_btn_registro">REGISTRAR</string>
+    <string name="EqRegistro_et_correo">Correo electrónico</string>
+    <string name="EqRegistro_et_equipo">Nombre del equipo</string>
+    <string name="EqRegistro_et_deporte">Deporte</string>
+    <string name="EqRegistro_et_municipio">Municipio</string>
+    <string name="EqRegistro_et_liga">Liga</string>
+    <string name="EqRegistro_tv_categoria">Categoria</string>
+    <string name="EqRegistro_rb_hombre">Masculina</string>
+    <string name="EqRegistro_rb_mujer">Femenina</string>
+    <string name="EqRegistro_et_pass">Contraseña</string>
+    <string name="EqRegistro_et_diaDeJuego">Día de juego</string>
+
 
     <!-- EDITAR PERFIL USUARIO (activity_user_editar_perfil.xml) -->
-    <string name="UsuarioEditarPerfil_et_nombre">Nuevo nombre: </string>
-    <string name="UsuarioEditarPerfil_et_apellido">Nuevo apellido: </string>
-    <string name="UsuarioEditarPerfil_et_edad">Nueva edad: </string>
-    <string name="UsuarioEditarPerfil_et_pass">Nueva contraseña: </string>
-    <string name="UsuarioEditarPerfil_btn_confirmar">CONFIRMAR</string>
-    <string name="UsuarioPerfil_btn_descartar">DESCARTAR</string>
-
-    <!-- FILTROS BUSQUEDA ANUNCIOS (activity_user_filtro_busqueda.xml) -->
-    <string name="FiltroBusqueda_et_municipio">Busca por municipio</string>
-    <string name="FiltroBusqueda_et_deporte">Busca por deporte</string>
-    <string name="FiltroBusqueda_et_posicion">Busca por posicion</string>
-    <string name="FiltroBusqueda_et_dia">Dia de juego</string>
-    <string name="FiltroBusqueda_btn_buscar">APLICAR FILTROS</string>
-    <string name="FiltroBusqueda_btn_cerrar">Cerrar</string>
-
-    <!-- GESTION ANUNCIOS USUARIO activity_user_gestion_anuncio.xml) -->
-    <string name="UsuarioGestionAnuncios_txt_detalles">Detalles</string>
-    <string name="UsuarioGestionAnuncios_txt_personaContacto">Persona de contacto: </string>
+    <string name="UserEdit_et_nombre">Nuevo nombre: </string>
+    <string name="UserEdit_et_apellido">Nuevo apellido: </string>
+    <string name="UserEdit_et_edad">Nueva edad: </string>
+    <string name="UserEdit_et_pass">Nueva contraseña: </string>
+    <string name="UserEdit_btn_confirmar">CONFIRMAR</string>
+    <string name="UserEdit_btn_descartar">DESCARTAR</string>
 
     <!-- HOME USUARIO (activity_user_home.xml) -->
     <string name="UserHome_fab_edit">Editar Perfil</string>
@@ -96,20 +99,12 @@
 
     <!-- OPCIONES DE USUARIO (activity_user_opciones.xml) -->
 
-    <!-- PERFIL USUARIO (activiy_user_perfil.xml) -->
-    <string name="UsuarioPerfil_btn_editarPerfil">EDITAR PERFIL</string>
-    <string name="UsuarioPerfil_btn_cerrarSesion">CERRAR SESION</string>
-    <string name="UsuarioPerfil_btn_mensajes">MENSAJES</string>
-
     <!-- MENU USUARIO REGISTRO (activity_user_registro.xml) -->
-    <string name="UsuarioRegistro_btn_registro">REGISTRARME</string>
-    <string name="UsuarioRegistro_et_correo">Correo electrónico</string>
-    <string name="UsuarioRegistro_et_nombre">Nombre</string>
-    <string name="UsuarioRegistro_et_apellidos">Apellidos</string>
-    <string name="UsuarioRegistro_et_edad">Edad</string>
-    <string name="UsuarioRegistro_tv_categoria">Categoria</string>
-    <string name="UsuarioRegistro_rb_hombre">Masculina</string>
-    <string name="UsuarioRegistro_rb_mujer">Femenina</string>
-    <string name="UsuarioRegistro_et_pass">Contraseña</string>
+    <string name="UserRegistro_btn_registro">REGISTRARME</string>
+    <string name="UserRegistro_et_correo">Correo electrónico</string>
+    <string name="UserRegistro_et_nombre">Nombre</string>
+    <string name="UserRegistro_et_apellidos">Apellidos</string>
+    <string name="UserRegistro_et_edad">Edad</string>
+    <string name="UserRegistro_et_pass">Contraseña</string>
 
 </resources>

@@ -25,7 +25,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:id="@+id/UserHome_ll_filter_et_deporte"
-                android:hint="@string/FiltroBusqueda_et_deporte"
+                android:hint="@string/Filter_et_deporte"
                 android:inputType="text"
                 android:autofillHints="false"
                 android:background="@drawable/style_edit_text"
@@ -44,7 +44,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:id="@+id/UserHome_ll_filter_et_municipio"
-                android:hint="@string/FiltroBusqueda_et_municipio"
+                android:hint="@string/Filter_et_municipio"
                 android:inputType="text"
                 android:autofillHints="false"
                 android:background="@drawable/style_edit_text"
@@ -63,7 +63,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:id="@+id/UserHome_ll_filter_et_posicion"
-                android:hint="@string/FiltroBusqueda_et_posicion"
+                android:hint="@string/Filter_et_posicion"
                 android:inputType="text"
                 android:autofillHints="false"
                 android:background="@drawable/style_edit_text"
@@ -90,14 +90,14 @@
                 android:layout_marginStart="5dp"
                 android:layout_marginEnd="5dp"
                 android:background="@drawable/style_button"
-                android:contentDescription="@string/FiltroBusqueda_btn_cerrar" />
+                android:contentDescription="@string/Filter_btn_cerrar" />
 
             <!-- BOTON APLICAR -->
             <Button
-                android:layout_width="140dp"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/UserHome_ll_filter_btn_aplicar"
-                android:text="@string/FiltroBusqueda_btn_buscar"
+                android:text="@string/Filter_btn_buscar"
                 android:background="@drawable/style_button"
                 android:textColor="@color/Color_Button_Texto"
                 android:layout_marginStart="8dp" />

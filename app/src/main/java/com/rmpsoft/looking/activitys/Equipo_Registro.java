@@ -12,6 +12,7 @@ import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -23,15 +24,19 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.rmpsoft.looking.LoginActivity;
 import com.rmpsoft.looking.R;
+import com.rmpsoft.looking.model.Equipo;
 import com.rmpsoft.looking.utils.Toast_Manager;
 
 import java.text.Normalizer;
-import java.util.HashMap;
+    /*r import java.util.HashMap; r*/
 
 public class Equipo_Registro extends AppCompatActivity {
 
-    EditText et_correo, et_equipo, et_deporte, et_municipio, et_liga, et_dia, et_pass;
+    EditText et_correo, et_equipo, et_deporte, et_municipio, et_dia, et_pass;
+    RadioButton rb_masculino, rb_femenino;
     Button btn_registro;
+
+    String sexo;
 
     FirebaseAuth firebaseauth;
     FirebaseFirestore firestore;
@@ -52,8 +57,9 @@ public class Equipo_Registro extends AppCompatActivity {
         et_equipo = findViewById(R.id.EquipoRegistro_et_equipo);
         et_deporte = findViewById(R.id.EquipoRegistro_et_deporte);
         et_municipio = findViewById(R.id.EquipoRegistro_et_municipio);
-        et_liga = findViewById(R.id.EquipoRegistro_et_liga);
         et_dia = findViewById(R.id.EquipoRegistro_et_dia);
+        rb_masculino = findViewById(R.id.EquipoRegistro_rb_masculino);
+        rb_femenino = findViewById(R.id.EquipoRegistro_rb_femenino);
         et_pass = findViewById(R.id.EquipoRegistro_et_pass);
         btn_registro = findViewById(R.id.EquipoRegistro_btn_registro);
 
@@ -70,7 +76,6 @@ public class Equipo_Registro extends AppCompatActivity {
                 String equipo = et_equipo.getText().toString();
                 String deporte = et_deporte.getText().toString();
                 String municipio = et_municipio.getText().toString();
-                String liga = et_liga.getText().toString();
                 String dia = et_dia.getText().toString();
 
                 /* Validamos el formato del correo y la contraseña así como que los campos están rellenados*/
@@ -89,12 +94,12 @@ public class Equipo_Registro extends AppCompatActivity {
                 } else if (municipio.isEmpty()) {
                     et_municipio.setError("El campo es obligatorio");
                     et_municipio.setFocusable(true);
-                } else if (liga.isEmpty()) {
-                    et_liga.setError("El campo es obligatorio");
-                    et_liga.setFocusable(true);
                 } else if (dia.isEmpty()) {
                     et_dia.setError("El campo es obligatorio");
                     et_dia.setFocusable(true);
+                } else if (!rb_masculino.isChecked() && !rb_femenino.isChecked()) {
+                    rb_femenino.setError("Debes seleccionar una opcion");
+                    rb_femenino.setFocusable(true);
                 } else {
                     registrar(correo, pass);
                 }
@@ -121,22 +126,29 @@ public class Equipo_Registro extends AppCompatActivity {
                     String pass = et_pass.getText().toString();
                     String equipo = et_equipo.getText().toString();
                     String municipio = formatoString(et_municipio.getText().toString());
-                    String liga = et_liga.getText().toString();
                     String deporte = formatoString(et_deporte.getText().toString());
                     String dia = formatoString(et_dia.getText().toString());
 
-                    HashMap<Object, String> datosEquipo = new HashMap<>();
+                    if (rb_masculino.isChecked()) {
+                        sexo = rb_masculino.getText().toString();
+                    }
+                    if (rb_femenino.isChecked()) {
+                        sexo = rb_femenino.getText().toString();
+                    }
 
-                    datosEquipo.put("uid", uid);
-                    datosEquipo.put("correo", correo);
-                    datosEquipo.put("pass", pass);
-                    datosEquipo.put("equipo", equipo);
-                    datosEquipo.put("municipio", municipio);
-                    datosEquipo.put("liga", liga);
-                    datosEquipo.put("deporte", deporte);
-                    datosEquipo.put("dia", dia);
+                    Equipo nuevoEquipo = new Equipo();
 
-                    firestore.collection("Equipos").document(uid).set(datosEquipo).addOnSuccessListener(new OnSuccessListener<Void>() {
+                    nuevoEquipo.setUid(uid);
+                    nuevoEquipo.setCorreo(correo);
+                    nuevoEquipo.setPassword(pass);
+                    nuevoEquipo.setEquipo(equipo);
+                    nuevoEquipo.setMunicipio(municipio);
+                    nuevoEquipo.setDeporte(deporte);
+                    nuevoEquipo.setHorario(dia);
+                    nuevoEquipo.setCategoria(sexo);
+                    nuevoEquipo.setImagen(null);
+
+                    firestore.collection("Equipos").document(uid).set(nuevoEquipo).addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void aVoid) {
                             Toast_Manager.showToast(Equipo_Registro.this,"El registro se realizó correctamente");

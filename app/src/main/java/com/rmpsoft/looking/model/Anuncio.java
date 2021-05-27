@@ -2,7 +2,7 @@ package com.rmpsoft.looking.model;
 
 public class Anuncio {
 
-    private String uid;
+    private String uidcontacto;
     private String estado;
     private String contacto;
     private String descripcion;
@@ -16,7 +16,7 @@ public class Anuncio {
     }
 
     public Anuncio (String uid, String estado, String contacto, String descripcion, String equipo, String deporte, String posicion, String municipio) {
-        this.uid = uid;
+        this.uidcontacto = uid;
         this.estado = estado;
         this.contacto = contacto;
         this.descripcion = descripcion;
@@ -26,12 +26,12 @@ public class Anuncio {
         this.municipio = municipio;
     }
 
-    public String getUid() {
-        return uid;
+    public String getUidcontacto() {
+        return uidcontacto;
     }
 
-    public void setUid(String uid) {
-        this.uid = uid;
+    public void setUidcontacto(String uidcontacto) {
+        this.uidcontacto = uidcontacto;
     }
 
     public String getEstado() {

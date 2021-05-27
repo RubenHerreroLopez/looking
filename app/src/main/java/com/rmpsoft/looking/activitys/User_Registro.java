@@ -12,7 +12,6 @@ import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RadioButton;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -24,19 +23,16 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.rmpsoft.looking.LoginActivity;
 import com.rmpsoft.looking.R;
+import com.rmpsoft.looking.model.Usuario;
 import com.rmpsoft.looking.utils.Toast_Manager;
-
-import java.util.HashMap;
 
 public class User_Registro extends AppCompatActivity {
 
     EditText et_correo, et_nombre, et_apellido, et_edad, et_pass;
-    RadioButton rb_masculino, rb_femenino;
     Button btn_registo;
     FirebaseAuth firebaseauth;
     FirebaseFirestore firestore;
     private ProgressDialog progressdialog;
-    String sexo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,8 +50,6 @@ public class User_Registro extends AppCompatActivity {
         et_apellido = findViewById(R.id.UsuarioRegistro_et_apellidos);
         et_edad = findViewById(R.id.UsuarioRegistro_et_edad);
         et_pass = findViewById(R.id.UsuarioRegistro_et_pass);
-        rb_masculino = findViewById(R.id.UsuarioRegistro_rb_masculino);
-        rb_femenino = findViewById(R.id.UsuarioRegistro_rb_femenino);
         btn_registo = findViewById(R.id.UsuarioRegistro_btn_registro);
 
         firebaseauth = FirebaseAuth.getInstance();
@@ -84,10 +78,7 @@ public class User_Registro extends AppCompatActivity {
                 } else if (apellido.isEmpty()) {
                     et_apellido.setError("El campo es obligatorio");
                     et_apellido.setFocusable(true);
-                } else if (!rb_masculino.isChecked() && !rb_femenino.isChecked()) {
-                    rb_femenino.setError("Debes seleccionar una opcion");
-                    rb_femenino.setFocusable(true);
-                }else if (edad.isEmpty()) {
+                } else if (edad.isEmpty()) {
                     et_edad.setError("El campo es obligatorio");
                     et_edad.setFocusable(true);
                 } else {
@@ -119,24 +110,16 @@ public class User_Registro extends AppCompatActivity {
                     String apellido = et_apellido.getText().toString();
                     String edad = et_edad.getText().toString();
 
-                    if (rb_masculino.isChecked()) {
-                        sexo = rb_masculino.getText().toString();
-                    }
-                    if (rb_femenino.isChecked()) {
-                        sexo = rb_femenino.getText().toString();
-                    }
+                    Usuario nuevoUsuario = new Usuario();
 
-                    HashMap<Object, String> datosUser = new HashMap<>();
+                    nuevoUsuario.setUid(uid);
+                    nuevoUsuario.setCorreo(correo);
+                    nuevoUsuario.setPassword(pass);
+                    nuevoUsuario.setNombre(nombre);
+                    nuevoUsuario.setApellido(apellido);
+                    nuevoUsuario.setEdad(edad);
 
-                    datosUser.put("uid", uid);
-                    datosUser.put("correo", correo);
-                    datosUser.put("pass", pass);
-                    datosUser.put("nombre", nombre);
-                    datosUser.put("apellido", apellido);
-                    datosUser.put("edad", edad);
-                    datosUser.put("sexo", sexo);
-
-                    firestore.collection("Usuarios").document(uid).set(datosUser).addOnSuccessListener(new OnSuccessListener<Void>() {
+                    firestore.collection("Usuarios").document(uid).set(nuevoUsuario).addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void aVoid) {
                             Toast_Manager.showToast(User_Registro.this, "El registro se realizó correctamente");
