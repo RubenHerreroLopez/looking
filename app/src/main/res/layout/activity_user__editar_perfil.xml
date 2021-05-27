@@ -14,5 +14,181 @@
         android:background="#fff"
         android:padding="25dp">
 
+        <!-- IMAGEN DE PERFIL -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:id="@+id/UserEdit_image_perfil"
+                android:src="@drawable/ic_perfil_user"
+                android:scaleType="fitCenter"
+                android:contentDescription="@string/UserHome_iv_perfil" />
+            <ImageButton
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:id="@+id/UserEdit_btn_edit_IP"
+                android:src="@drawable/ic_action_edit"
+                android:background="@drawable/style_button"
+                android:layout_marginStart="10dp"
+                android:layout_gravity="bottom"
+                android:contentDescription="@string/UserEdit_btn_editIP" />
+        </LinearLayout>
+
+        <!-- NOMBRE -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:orientation="horizontal"
+            android:weightSum="4">
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="3.7">
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/UserEdit_et_nombre"
+                    android:hint="@string/UserEdit_et_nombre"
+                    android:inputType="text"
+                    android:autofillHints="false"
+                    android:maxLines="1"/>
+            </com.google.android.material.textfield.TextInputLayout>
+            <ImageButton
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:id="@+id/UserEdit_btn_edit_NOM"
+                android:src="@drawable/ic_action_edit"
+                android:background="@drawable/style_button"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:visibility="visible"
+                android:contentDescription="@string/UserEdit_btn_editNOM" />
+            <ImageButton
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:id="@+id/UserEdit_btn_OK_NOM"
+                android:src="@drawable/ic_action_ok"
+                android:background="@drawable/style_button"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:visibility="gone"
+                android:contentDescription="@string/UserEdit_btn_okNOM" />
+
+        </LinearLayout>
+
+        <!-- APELLIDO -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:orientation="horizontal"
+            android:weightSum="4">
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="3.7">
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/UserEdit_et_apellido"
+                    android:hint="@string/UserEdit_et_apellido"
+                    android:inputType="text"
+                    android:autofillHints="false"
+                    android:maxLines="1"/>
+            </com.google.android.material.textfield.TextInputLayout>
+            <ImageButton
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:id="@+id/UserEdit_btn_edit_APE"
+                android:src="@drawable/ic_action_edit"
+                android:background="@drawable/style_button"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:visibility="visible"
+                android:contentDescription="@string/UserEdit_btn_editAPE" />
+            <ImageButton
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:id="@+id/UserEdit_btn_OK_APE"
+                android:src="@drawable/ic_action_ok"
+                android:background="@drawable/style_button"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:visibility="gone"
+                android:contentDescription="@string/UserEdit_btn_okAPE" />
+        </LinearLayout>
+
+        <!-- EDAD -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:orientation="horizontal"
+            android:weightSum="4">
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="3.7">
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/UserEdit_et_edad"
+                    android:hint="@string/UserEdit_et_edad"
+                    android:inputType="number"
+                    android:autofillHints="false"
+                    android:maxLines="1"/>
+            </com.google.android.material.textfield.TextInputLayout>
+            <ImageButton
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:id="@+id/UserEdit_btn_edit_ED"
+                android:src="@drawable/ic_action_edit"
+                android:background="@drawable/style_button"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:visibility="visible"
+                android:contentDescription="@string/UserEdit_btn_editED" />
+            <ImageButton
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:id="@+id/UserEdit_btn_OK_ED"
+                android:src="@drawable/ic_action_ok"
+                android:background="@drawable/style_button"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:visibility="gone"
+                android:contentDescription="@string/UserEdit_btn_okED" />
+        </LinearLayout>
+
+        <!-- LL BOTONES -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginTop="25dp">
+            <!-- BOTON DESCARTAR -->
+            <Button
+                android:layout_width="130dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/UserEdit_btn_descartar"
+                android:text="@string/UserEdit_btn_descartar"
+                android:background="@drawable/style_button"
+                android:textColor="@color/Color_Button_Texto"
+                android:layout_marginEnd="8dp"/>
+            <Button
+                android:layout_width="130dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/UserEdit_btn_confirmar"
+                android:text="@string/UserEdit_btn_confirmar"
+                android:background="@drawable/style_button"
+                android:textColor="@color/Color_Button_Texto"
+                android:layout_marginStart="8dp"/>
+        </LinearLayout>
+
     </androidx.appcompat.widget.LinearLayoutCompat>
 </ScrollView>

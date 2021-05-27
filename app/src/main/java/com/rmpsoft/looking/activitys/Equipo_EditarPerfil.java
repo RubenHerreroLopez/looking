@@ -194,6 +194,8 @@ public class Equipo_EditarPerfil extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 updateData();
+                startActivity(new Intent(Equipo_EditarPerfil.this, Equipo_Home.class));
+                finish();
             }
         });
 
@@ -269,10 +271,30 @@ public class Equipo_EditarPerfil extends AppCompatActivity {
         }
     }
 
+    /* Método que actualiza los datos introducidos por el usuario */
     public void updateData() {
+        progressDialog.setTitle("Actualizando datos...");
+        progressDialog.setMessage("Por favor, espere. Esta \nacción puede llevar unos segundos");
+        progressDialog.show();
 
+        equipo = et_equipo.getText().toString();
+        deporte = et_deporte.getText().toString();
+        municipio = et_municipio.getText().toString();
+        dia = et_dia.getText().toString();
+
+        Map<String, Object> values = new HashMap<>();
+
+        values.put("equipo", equipo);
+        values.put("deporte", deporte);
+        values.put("horario", dia);
+        values.put("municipio", municipio);
+
+        firestore.collection("Equipos").document(uid).update(values);
+        progressDialog.dismiss();
+        Toast_Manager.showToast(Equipo_EditarPerfil.this, "Datos actualizados con éxito");
     }
 
+    /* Método que obtiene los datos del usuario y los asigna a los EditText */
     public void getData () {
         String uid = firebaseuser.getUid();
         firestore.collection("Equipos").document(uid).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
@@ -282,7 +304,7 @@ public class Equipo_EditarPerfil extends AppCompatActivity {
                     equipo = documentSnapshot.getString("equipo");
                     deporte = documentSnapshot.getString("deporte");
                     municipio = documentSnapshot.getString("municipio");
-                    dia = documentSnapshot.getString("dia");
+                    dia = documentSnapshot.getString("horario");
 
                     et_equipo.setEnabled(false);
                     et_equipo.setText(equipo);

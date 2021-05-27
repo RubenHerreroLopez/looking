@@ -3,6 +3,7 @@ package com.rmpsoft.looking.adapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -13,9 +14,12 @@ import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.rmpsoft.looking.R;
 import com.rmpsoft.looking.model.Anuncio;
+import com.squareup.picasso.Picasso;
 
 public class AnunciosUserAdapter extends FirestoreRecyclerAdapter<Anuncio, AnunciosUserAdapter.ViewHolder> {
 
+    ImageView iv_perfil;
+    String uri_iv_perfil;
     private OnItemClickListener listener;
 
     public AnunciosUserAdapter(@NonNull FirestoreRecyclerOptions<Anuncio> options) {
@@ -29,6 +33,13 @@ public class AnunciosUserAdapter extends FirestoreRecyclerAdapter<Anuncio, Anunc
         viewHolder.tv_municipio.setText(anuncio.getMunicipio());
         viewHolder.tv_contacto.setText(anuncio.getContacto());
         viewHolder.tv_posicion.setText(anuncio.getPosicion());
+        uri_iv_perfil = anuncio.getImagen();
+        try {
+            Picasso.get().load(uri_iv_perfil).placeholder(R.drawable.ic_perfil_equipo).into(iv_perfil);
+        } catch (Exception e) {
+            Picasso.get().load(R.drawable.ic_perfil_equipo).into(iv_perfil);
+        }
+
     }
 
     @NonNull
@@ -53,6 +64,7 @@ public class AnunciosUserAdapter extends FirestoreRecyclerAdapter<Anuncio, Anunc
             tv_municipio = itemView.findViewById(R.id.ListAnunciosUser_lbl_municipio);
             tv_contacto = itemView.findViewById(R.id.ListAnunciosUser_lbl_contacto);
             tv_posicion = itemView.findViewById(R.id.ListAnunciosUser_lbl_posicion);
+            iv_perfil = itemView.findViewById(R.id.ListAnunciosUser_iv);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

@@ -10,12 +10,15 @@ public class Anuncio {
     private String deporte;
     private String posicion;
     private String municipio;
+    private String categoria;
+    private String imagen;
 
     public Anuncio () {
 
     }
 
-    public Anuncio (String uid, String estado, String contacto, String descripcion, String equipo, String deporte, String posicion, String municipio) {
+    public Anuncio (String uid, String estado, String contacto, String descripcion, String equipo, String deporte,
+                    String posicion, String municipio, String categoria, String imagen) {
         this.uidcontacto = uid;
         this.estado = estado;
         this.contacto = contacto;
@@ -24,6 +27,8 @@ public class Anuncio {
         this.deporte = deporte;
         this.posicion = posicion;
         this.municipio = municipio;
+        this.categoria = categoria;
+        this.imagen = imagen;
     }
 
     public String getUidcontacto() {
@@ -88,5 +93,21 @@ public class Anuncio {
 
     public void setMunicipio(String municipio) {
         this.municipio = municipio;
+    }
+
+    public String getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(String categoria) {
+        this.categoria = categoria;
+    }
+
+    public String getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(String image) {
+        this.imagen = image;
     }
 }

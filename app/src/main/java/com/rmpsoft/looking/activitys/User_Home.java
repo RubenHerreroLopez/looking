@@ -17,6 +17,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -33,6 +34,7 @@ import com.rmpsoft.looking.R;
 import com.rmpsoft.looking.adapter.AnunciosUserAdapter;
 import com.rmpsoft.looking.model.Anuncio;
 import com.rmpsoft.looking.utils.Toast_Manager;
+import com.squareup.picasso.Picasso;
 
 import java.text.Normalizer;
 
@@ -45,10 +47,12 @@ public class User_Home extends AppCompatActivity {
     TextView tv_nombreUser, ll_tv_contacto, ll_tv_equipo, ll_tv_descripcion;
     ImageButton btn_ll_chat, btn_ll_cerrar;
     FloatingActionButton fab_filter;
+    ImageView image_perfil;
 
     String nombreUsuario;
     String apellidoUsuario;
     String nombreCompleto;
+    String uriImagePerfil;
 
     Boolean sesionIniciada = false;
 
@@ -79,6 +83,7 @@ public class User_Home extends AppCompatActivity {
 
         tv_nombreUser = findViewById(R.id.UserHome_tv_user);
         fab_filter = findViewById(R.id.UserHome_fab_filter);
+        image_perfil = findViewById(R.id.UserHome_image_perfil);
         rv_Anuncios = findViewById(R.id.UserHome_rv_anuncios);
         rv_Anuncios.setLayoutManager(new LinearLayoutManager(this));
 
@@ -113,8 +118,6 @@ public class User_Home extends AppCompatActivity {
 
         getAllAdvices();
     }
-
-
     public boolean onCreateOptionsMenu (Menu menu) {
         getMenuInflater().inflate(R.menu.menu_userhome, menu);
         return true;
@@ -138,7 +141,7 @@ public class User_Home extends AppCompatActivity {
     protected void onStart() {
         anunciosAdapter.startListening();
         verificarInicioSesion();
-        getDataUser();
+        loadDataUser();
         super.onStart();
     }
 
@@ -201,9 +204,9 @@ public class User_Home extends AppCompatActivity {
                 boolean bool_municipio = true;
                 boolean bool_posicion = true;
 
-                String deporte = et_deporte.getText().toString();
-                String municipio = et_municipio.getText().toString();
-                String posicion = et_posicion.getText().toString();
+                String deporte = formatoString(et_deporte.getText().toString());
+                String municipio = formatoString(et_municipio.getText().toString());
+                String posicion = formatoString(et_posicion.getText().toString());
 
                 if (deporte.isEmpty()) {
                     bool_deporte = false;
@@ -493,7 +496,7 @@ public class User_Home extends AppCompatActivity {
     }
 
     /* Este método obtiene el nombre y apellidos del usuario actual y los asigna al TextView */
-    private void getDataUser() {
+    private void loadDataUser() {
         String uid = firebaseuser.getUid();
 
         firestore.collection("Usuarios").document(uid).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
@@ -502,8 +505,15 @@ public class User_Home extends AppCompatActivity {
                 if (documentSnapshot.exists()) {
                     nombreUsuario = documentSnapshot.getString("nombre");
                     apellidoUsuario = documentSnapshot.getString("apellido");
+                    uriImagePerfil = documentSnapshot.getString("image");
                     nombreCompleto = " " + nombreUsuario + " " + apellidoUsuario + " ";
                     tv_nombreUser.setText(nombreCompleto);
+
+                    try {
+                        Picasso.get().load(uriImagePerfil).placeholder(R.drawable.ic_perfil_user).into(image_perfil);
+                    } catch (Exception e) {
+                        Picasso.get().load(R.drawable.ic_perfil_user).into(image_perfil);
+                    }
                 }
             }
         });

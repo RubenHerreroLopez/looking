@@ -95,14 +95,7 @@ public class Equipo_Home extends AppCompatActivity {
         btn_ll_actualizar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-            }
-        });
-
-        btn_ll_eliminar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
+                updateAnuncio();
             }
         });
 
@@ -175,6 +168,11 @@ public class Equipo_Home extends AppCompatActivity {
         finish();
     }
 
+    /* Este método actualiza los datos de un anuncio */
+    private void updateAnuncio() {
+
+    }
+
     /* Este método obtiene los datos de los anuncios del equipo actual*/
     private void getAnuncios() {
         String uid = firebaseuser.getUid();
@@ -204,6 +202,15 @@ public class Equipo_Home extends AppCompatActivity {
                 ll_tv_contacto.setText(contacto);
                 ll_tv_posicion.setText(posicion);
                 ll_tv_descripcion.setText(descripcion);
+
+                btn_ll_eliminar.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        firestore.collection("Anuncios").document(id).delete();
+                        ll_anuncioSeleccionado.setVisibility(View.GONE);
+                        anuncioSeleccionado = null;
+                    }
+                });
             }
         });
 

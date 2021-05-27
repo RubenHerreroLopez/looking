@@ -38,6 +38,8 @@ public class Equipo_PonerAnuncio extends AppCompatActivity {
     private String equipo;
     private String deporte;
     private String municipio;
+    private String categoria;
+    private String imagen;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -117,6 +119,8 @@ public class Equipo_PonerAnuncio extends AppCompatActivity {
         nuevoAnuncio.setPosicion(posicion);
         nuevoAnuncio.setContacto(contacto);
         nuevoAnuncio.setDescripcion(descripcion);
+        nuevoAnuncio.setCategoria(categoria);
+        nuevoAnuncio.setImagen(imagen);
 
         firestore.collection("Anuncios").document().set(nuevoAnuncio).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
@@ -145,6 +149,8 @@ public class Equipo_PonerAnuncio extends AppCompatActivity {
                     equipo = documentSnapshot.getString("equipo");
                     deporte = documentSnapshot.getString("deporte");
                     municipio = documentSnapshot.getString("municipio");
+                    categoria = documentSnapshot.getString("categoria");
+                    imagen = documentSnapshot.getString("image");
                 }
             }
         });
