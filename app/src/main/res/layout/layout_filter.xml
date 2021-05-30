@@ -21,7 +21,7 @@
             android:layout_marginTop="5dp"
             android:background="@drawable/style_edit_text"
             android:layout_marginBottom="5dp">
-            <EditText
+            <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:id="@+id/UserHome_ll_filter_et_deporte"
@@ -40,7 +40,7 @@
             android:layout_marginTop="5dp"
             android:background="@drawable/style_edit_text"
             android:layout_marginBottom="5dp">
-            <EditText
+            <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:id="@+id/UserHome_ll_filter_et_municipio"
@@ -59,7 +59,7 @@
             android:layout_marginTop="5dp"
             android:background="@drawable/style_edit_text"
             android:layout_marginBottom="5dp">
-            <EditText
+            <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:id="@+id/UserHome_ll_filter_et_posicion"

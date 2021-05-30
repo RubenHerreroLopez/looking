@@ -11,6 +11,7 @@ import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -204,9 +205,9 @@ public class User_Home extends AppCompatActivity {
                 boolean bool_municipio = true;
                 boolean bool_posicion = true;
 
-                String deporte = formatoString(et_deporte.getText().toString());
-                String municipio = formatoString(et_municipio.getText().toString());
-                String posicion = formatoString(et_posicion.getText().toString());
+                String deporte = et_deporte.getText().toString();
+                String municipio = et_municipio.getText().toString();
+                String posicion = et_posicion.getText().toString();
 
                 if (deporte.isEmpty()) {
                     bool_deporte = false;
@@ -222,24 +223,36 @@ public class User_Home extends AppCompatActivity {
                     getAllAdvices();
 
                 } else if (bool_deporte && !bool_municipio && !bool_posicion) {
+                    deporte = formatoString(et_deporte.getText().toString());
                     getAdvicesBySport(deporte);
                     dialog.dismiss();
                 } else if (!bool_deporte && bool_municipio && !bool_posicion) {
+                    municipio = formatoString(et_municipio.getText().toString());
                     getAdvicesByCity(municipio);
                     dialog.dismiss();
                 } else if (!bool_deporte && !bool_municipio && bool_posicion) {
+                    posicion = formatoString(et_posicion.getText().toString());
                     getAdvicesByPosition(posicion);
                     dialog.dismiss();
                 } else if (bool_deporte && bool_municipio && !bool_posicion) {
+                    deporte = formatoString(et_deporte.getText().toString());
+                    municipio = formatoString(et_municipio.getText().toString());
                     getAdvicesBySportByCity(deporte, municipio);
                     dialog.dismiss();
                 } else if (bool_deporte && !bool_municipio && bool_posicion) {
+                    deporte = formatoString(et_deporte.getText().toString());
+                    posicion = formatoString(et_posicion.getText().toString());
                     getAdvicesBySportByPosition(deporte, posicion);
                     dialog.dismiss();
                 } else if (!bool_deporte && bool_municipio && bool_posicion) {
+                    municipio = formatoString(et_municipio.getText().toString());
+                    posicion = formatoString(et_posicion.getText().toString());
                     getAdvicesByCityByPosition(municipio, posicion);
                     dialog.dismiss();
                 } else if (bool_deporte && bool_municipio && bool_posicion) {
+                    deporte = formatoString(et_deporte.getText().toString());
+                    municipio = formatoString(et_municipio.getText().toString());
+                    posicion = formatoString(et_posicion.getText().toString());
                     getAdvicesBySportByCityByPosition(deporte, municipio, posicion);
                     dialog.dismiss();
                 }
@@ -317,6 +330,7 @@ public class User_Home extends AppCompatActivity {
     private void getAdvicesByCity(String municipio) {
 
         Query query = firestore.collection("Anuncios").whereEqualTo("municipio", municipio);
+        Log.d("respones", "Mensaje 2");
         FirestoreRecyclerOptions<Anuncio> firestoreRecyclerOptions = new FirestoreRecyclerOptions.Builder<Anuncio>()
                 .setQuery(query, Anuncio.class).build();
 

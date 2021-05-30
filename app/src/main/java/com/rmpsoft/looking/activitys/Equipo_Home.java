@@ -39,7 +39,7 @@ public class Equipo_Home extends AppCompatActivity {
 
     TextView tv_nombreEquipo, tv_municipioEquipo, ll_tv_contacto, ll_tv_posicion, ll_tv_descripcion;
     FloatingActionButton fab_add;
-    ImageButton btn_ll_actualizar, btn_ll_eliminar, btn_ll_cerrar;
+    ImageButton btn_ll_eliminar, btn_ll_cerrar;
     ImageView image_perfil;
 
     String nombreEquipo;
@@ -81,7 +81,6 @@ public class Equipo_Home extends AppCompatActivity {
         ll_tv_contacto = findViewById(R.id.EquipoHome_ll_tv_contacto);
         ll_tv_posicion = findViewById(R.id.EquipoHome_ll_tv_posicion);
         ll_tv_descripcion = findViewById(R.id.EquipoHome_ll_tv_descripcion);
-        btn_ll_actualizar = findViewById(R.id.EquipoHome_ll_btn_actualizar);
         btn_ll_eliminar = findViewById(R.id.EquipoHome_ll_btn_eliminar);
         btn_ll_cerrar = findViewById(R.id.EquipoHome_ll_btn_cerrar);
 
@@ -89,13 +88,6 @@ public class Equipo_Home extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(Equipo_Home.this, Equipo_PonerAnuncio.class));
-            }
-        });
-
-        btn_ll_actualizar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                updateAnuncio();
             }
         });
 

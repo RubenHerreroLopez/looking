@@ -31,7 +31,6 @@ public class AnunciosUserAdapter extends FirestoreRecyclerAdapter<Anuncio, Anunc
         viewHolder.tv_equipo.setText((anuncio.getEquipo()));
         viewHolder.tv_deporte.setText(anuncio.getDeporte());
         viewHolder.tv_municipio.setText(anuncio.getMunicipio());
-        viewHolder.tv_contacto.setText(anuncio.getContacto());
         viewHolder.tv_posicion.setText(anuncio.getPosicion());
         uri_iv_perfil = anuncio.getImagen();
         try {
@@ -53,7 +52,6 @@ public class AnunciosUserAdapter extends FirestoreRecyclerAdapter<Anuncio, Anunc
         TextView tv_equipo;
         TextView tv_deporte;
         TextView tv_municipio;
-        TextView tv_contacto;
         TextView tv_posicion;
 
         public ViewHolder(@NonNull View itemView) {
@@ -62,7 +60,6 @@ public class AnunciosUserAdapter extends FirestoreRecyclerAdapter<Anuncio, Anunc
             tv_equipo = itemView.findViewById(R.id.ListAnunciosUser_lbl_equipo);
             tv_deporte = itemView.findViewById(R.id.ListAnunciosUser_lbl_deporte);
             tv_municipio = itemView.findViewById(R.id.ListAnunciosUser_lbl_municipio);
-            tv_contacto = itemView.findViewById(R.id.ListAnunciosUser_lbl_contacto);
             tv_posicion = itemView.findViewById(R.id.ListAnunciosUser_lbl_posicion);
             iv_perfil = itemView.findViewById(R.id.ListAnunciosUser_iv);
 

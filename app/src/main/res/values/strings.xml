@@ -2,7 +2,7 @@
     <!-- APP NOMBRE -->
     <string name="app_name">Looking</string>
     <!-- VERSION -->
-    <string name="version">Beta 1.4.1</string>
+    <string name="version">Beta 1.5.0</string>
 
     <!-- MENU USUARIO LOGIN (activity__login.xml) -->
     <string name="Login_btn_login">INICIA SESION</string>
@@ -50,11 +50,8 @@
     <string name="EqHome_ll_lbl_contacto">Contacto: </string>
     <string name="EqHome_ll_lbl_posicion">Posicion: </string>
     <string name="EqHome_ll_lbl_descripcion">Descripcion: </string>
-    <string name="EqHome_ll_btn_actualizar">Actualizar</string>
     <string name="EqHome_ll_btn_eliminar">Eliminar</string>
     <string name="EqHome_ll_btn_cerrar">Cerrar</string>
-
-    <!-- MENU OPCIONES EQUIPO (activiy_equipo_opciones.xml) -->
 
     <!-- EQUIPO PONER ANUNCIO (activity_equipo_poner_anuncio.xml) -->
     <string name="PonerAnuncio_et_contacto">Persona de contacto</string>
@@ -75,7 +72,6 @@
     <string name="EqRegistro_rb_mujer">Femenina</string>
     <string name="EqRegistro_et_pass">Contraseña</string>
     <string name="EqRegistro_et_diaDeJuego">Día de juego</string>
-
 
     <!-- EDITAR PERFIL USUARIO (activity_user_editar_perfil.xml) -->
     <string name="UserEdit_et_nombre">Nuevo nombre: </string>
@@ -103,8 +99,6 @@
     <string name="UserHome_ll_lbl_descripcion">Descripcion: </string>
     <string name="UserHome_ll_btn_chat">Chat</string>
     <string name="UserHome_ll_btn_cerrar">Cerrar</string>
-
-    <!-- OPCIONES DE USUARIO (activity_user_opciones.xml) -->
 
     <!-- MENU USUARIO REGISTRO (activity_user_registro.xml) -->
     <string name="UserRegistro_btn_registro">REGISTRARME</string>

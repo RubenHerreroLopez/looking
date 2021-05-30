@@ -50,12 +50,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/ListAnunciosUser_lbl_posicion"
                 android:textSize="18sp" />
-            <!-- contacto -->
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/ListAnunciosUser_lbl_contacto"
-                android:textSize="18sp" />
+
         </LinearLayout>
 
     </LinearLayout>
