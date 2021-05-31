@@ -4,20 +4,24 @@ public class Message {
 
     private String idMessage;
     private String message;
-    private String idUser;
-    private String idTeam;
+    private String idSender;
+    private String idReceiver;
     private String chatPath;
+    private String date;
+    private String time;
 
     public Message() {
     }
 
 
-    public Message(String idMessage, String idUser, String idTeam, String message, String chatPath) {
+    public Message(String idMessage, String idSender, String idReceiver, String message, String chatPath, String date, String time) {
         this.idMessage = idMessage;
-        this.idUser = idUser;
-        this.idTeam = idTeam;
+        this.idSender = idSender;
+        this.idReceiver = idReceiver;
         this.message = message;
         this.chatPath = chatPath;
+        this.date = date;
+        this.time = time;
     }
 
     public String getChatPath() {
@@ -28,20 +32,20 @@ public class Message {
         this.chatPath = chatPath;
     }
 
-    public String getIdTeam() {
-        return idTeam;
+    public String getIdReceiver() {
+        return idReceiver;
     }
 
-    public void setIdTeam(String idTeam) {
-        this.idTeam = idTeam;
+    public void setIdReceiver(String idReceiver) {
+        this.idReceiver = idReceiver;
     }
 
-    public String getIdUser() {
-        return idUser;
+    public String getIdSender() {
+        return idSender;
     }
 
-    public void setIdUser(String idUser) {
-        this.idUser = idUser;
+    public void setIdSender(String idSender) {
+        this.idSender = idSender;
     }
 
     public String getIdMessage() {
@@ -58,5 +62,21 @@ public class Message {
 
     public void setMessage(String message) {
         this.message = message;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
     }
 }

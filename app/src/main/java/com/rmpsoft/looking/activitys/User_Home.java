@@ -70,7 +70,7 @@ public class User_Home extends AppCompatActivity {
     AnunciosUserAdapter anunciosAdapter;
 
     LinearLayout ll_anuncioSeleccionado;
-    Anuncio anuncioSeleccionado;
+    Anuncio anuncioSelected;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -116,9 +116,10 @@ public class User_Home extends AppCompatActivity {
                 createChat(idUser, idTeam, firstUserName, teamName, uriImagePerfil, uriTeamPerfil, chatPath);
 
                 Intent intent = new Intent(User_Home.this, ChatActivity.class);
-                intent.putExtra("idUser", idUser);
-                intent.putExtra("idTeam", idTeam);
+                intent.putExtra("idSender", idUser);
+                intent.putExtra("idReceiver", idTeam);
                 intent.putExtra("chatPath", chatPath);
+                intent.putExtra("receiverName", teamName);
                 startActivity(intent);
             }
         });
@@ -127,7 +128,7 @@ public class User_Home extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 ll_anuncioSeleccionado.setVisibility(View.GONE);
-                anuncioSeleccionado = null;
+                anuncioSelected = null;
             }
         });
 
@@ -314,17 +315,17 @@ public class User_Home extends AppCompatActivity {
         anunciosAdapter.setOnItemClickListener(new AnunciosUserAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(DocumentSnapshot documentSnapshot, int position) {
-                anuncioSeleccionado = null;
-                anuncioSeleccionado = documentSnapshot.toObject(Anuncio.class);
+                anuncioSelected = null;
+                anuncioSelected = documentSnapshot.toObject(Anuncio.class);
 
                 ll_anuncioSeleccionado.setVisibility(View.VISIBLE);
 
                 String id = documentSnapshot.getId();
-                idTeam = anuncioSeleccionado.getUidcontacto();
-                String contacto = anuncioSeleccionado.getContacto();
-                teamName = anuncioSeleccionado.getEquipo();
-                uriTeamPerfil = anuncioSeleccionado.getImagen();
-                String descripcion = anuncioSeleccionado.getDescripcion();
+                idTeam = anuncioSelected.getUidcontacto();
+                String contacto = anuncioSelected.getContacto();
+                teamName = anuncioSelected.getEquipo();
+                uriTeamPerfil = anuncioSelected.getImagen();
+                String descripcion = anuncioSelected.getDescripcion();
 
                 ll_tv_contacto.setText(contacto);
                 ll_tv_equipo.setText(teamName);
@@ -349,18 +350,20 @@ public class User_Home extends AppCompatActivity {
         anunciosAdapter.setOnItemClickListener(new AnunciosUserAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(DocumentSnapshot documentSnapshot, int position) {
-                anuncioSeleccionado = null;
-                anuncioSeleccionado = documentSnapshot.toObject(Anuncio.class);
+                anuncioSelected = null;
+                anuncioSelected = documentSnapshot.toObject(Anuncio.class);
 
                 ll_anuncioSeleccionado.setVisibility(View.VISIBLE);
 
                 String id = documentSnapshot.getId();
-                String contacto = anuncioSeleccionado.getContacto();
-                String equipo = anuncioSeleccionado.getEquipo();
-                String descripcion = anuncioSeleccionado.getDescripcion();
+                idTeam = anuncioSelected.getUidcontacto();
+                String contacto = anuncioSelected.getContacto();
+                teamName = anuncioSelected.getEquipo();
+                uriTeamPerfil = anuncioSelected.getImagen();
+                String descripcion = anuncioSelected.getDescripcion();
 
                 ll_tv_contacto.setText(contacto);
-                ll_tv_equipo.setText(equipo);
+                ll_tv_equipo.setText(teamName);
                 ll_tv_descripcion.setText(descripcion);
             }
         });
@@ -380,18 +383,20 @@ public class User_Home extends AppCompatActivity {
         anunciosAdapter.setOnItemClickListener(new AnunciosUserAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(DocumentSnapshot documentSnapshot, int position) {
-                anuncioSeleccionado = null;
-                anuncioSeleccionado = documentSnapshot.toObject(Anuncio.class);
+                anuncioSelected = null;
+                anuncioSelected = documentSnapshot.toObject(Anuncio.class);
 
                 ll_anuncioSeleccionado.setVisibility(View.VISIBLE);
 
                 String id = documentSnapshot.getId();
-                String contacto = anuncioSeleccionado.getContacto();
-                String equipo = anuncioSeleccionado.getEquipo();
-                String descripcion = anuncioSeleccionado.getDescripcion();
+                idTeam = anuncioSelected.getUidcontacto();
+                String contacto = anuncioSelected.getContacto();
+                teamName = anuncioSelected.getEquipo();
+                uriTeamPerfil = anuncioSelected.getImagen();
+                String descripcion = anuncioSelected.getDescripcion();
 
                 ll_tv_contacto.setText(contacto);
-                ll_tv_equipo.setText(equipo);
+                ll_tv_equipo.setText(teamName);
                 ll_tv_descripcion.setText(descripcion);
             }
         });
@@ -410,18 +415,20 @@ public class User_Home extends AppCompatActivity {
         anunciosAdapter.setOnItemClickListener(new AnunciosUserAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(DocumentSnapshot documentSnapshot, int position) {
-                anuncioSeleccionado = null;
-                anuncioSeleccionado = documentSnapshot.toObject(Anuncio.class);
+                anuncioSelected = null;
+                anuncioSelected = documentSnapshot.toObject(Anuncio.class);
 
                 ll_anuncioSeleccionado.setVisibility(View.VISIBLE);
 
                 String id = documentSnapshot.getId();
-                String contacto = anuncioSeleccionado.getContacto();
-                String equipo = anuncioSeleccionado.getEquipo();
-                String descripcion = anuncioSeleccionado.getDescripcion();
+                idTeam = anuncioSelected.getUidcontacto();
+                String contacto = anuncioSelected.getContacto();
+                teamName = anuncioSelected.getEquipo();
+                uriTeamPerfil = anuncioSelected.getImagen();
+                String descripcion = anuncioSelected.getDescripcion();
 
                 ll_tv_contacto.setText(contacto);
-                ll_tv_equipo.setText(equipo);
+                ll_tv_equipo.setText(teamName);
                 ll_tv_descripcion.setText(descripcion);
             }
         });
@@ -440,18 +447,20 @@ public class User_Home extends AppCompatActivity {
         anunciosAdapter.setOnItemClickListener(new AnunciosUserAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(DocumentSnapshot documentSnapshot, int position) {
-                anuncioSeleccionado = null;
-                anuncioSeleccionado = documentSnapshot.toObject(Anuncio.class);
+                anuncioSelected = null;
+                anuncioSelected = documentSnapshot.toObject(Anuncio.class);
 
                 ll_anuncioSeleccionado.setVisibility(View.VISIBLE);
 
                 String id = documentSnapshot.getId();
-                String contacto = anuncioSeleccionado.getContacto();
-                String equipo = anuncioSeleccionado.getEquipo();
-                String descripcion = anuncioSeleccionado.getDescripcion();
+                idTeam = anuncioSelected.getUidcontacto();
+                String contacto = anuncioSelected.getContacto();
+                teamName = anuncioSelected.getEquipo();
+                uriTeamPerfil = anuncioSelected.getImagen();
+                String descripcion = anuncioSelected.getDescripcion();
 
                 ll_tv_contacto.setText(contacto);
-                ll_tv_equipo.setText(equipo);
+                ll_tv_equipo.setText(teamName);
                 ll_tv_descripcion.setText(descripcion);
             }
         });
@@ -470,18 +479,20 @@ public class User_Home extends AppCompatActivity {
         anunciosAdapter.setOnItemClickListener(new AnunciosUserAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(DocumentSnapshot documentSnapshot, int position) {
-                anuncioSeleccionado = null;
-                anuncioSeleccionado = documentSnapshot.toObject(Anuncio.class);
+                anuncioSelected = null;
+                anuncioSelected = documentSnapshot.toObject(Anuncio.class);
 
                 ll_anuncioSeleccionado.setVisibility(View.VISIBLE);
 
                 String id = documentSnapshot.getId();
-                String contacto = anuncioSeleccionado.getContacto();
-                String equipo = anuncioSeleccionado.getEquipo();
-                String descripcion = anuncioSeleccionado.getDescripcion();
+                idTeam = anuncioSelected.getUidcontacto();
+                String contacto = anuncioSelected.getContacto();
+                teamName = anuncioSelected.getEquipo();
+                uriTeamPerfil = anuncioSelected.getImagen();
+                String descripcion = anuncioSelected.getDescripcion();
 
                 ll_tv_contacto.setText(contacto);
-                ll_tv_equipo.setText(equipo);
+                ll_tv_equipo.setText(teamName);
                 ll_tv_descripcion.setText(descripcion);
             }
         });
@@ -500,18 +511,20 @@ public class User_Home extends AppCompatActivity {
         anunciosAdapter.setOnItemClickListener(new AnunciosUserAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(DocumentSnapshot documentSnapshot, int position) {
-                anuncioSeleccionado = null;
-                anuncioSeleccionado = documentSnapshot.toObject(Anuncio.class);
+                anuncioSelected = null;
+                anuncioSelected = documentSnapshot.toObject(Anuncio.class);
 
                 ll_anuncioSeleccionado.setVisibility(View.VISIBLE);
 
                 String id = documentSnapshot.getId();
-                String contacto = anuncioSeleccionado.getContacto();
-                String equipo = anuncioSeleccionado.getEquipo();
-                String descripcion = anuncioSeleccionado.getDescripcion();
+                idTeam = anuncioSelected.getUidcontacto();
+                String contacto = anuncioSelected.getContacto();
+                teamName = anuncioSelected.getEquipo();
+                uriTeamPerfil = anuncioSelected.getImagen();
+                String descripcion = anuncioSelected.getDescripcion();
 
                 ll_tv_contacto.setText(contacto);
-                ll_tv_equipo.setText(equipo);
+                ll_tv_equipo.setText(teamName);
                 ll_tv_descripcion.setText(descripcion);
             }
         });
@@ -531,18 +544,20 @@ public class User_Home extends AppCompatActivity {
         anunciosAdapter.setOnItemClickListener(new AnunciosUserAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(DocumentSnapshot documentSnapshot, int position) {
-                anuncioSeleccionado = null;
-                anuncioSeleccionado = documentSnapshot.toObject(Anuncio.class);
+                anuncioSelected = null;
+                anuncioSelected = documentSnapshot.toObject(Anuncio.class);
 
                 ll_anuncioSeleccionado.setVisibility(View.VISIBLE);
 
                 String id = documentSnapshot.getId();
-                String contacto = anuncioSeleccionado.getContacto();
-                String equipo = anuncioSeleccionado.getEquipo();
-                String descripcion = anuncioSeleccionado.getDescripcion();
+                idTeam = anuncioSelected.getUidcontacto();
+                String contacto = anuncioSelected.getContacto();
+                teamName = anuncioSelected.getEquipo();
+                uriTeamPerfil = anuncioSelected.getImagen();
+                String descripcion = anuncioSelected.getDescripcion();
 
                 ll_tv_contacto.setText(contacto);
-                ll_tv_equipo.setText(equipo);
+                ll_tv_equipo.setText(teamName);
                 ll_tv_descripcion.setText(descripcion);
             }
         });

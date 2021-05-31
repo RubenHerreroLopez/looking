@@ -5,17 +5,32 @@
     android:layout_height="wrap_content"
     android:padding="10dp">
 
+    <!-- LL MENSAJE -->
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:id="@+id/Mensaje_ll_mensaje"
         android:background="@drawable/style_button"
         android:padding="10dp"
         android:layout_alignParentEnd="true">
+        <!-- HORA MENSAJE -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/Mensaje_tv_time"
+            android:textColor="@color/white"
+            android:textStyle="italic"
+            android:text="17:03"
+            android:textSize="12sp"
+            android:layout_marginEnd="10dp"/>
+        <!-- CUERPO DEL MENSAJE -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/Mensaje_tv_mensaje"
-            android:textColor="@color/white" />
+            android:textColor="@color/white"
+            android:text="Hola, buenas!"
+            android:textSize="17sp"/>
 
     </LinearLayout>
 
