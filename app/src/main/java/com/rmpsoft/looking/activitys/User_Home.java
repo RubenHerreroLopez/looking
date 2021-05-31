@@ -1,5 +1,6 @@
 package com.rmpsoft.looking.activitys;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,6 +24,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
@@ -30,10 +32,13 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
+import com.rmpsoft.looking.ChatActivity;
+import com.rmpsoft.looking.ChatListActivity;
 import com.rmpsoft.looking.LoginActivity;
 import com.rmpsoft.looking.R;
 import com.rmpsoft.looking.adapter.AnunciosUserAdapter;
 import com.rmpsoft.looking.model.Anuncio;
+import com.rmpsoft.looking.model.Chat;
 import com.rmpsoft.looking.utils.Toast_Manager;
 import com.squareup.picasso.Picasso;
 
@@ -50,10 +55,14 @@ public class User_Home extends AppCompatActivity {
     FloatingActionButton fab_filter;
     ImageView image_perfil;
 
-    String nombreUsuario;
-    String apellidoUsuario;
-    String nombreCompleto;
+    String idUser;
+    String firstUserName;
+    String lastUserName;
+    String userName;
     String uriImagePerfil;
+    String idTeam;
+    String teamName;
+    String uriTeamPerfil;
 
     Boolean sesionIniciada = false;
 
@@ -69,9 +78,6 @@ public class User_Home extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user__home);
 
-        firebaseauth = FirebaseAuth.getInstance();
-        firebaseuser = firebaseauth.getCurrentUser();
-
         ActionBar actionbar = getSupportActionBar();
         assert actionbar != null;
         actionbar.setDisplayShowHomeEnabled(true);
@@ -81,6 +87,7 @@ public class User_Home extends AppCompatActivity {
         firebaseauth = FirebaseAuth.getInstance();
         firebaseuser = firebaseauth.getCurrentUser();
         firestore = FirebaseFirestore.getInstance();
+        idUser = firebaseuser.getUid();
 
         tv_nombreUser = findViewById(R.id.UserHome_tv_user);
         fab_filter = findViewById(R.id.UserHome_fab_filter);
@@ -105,7 +112,14 @@ public class User_Home extends AppCompatActivity {
         btn_ll_chat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String chatPath = idUser + "to" + idTeam;
+                createChat(idUser, idTeam, firstUserName, teamName, uriImagePerfil, uriTeamPerfil, chatPath);
 
+                Intent intent = new Intent(User_Home.this, ChatActivity.class);
+                intent.putExtra("idUser", idUser);
+                intent.putExtra("idTeam", idTeam);
+                intent.putExtra("chatPath", chatPath);
+                startActivity(intent);
             }
         });
 
@@ -119,6 +133,7 @@ public class User_Home extends AppCompatActivity {
 
         getAllAdvices();
     }
+
     public boolean onCreateOptionsMenu (Menu menu) {
         getMenuInflater().inflate(R.menu.menu_userhome, menu);
         return true;
@@ -133,6 +148,10 @@ public class User_Home extends AppCompatActivity {
 
         if (id == R.id.UserHome_ic_edit) {
             startActivity(new Intent(User_Home.this, User_EditarPerfil.class));
+        }
+
+        if (id == R.id.UserHome_ic_chat) {
+            startActivity(new Intent(User_Home.this, ChatListActivity.class));
         }
 
         return super.onOptionsItemSelected(item);
@@ -150,6 +169,24 @@ public class User_Home extends AppCompatActivity {
     protected void onStop() {
         super.onStop();
         anunciosAdapter.stopListening();
+    }
+
+    /* Método que crea un nuevo chat al pulsar en el boton de chat de 'll_anuncioSeleccionado' */
+    public void createChat(String idUser, String idTeam, String userName, String teamName, String userImage, String teamImage, String chatPath) {
+
+        Chat newChat = new Chat(idUser, idTeam, userName, teamName, userImage, teamImage, chatPath);
+
+        firestore.collection("Chat").document(chatPath).set(newChat).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                Log.d("request", "Chat create succesfully");
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Log.d("request", "Chat doesn't create");
+            }
+        });
     }
 
     /* Verifica que un usuario ha iniciado sesión, de lo contrario, cierra la activity */
@@ -283,12 +320,14 @@ public class User_Home extends AppCompatActivity {
                 ll_anuncioSeleccionado.setVisibility(View.VISIBLE);
 
                 String id = documentSnapshot.getId();
+                idTeam = anuncioSeleccionado.getUidcontacto();
                 String contacto = anuncioSeleccionado.getContacto();
-                String equipo = anuncioSeleccionado.getEquipo();
+                teamName = anuncioSeleccionado.getEquipo();
+                uriTeamPerfil = anuncioSeleccionado.getImagen();
                 String descripcion = anuncioSeleccionado.getDescripcion();
 
                 ll_tv_contacto.setText(contacto);
-                ll_tv_equipo.setText(equipo);
+                ll_tv_equipo.setText(teamName);
                 ll_tv_descripcion.setText(descripcion);
             }
         });
@@ -330,7 +369,7 @@ public class User_Home extends AppCompatActivity {
     private void getAdvicesByCity(String municipio) {
 
         Query query = firestore.collection("Anuncios").whereEqualTo("municipio", municipio);
-        Log.d("respones", "Mensaje 2");
+        Log.d("respones", "Message 2");
         FirestoreRecyclerOptions<Anuncio> firestoreRecyclerOptions = new FirestoreRecyclerOptions.Builder<Anuncio>()
                 .setQuery(query, Anuncio.class).build();
 
@@ -517,11 +556,11 @@ public class User_Home extends AppCompatActivity {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 if (documentSnapshot.exists()) {
-                    nombreUsuario = documentSnapshot.getString("nombre");
-                    apellidoUsuario = documentSnapshot.getString("apellido");
+                    firstUserName = documentSnapshot.getString("nombre");
+                    lastUserName = documentSnapshot.getString("apellido");
                     uriImagePerfil = documentSnapshot.getString("image");
-                    nombreCompleto = " " + nombreUsuario + " " + apellidoUsuario + " ";
-                    tv_nombreUser.setText(nombreCompleto);
+                    userName = " " + firstUserName + " " + lastUserName + " ";
+                    tv_nombreUser.setText(userName);
 
                     try {
                         Picasso.get().load(uriImagePerfil).placeholder(R.drawable.ic_perfil_user).into(image_perfil);
@@ -533,6 +572,8 @@ public class User_Home extends AppCompatActivity {
         });
     }
 
+    /* Este método transforma los String introducidos por el usuario en un formato estandar en la BBDD
+       Elimina las tíldes y deja en mayúscula solo la primera letra de toda la cedana */
     private static String formatoString (String textoUsuario) {
 
         String textoMinusculas = textoUsuario.toLowerCase();

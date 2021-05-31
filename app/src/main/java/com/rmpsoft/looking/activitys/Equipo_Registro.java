@@ -146,7 +146,7 @@ public class Equipo_Registro extends AppCompatActivity {
                     nuevoEquipo.setDeporte(deporte);
                     nuevoEquipo.setHorario(dia);
                     nuevoEquipo.setCategoria(sexo);
-                    nuevoEquipo.setImagen(null);
+                    nuevoEquipo.setImage(null);
 
                     firestore.collection("Equipos").document(uid).set(nuevoEquipo).addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override

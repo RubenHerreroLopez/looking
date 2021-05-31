@@ -9,14 +9,14 @@ public class Equipo {
     String municipio;
     String deporte;
     String horario;
-    String imagen;
+    String image;
     String categoria;
 
     public Equipo() {
     }
 
     public Equipo(String uid, String correo, String password, String equipo, String municipio, String deporte,
-                  String horario, String imagen, String categoria) {
+                  String horario, String image, String categoria) {
         this.uid = uid;
         this.correo = correo;
         this.password = password;
@@ -24,7 +24,7 @@ public class Equipo {
         this.municipio = municipio;
         this.deporte = deporte;
         this.horario = horario;
-        this.imagen = imagen;
+        this.image = image;
         this.categoria = categoria;
     }
 
@@ -84,12 +84,12 @@ public class Equipo {
         this.horario = horario;
     }
 
-    public String getImagen() {
-        return imagen;
+    public String getImage() {
+        return image;
     }
 
-    public void setImagen(String imagen) {
-        this.imagen = imagen;
+    public void setImage(String imagen) {
+        this.image = imagen;
     }
 
     public String getCategoria() {

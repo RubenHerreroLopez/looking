@@ -8,19 +8,19 @@ public class Usuario {
     private String nombre;
     private String apellido;
     private String edad;
-    private String imagen;
+    private String image;
 
     public Usuario() {
     }
 
-    public Usuario(String uid, String correo, String password, String nombre, String apellido, String edad, String imagen) {
+    public Usuario(String uid, String correo, String password, String nombre, String apellido, String edad, String image) {
         this.uid = uid;
         this.correo = correo;
         this.password = password;
         this.nombre = nombre;
         this.apellido = apellido;
         this.edad = edad;
-        this.imagen = imagen;
+        this.image = image;
     }
 
     public String getUid() {
@@ -71,11 +71,11 @@ public class Usuario {
         this.edad = edad;
     }
 
-    public String getImagen() {
-        return imagen;
+    public String getImage() {
+        return image;
     }
 
-    public void setImagen(String imagen) {
-        this.imagen = imagen;
+    public void setImage(String image) {
+        this.image = image;
     }
 }

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ChatActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="bottom"
+        android:padding="15dp"
+        android:weightSum="1">
+
+        <!-- LL PANTALLA DEL CHAT -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/Chat_rv_mensajes"
+            android:layout_marginBottom="10dp"
+            android:layout_weight="1"/>
+
+        <!-- LL BARRA MENSAJE -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@drawable/style_button"
+            android:layout_weight="0"
+            android:weightSum="4">
+
+            <!-- Edit Text Message -->
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="3.6"
+                android:layout_marginBottom="10dp"
+                android:layout_marginStart="9dp">
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:id="@+id/Chat_et_mensaje"
+                    android:hint="@string/chat_et_mensaje"
+                    android:background="@drawable/style_edit_text"
+                    android:layout_marginEnd="8dp"
+                    android:inputType="textMultiLine" />
+            </com.google.android.material.textfield.TextInputLayout>
+            <!-- Boton Enviar -->
+            <ImageButton
+                android:layout_width="55dp"
+                android:layout_height="50dp"
+                android:id="@+id/Chat_btn_enviar"
+                android:src="@drawable/ic_action_send"
+                android:background="@drawable/style_button"
+                android:layout_weight="0.4"
+                android:layout_marginTop="3dp"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>
