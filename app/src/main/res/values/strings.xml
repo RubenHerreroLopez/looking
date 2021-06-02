@@ -2,7 +2,7 @@
     <!-- APP NOMBRE -->
     <string name="app_name">Looking</string>
     <!-- VERSION -->
-    <string name="version">Beta 1.5.21</string>
+    <string name="version">Beta 1.5.32</string>
 
     <!-- MENU USUARIO LOGIN (activity__login.xml) -->
     <string name="Login_btn_login">INICIA SESION</string>

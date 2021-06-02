@@ -112,6 +112,7 @@ public class ChatListActivity extends AppCompatActivity {
                 intent.putExtra("idReceiver", idReceiver);
                 intent.putExtra("chatPath", chatPath);
                 intent.putExtra("receiverName", receiverName);
+                intent.putExtra("tipoUsuario", tipoUsuario);
                 startActivity(intent);
 
             }

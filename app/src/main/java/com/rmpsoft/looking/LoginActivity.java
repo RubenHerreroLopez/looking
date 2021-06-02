@@ -28,7 +28,7 @@ import com.rmpsoft.looking.activitys.User_Home;
 import com.rmpsoft.looking.activitys.User_Registro;
 import com.rmpsoft.looking.utils.Toast_Manager;
 
-public class LoginActivity extends AppCompatActivity {
+public class  LoginActivity extends AppCompatActivity {
 
     EditText et_correo, et_pass;
     Button btn_login, btn_registro;

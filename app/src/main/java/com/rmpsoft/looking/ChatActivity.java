@@ -38,6 +38,8 @@ public class ChatActivity extends AppCompatActivity {
     String receiverName;
     String dateMessage;
     String timeMessage;
+    String timeSecondMessage;
+    String tipoUsuario = null;
 
     RecyclerView rv_Messages;
     MessagesAdapter messagesAdapter;
@@ -65,6 +67,7 @@ public class ChatActivity extends AppCompatActivity {
         idSender = getIntent().getExtras().getString("idSender");
         chatPath = getIntent().getExtras().getString("chatPath");
         receiverName = getIntent().getExtras().getString("receiverName");
+        tipoUsuario = getIntent().getExtras().getString("tipoUsuario");
 
         ActionBar actionbar = getSupportActionBar();
         assert actionbar != null;
@@ -103,7 +106,7 @@ public class ChatActivity extends AppCompatActivity {
 
     /* Método que carga los mensajes del chat */
     private void loadMessages() {
-        Query query = firestore.collection("Message").whereEqualTo("idSender", firebaseuser.getUid()).whereEqualTo("idReceiver", idReceiver);
+        Query query = firestore.collection("Message").whereEqualTo("chatPath",chatPath)/*.orderBy("date").orderBy("time")*/;
 
         FirestoreRecyclerOptions<Message> firestoreRecyclerOptions = new FirestoreRecyclerOptions.Builder<Message>()
                 .setQuery(query, Message.class).build();
@@ -117,11 +120,12 @@ public class ChatActivity extends AppCompatActivity {
     /* Método que envía el mensaje al servidor */
     private void sendMessage(String message) {
 
-        Random randomuid = new Random();
-        String idMessage = new BigInteger(100, randomuid).toString(32);
-
         dateMessage = getCurrentDate();
         timeMessage = getCurrentTime();
+        timeSecondMessage = getSecondCurrentTime();
+
+        Random randomuid = new Random();
+        String idMessage = dateMessage + " " + timeSecondMessage + " " + new BigInteger(100, randomuid).toString(32);
 
         Message messageToSend = new Message(idMessage, idSender, idReceiver, message, chatPath, dateMessage, timeMessage);
 
@@ -139,9 +143,12 @@ public class ChatActivity extends AppCompatActivity {
     }
 
     public static String getCurrentDate() {
-        return  new SimpleDateFormat("dd-MM-yyyy").format(Calendar.getInstance().getTime());
+        return  new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime());
     }
     public static String getCurrentTime() {
         return new SimpleDateFormat("HH:mm").format(Calendar.getInstance().getTime());
+    }
+    public static String getSecondCurrentTime() {
+        return new SimpleDateFormat("HH:mm:ss").format(Calendar.getInstance().getTime());
     }
 }
