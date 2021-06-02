@@ -14,13 +14,14 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
-import com.rmpsoft.looking.activitys.User_Home;
 import com.rmpsoft.looking.adapter.ChatListAdapter;
+import com.rmpsoft.looking.adapter.ChatListTeamAdapter;
 import com.rmpsoft.looking.model.Chat;
 
 public class ChatListActivity extends AppCompatActivity {
 
     RecyclerView rv_chats;
+    ChatListTeamAdapter chatListTeamAdapter;
     ChatListAdapter chatListAdapter;
     Chat chatSelected;
 
@@ -32,6 +33,7 @@ public class ChatListActivity extends AppCompatActivity {
     String idReceiver;
     String chatPath;
     String receiverName;
+    String tipoUsuario = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,22 +53,72 @@ public class ChatListActivity extends AppCompatActivity {
         firebaseuser = firebaseauth.getCurrentUser();
         firestore = FirebaseFirestore.getInstance();
 
-        getContacts();
+
+        tipoUsuario = getIntent().getExtras().getString("tipoUsuario");
+
+        if (tipoUsuario.equals("usuario")) {
+            getUserContacts();
+        } else if (tipoUsuario.equals("equipo")) {
+            getTeamContacts();
+        }
+
+
     }
 
     @Override
     protected void onStart() {
-        chatListAdapter.startListening();
+        if (tipoUsuario.equals("usuario")) {
+            chatListAdapter.startListening();
+        } else if (tipoUsuario.equals("equipo")) {
+            chatListTeamAdapter.startListening();
+        }
+
         super.onStart();
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        chatListAdapter.stopListening();
+        if (tipoUsuario.equals("usuario")) {
+            chatListAdapter.stopListening();
+        } else if (tipoUsuario.equals("equipo")) {
+            chatListTeamAdapter.stopListening();
+        }
     }
 
-    private void getContacts() {
+    private void getTeamContacts() {
+        Query query = firestore.collection("Chat").whereEqualTo("idTeam", firebaseuser.getUid());
+
+        FirestoreRecyclerOptions<Chat> firestoreRecyclerOptions = new FirestoreRecyclerOptions.Builder<Chat>()
+                .setQuery(query, Chat.class).build();
+
+        chatListTeamAdapter = new ChatListTeamAdapter(firestoreRecyclerOptions);
+        chatListTeamAdapter.notifyDataSetChanged();
+
+        rv_chats.setAdapter(chatListTeamAdapter);
+
+        chatListTeamAdapter.setOnItemClickListener(new ChatListAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(DocumentSnapshot documentSnapshot, int position) {
+                chatSelected = null;
+                chatSelected = documentSnapshot.toObject(Chat.class);
+
+                idSender = chatSelected.getIdTeam();
+                idReceiver = chatSelected.getIdUser();
+                chatPath = chatSelected.getChatPath();
+                receiverName = chatSelected.getUserName();
+                Intent intent = new Intent(ChatListActivity.this, ChatActivity.class);
+                intent.putExtra("idSender", idSender);
+                intent.putExtra("idReceiver", idReceiver);
+                intent.putExtra("chatPath", chatPath);
+                intent.putExtra("receiverName", receiverName);
+                startActivity(intent);
+
+            }
+        });
+    }
+
+    private void getUserContacts() {
 
         Query query = firestore.collection("Chat").whereEqualTo("idUser", firebaseuser.getUid());
 

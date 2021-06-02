@@ -63,6 +63,7 @@ public class User_Home extends AppCompatActivity {
     String idTeam;
     String teamName;
     String uriTeamPerfil;
+    String tipoUsuario;
 
     Boolean sesionIniciada = false;
 
@@ -101,6 +102,8 @@ public class User_Home extends AppCompatActivity {
         ll_tv_descripcion = findViewById(R.id.UserHome_ll_tv_descripcion);
         btn_ll_chat = findViewById(R.id.UserHome_ll_btn_chat);
         btn_ll_cerrar = findViewById(R.id.UserHome_ll_btn_cerrar);
+
+        tipoUsuario = "usuario";
 
         fab_filter.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -152,7 +155,9 @@ public class User_Home extends AppCompatActivity {
         }
 
         if (id == R.id.UserHome_ic_chat) {
-            startActivity(new Intent(User_Home.this, ChatListActivity.class));
+            Intent intent = new Intent(User_Home.this, ChatListActivity.class);
+            intent.putExtra("tipoUsuario", tipoUsuario);
+            startActivity(intent);
         }
 
         return super.onOptionsItemSelected(item);

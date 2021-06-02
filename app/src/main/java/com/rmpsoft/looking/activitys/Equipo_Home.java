@@ -24,6 +24,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
+import com.rmpsoft.looking.ChatListActivity;
 import com.rmpsoft.looking.LoginActivity;
 import com.rmpsoft.looking.R;
 import com.rmpsoft.looking.adapter.AnunciosAdapter;
@@ -46,6 +47,7 @@ public class Equipo_Home extends AppCompatActivity {
     String municipioEquipo;
     String uriImagePerfil;
     Boolean sesionIniciada = false;
+    String tipoUsuario;
 
     RecyclerView rv_Anuncios;
     AnunciosAdapter anunciosAdapter;
@@ -73,6 +75,8 @@ public class Equipo_Home extends AppCompatActivity {
         tv_municipioEquipo = findViewById(R.id.EquipoHome_tv_municipio);
         image_perfil = findViewById(R.id.EquipoHome_image_perfil);
         fab_add = findViewById(R.id.EquipoHome_fab_add);
+
+        tipoUsuario = "equipo";
 
         rv_Anuncios = findViewById(R.id.EquipoHome_rv_anuncios);
         rv_Anuncios.setLayoutManager(new LinearLayoutManager(this));
@@ -117,6 +121,12 @@ public class Equipo_Home extends AppCompatActivity {
 
         if (id == R.id.EquipoHome_ic_edit) {
             startActivity(new Intent(Equipo_Home.this, Equipo_EditarPerfil.class));
+        }
+
+        if (id == R.id.UserHome_ic_chat) {
+            Intent intent = new Intent(Equipo_Home.this, ChatListActivity.class);
+            intent.putExtra("tipoUsuario", tipoUsuario);
+            startActivity(intent);
         }
 
         return super.onOptionsItemSelected(item);
