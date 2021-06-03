@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="10dp">
+
+    <!-- LL MENSAJE -->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/Mensaje_ll_mensaje"
+        android:background="@drawable/style_receive_message"
+        android:padding="10dp"
+        android:layout_alignParentStart="true">
+
+        <!-- CUERPO DEL MENSAJE -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/Mensaje_tv_mensaje"
+            android:textColor="@color/black"
+            android:text="Hola, buenas!"
+            android:textSize="17sp"
+            android:layout_marginEnd="10dp"/>
+        <!-- HORA MENSAJE -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/Mensaje_tv_time"
+            android:textColor="@color/black"
+            android:textStyle="italic"
+            android:text="17:03"
+            android:textSize="12sp"
+            />
+
+
+    </LinearLayout>
+
+</RelativeLayout>

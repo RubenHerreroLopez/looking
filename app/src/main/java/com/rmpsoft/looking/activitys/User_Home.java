@@ -267,6 +267,7 @@ public class User_Home extends AppCompatActivity {
 
                 } else if (bool_deporte && !bool_municipio && !bool_posicion) {
                     deporte = formatoString(et_deporte.getText().toString());
+                    rv_Anuncios.removeAllViews();
                     getAdvicesBySport(deporte);
                     dialog.dismiss();
                 } else if (!bool_deporte && bool_municipio && !bool_posicion) {

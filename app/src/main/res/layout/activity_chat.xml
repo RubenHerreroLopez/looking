@@ -20,7 +20,8 @@
             android:layout_height="match_parent"
             android:id="@+id/Chat_rv_mensajes"
             android:layout_marginBottom="10dp"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:scrollbars="vertical"/>
 
         <!-- LL BARRA MENSAJE -->
         <LinearLayout

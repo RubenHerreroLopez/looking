@@ -1,12 +1,14 @@
 package com.rmpsoft.looking;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -16,8 +18,11 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.rmpsoft.looking.adapter.MessagesAdapter;
 import com.rmpsoft.looking.model.Message;
 import com.rmpsoft.looking.utils.Toast_Manager;
@@ -25,6 +30,7 @@ import com.rmpsoft.looking.utils.Toast_Manager;
 import java.math.BigInteger;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.List;
 import java.util.Random;
 
 public class ChatActivity extends AppCompatActivity {
@@ -106,12 +112,26 @@ public class ChatActivity extends AppCompatActivity {
 
     /* Método que carga los mensajes del chat */
     private void loadMessages() {
-        Query query = firestore.collection("Message").whereEqualTo("chatPath",chatPath)/*.orderBy("date").orderBy("time")*/;
+        Query query = firestore.collection("Message").whereEqualTo("chatPath",chatPath);
+
+        firestore.collection("Message").whereEqualTo("chatPath", chatPath)
+                .addSnapshotListener(new EventListener<QuerySnapshot>() {
+            @Override
+            public void onEvent(@Nullable QuerySnapshot querySnapshot, @Nullable FirebaseFirestoreException error) {
+                if(error != null) {
+                    Log.e("error", error.getMessage());
+                } else {
+                    List<Message> messages = querySnapshot.toObjects(Message.class);
+                    messagesAdapter.setData(messages);
+                }
+            }
+        });
 
         FirestoreRecyclerOptions<Message> firestoreRecyclerOptions = new FirestoreRecyclerOptions.Builder<Message>()
                 .setQuery(query, Message.class).build();
 
-        messagesAdapter = new MessagesAdapter(firestoreRecyclerOptions);
+        messagesAdapter = new MessagesAdapter(firestoreRecyclerOptions, idSender);
+
         messagesAdapter.notifyDataSetChanged();
 
         rv_Messages.setAdapter(messagesAdapter);
