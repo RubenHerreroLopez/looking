@@ -236,7 +236,11 @@ public class Equipo_Home extends AppCompatActivity {
                     } catch (Exception e) {
                         Picasso.get().load(R.drawable.ic_perfil_equipo).into(image_perfil);
                     }
-                }
+                } else {
+                    Toast_Manager.showToast(Equipo_Home.this, "No tienes cuenta de este tipo");
+                    startActivity(new Intent(Equipo_Home.this, LoginActivity.class));
+                    finish();
+            }
             }
         });
     }

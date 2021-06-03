@@ -588,6 +588,10 @@ public class User_Home extends AppCompatActivity {
                     } catch (Exception e) {
                         Picasso.get().load(R.drawable.ic_perfil_user).into(image_perfil);
                     }
+                } else {
+                    Toast_Manager.showToast(User_Home.this, "No tienes cuenta de este tipo");
+                    startActivity(new Intent(User_Home.this, LoginActivity.class));
+                    finish();
                 }
             }
         });
