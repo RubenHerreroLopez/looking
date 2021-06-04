@@ -96,14 +96,6 @@
             android:text="@string/Login_btn_registro"
             android:textColor="@color/Color_Button_Texto"/>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/version"
-            android:textAlignment="center"
-            android:layout_marginTop="30dp"
-            android:textSize="14sp"/>
-
     </androidx.appcompat.widget.LinearLayoutCompat>
 
 </RelativeLayout>
