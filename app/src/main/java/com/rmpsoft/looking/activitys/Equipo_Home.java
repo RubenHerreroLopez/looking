@@ -103,6 +103,8 @@ public class Equipo_Home extends AppCompatActivity {
             }
         });
 
+        verificarInicioSesion();
+        loadDataUser();
         getAnuncios();
 
     }
@@ -135,8 +137,6 @@ public class Equipo_Home extends AppCompatActivity {
     @Override
     protected void onStart() {
         anunciosAdapter.startListening();
-        verificarInicioSesion();
-        loadDataUser();
         super.onStart();
     }
 
@@ -215,7 +215,6 @@ public class Equipo_Home extends AppCompatActivity {
                 });
             }
         });
-
     }
 
     /* Este método obtiene el nombre del equipo actual y lo asigna al TextView */

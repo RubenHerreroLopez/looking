@@ -31,6 +31,7 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.rmpsoft.looking.R;
 import com.rmpsoft.looking.utils.Toast_Manager;
+import com.squareup.picasso.Picasso;
 import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
 
@@ -48,6 +49,7 @@ public class Equipo_EditarPerfil extends AppCompatActivity {
     ImageView perfil;
     EditText et_equipo, et_deporte, et_municipio, et_dia;
     ImageButton btn_perfil, btn_equipo, btn_equipoOK, btn_deporte, btn_deporteOK, btn_municipio, btn_municipioOK, btn_dia, btn_diaOK;
+    ImageView image_perfil;
     Button btn_descartar, btn_confirmar;
 
     FirebaseAuth firebaseauth;
@@ -63,6 +65,7 @@ public class Equipo_EditarPerfil extends AppCompatActivity {
     String municipio;
     String dia;
     String uid;
+    String uriImagePerfil;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -264,6 +267,7 @@ public class Equipo_EditarPerfil extends AppCompatActivity {
                         progressDialog.dismiss();
                         Toast_Manager.showToast(Equipo_EditarPerfil.this, "Imagen subida con éxito");
 
+                        getData();
                     }
                 });
 
@@ -305,6 +309,13 @@ public class Equipo_EditarPerfil extends AppCompatActivity {
                     deporte = documentSnapshot.getString("deporte");
                     municipio = documentSnapshot.getString("municipio");
                     dia = documentSnapshot.getString("horario");
+                    uriImagePerfil = documentSnapshot.getString("image");
+
+                    try {
+                        Picasso.get().load(uriImagePerfil).placeholder(R.drawable.ic_perfil_equipo).into(image_perfil);
+                    } catch (Exception e) {
+                        Picasso.get().load(R.drawable.ic_perfil_equipo).into(image_perfil);
+                    }
 
                     et_equipo.setEnabled(false);
                     et_equipo.setText(equipo);

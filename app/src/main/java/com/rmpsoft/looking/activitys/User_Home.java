@@ -135,6 +135,8 @@ public class User_Home extends AppCompatActivity {
             }
         });
 
+        verificarInicioSesion();
+        loadDataUser();
         getAllAdvices();
     }
 
@@ -166,8 +168,6 @@ public class User_Home extends AppCompatActivity {
     @Override
     protected void onStart() {
         anunciosAdapter.startListening();
-        verificarInicioSesion();
-        loadDataUser();
         super.onStart();
     }
 

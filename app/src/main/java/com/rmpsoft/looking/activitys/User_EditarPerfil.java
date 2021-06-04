@@ -31,6 +31,7 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.rmpsoft.looking.R;
 import com.rmpsoft.looking.utils.Toast_Manager;
+import com.squareup.picasso.Picasso;
 import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
 
@@ -47,6 +48,7 @@ public class User_EditarPerfil extends AppCompatActivity {
 
     ImageView perfil;
     ImageButton btn_perfil, btn_nombre, btn_nombreOK, btn_apellido, btn_apellidoOK, btn_edad, btn_edadOK;
+    ImageView image_perfil;
     EditText et_nombre, et_apellido, et_edad;
     Button btn_descartar, btn_confirmar;
 
@@ -62,6 +64,7 @@ public class User_EditarPerfil extends AppCompatActivity {
     String apellido;
     String edad;
     String uid;
+    String uriImagePerfil;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,6 +89,7 @@ public class User_EditarPerfil extends AppCompatActivity {
         et_nombre = findViewById(R.id.UserEdit_et_nombre);
         et_apellido = findViewById(R.id.UserEdit_et_apellido);
         et_edad = findViewById(R.id.UserEdit_et_edad);
+        image_perfil = findViewById(R.id.UserEdit_image_perfil);
 
         btn_perfil = findViewById(R.id.UserEdit_btn_edit_IP);
         btn_nombre = findViewById(R.id.UserEdit_btn_edit_NOM);
@@ -240,6 +244,8 @@ public class User_EditarPerfil extends AppCompatActivity {
                         progressDialog.dismiss();
                         Toast_Manager.showToast(User_EditarPerfil.this, "Imagen subida con éxito");
 
+                        getData();
+
                     }
                 });
 
@@ -278,6 +284,13 @@ public class User_EditarPerfil extends AppCompatActivity {
                     nombre = documentSnapshot.getString("nombre");
                     apellido = documentSnapshot.getString("apellido");
                     edad = documentSnapshot.getString("edad");
+                    uriImagePerfil = documentSnapshot.getString("image");
+
+                    try {
+                        Picasso.get().load(uriImagePerfil).placeholder(R.drawable.ic_perfil_user).into(image_perfil);
+                    } catch (Exception e) {
+                        Picasso.get().load(R.drawable.ic_perfil_user).into(image_perfil);
+                    }
 
                     et_nombre.setEnabled(false);
                     et_nombre.setText(nombre);
