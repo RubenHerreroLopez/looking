@@ -3,7 +3,6 @@ package com.rmpsoft.looking.adapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -13,26 +12,26 @@ import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.rmpsoft.looking.R;
-import com.rmpsoft.looking.model.Anuncio;
+import com.rmpsoft.looking.model.Advice;
 
-public class AnunciosAdapter extends FirestoreRecyclerAdapter<Anuncio, AnunciosAdapter.ViewHolder>  {
+public class AdvicesTeamAdapter extends FirestoreRecyclerAdapter<Advice, AdvicesTeamAdapter.ViewHolder>  {
 
     private OnItemClickListener listener;
     
-    public AnunciosAdapter(@NonNull FirestoreRecyclerOptions<Anuncio> options) {
+    public AdvicesTeamAdapter(@NonNull FirestoreRecyclerOptions<Advice> options) {
         super(options);
     }
 
     @Override
-    protected void onBindViewHolder(@NonNull ViewHolder viewHolder, int i, @NonNull Anuncio anuncio) {
-        viewHolder.tv_contacto.setText(anuncio.getContacto());
-        viewHolder.tv_posicion.setText(anuncio.getPosicion());
+    protected void onBindViewHolder(@NonNull ViewHolder viewHolder, int i, @NonNull Advice advice) {
+        viewHolder.tv_contacto.setText(advice.getContacto());
+        viewHolder.tv_posicion.setText(advice.getPosicion());
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.list_anuncios_equipohome, viewGroup, false);
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.list_advices_team_home, viewGroup, false);
         return new ViewHolder(view);
     }
 

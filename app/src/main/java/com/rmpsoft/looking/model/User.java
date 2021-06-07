@@ -1,6 +1,6 @@
 package com.rmpsoft.looking.model;
 
-public class Usuario {
+public class User {
 
     private String uid;
     private String correo;
@@ -10,10 +10,10 @@ public class Usuario {
     private String edad;
     private String image;
 
-    public Usuario() {
+    public User() {
     }
 
-    public Usuario(String uid, String correo, String password, String nombre, String apellido, String edad, String image) {
+    public User(String uid, String correo, String password, String nombre, String apellido, String edad, String image) {
         this.uid = uid;
         this.correo = correo;
         this.password = password;

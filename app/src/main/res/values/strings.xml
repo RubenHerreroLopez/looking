@@ -1,6 +1,7 @@
 <resources>
     <!-- APP NOMBRE -->
     <string name="app_name">Looking</string>
+    <string name="version">Beta 2.0</string>
 
     <!-- MENU USUARIO LOGIN (activity__login.xml) -->
     <string name="Login_btn_login">INICIA SESION</string>
@@ -56,7 +57,7 @@
 
     <!-- EQUIPO PONER ANUNCIO (activity_equipo_poner_anuncio.xml) -->
     <string name="PonerAnuncio_et_contacto">Persona de contacto</string>
-    <string name="PonerAnuncio_et_descripcion">Descripción del anuncio</string>
+    <string name="PonerAnuncio_et_descripcion">Descripción del advice</string>
     <string name="PonerAnuncio_et_posicion">Posicion</string>
     <string name="PonerAnuncio_btn_publicar">PUBLICAR</string>
     <string name="PonerAnuncio_btn_descartar">DESCARTAR</string>

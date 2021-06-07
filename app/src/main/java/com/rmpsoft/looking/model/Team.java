@@ -1,6 +1,6 @@
 package com.rmpsoft.looking.model;
 
-public class Equipo {
+public class Team {
 
     String uid;
     String correo;
@@ -12,11 +12,11 @@ public class Equipo {
     String image;
     String categoria;
 
-    public Equipo() {
+    public Team() {
     }
 
-    public Equipo(String uid, String correo, String password, String equipo, String municipio, String deporte,
-                  String horario, String image, String categoria) {
+    public Team(String uid, String correo, String password, String equipo, String municipio, String deporte,
+                String horario, String image, String categoria) {
         this.uid = uid;
         this.correo = correo;
         this.password = password;

@@ -21,7 +21,7 @@ public class ChatListTeamAdapter extends FirestoreRecyclerAdapter<Chat, ChatList
     ImageView iv_perfil;
     String uri_iv_perfil;
 
-    private ChatListAdapter.OnItemClickListener listener;
+    private ChatListUserAdapter.OnItemClickListener listener;
 
     public ChatListTeamAdapter(@NonNull FirestoreRecyclerOptions<Chat> options) {
         super(options);
@@ -70,7 +70,7 @@ public class ChatListTeamAdapter extends FirestoreRecyclerAdapter<Chat, ChatList
         void onItemClick(DocumentSnapshot documentSnapshot, int position);
     }
 
-    public void setOnItemClickListener(ChatListAdapter.OnItemClickListener listener) {
+    public void setOnItemClickListener(ChatListUserAdapter.OnItemClickListener listener) {
         this.listener = listener;
     }
 }

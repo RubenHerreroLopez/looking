@@ -36,8 +36,8 @@ import com.rmpsoft.looking.ChatActivity;
 import com.rmpsoft.looking.ChatListActivity;
 import com.rmpsoft.looking.LoginActivity;
 import com.rmpsoft.looking.R;
-import com.rmpsoft.looking.adapter.AnunciosUserAdapter;
-import com.rmpsoft.looking.model.Anuncio;
+import com.rmpsoft.looking.adapter.AdvicesUserAdapter;
+import com.rmpsoft.looking.model.Advice;
 import com.rmpsoft.looking.model.Chat;
 import com.rmpsoft.looking.utils.Toast_Manager;
 import com.squareup.picasso.Picasso;
@@ -55,29 +55,22 @@ public class User_Home extends AppCompatActivity {
     FloatingActionButton fab_filter;
     ImageView image_perfil;
 
-    String idUser;
-    String firstUserName;
-    String lastUserName;
-    String userName;
-    String uriImagePerfil;
-    String idTeam;
-    String teamName;
-    String uriTeamPerfil;
-    String tipoUsuario;
+    String idUser, firstUserName, lastUserName, userName, uriImagePerfil, idTeam, teamName, uriTeamPerfil;
+    String TIPO_USUARIO = "usuario";
 
     Boolean sesionIniciada = false;
 
     RecyclerView rv_Anuncios;
-    AnunciosUserAdapter anunciosAdapter;
+    AdvicesUserAdapter anunciosAdapter;
 
     LinearLayout ll_anuncioSeleccionado;
-    Anuncio anuncioSelected;
+    Advice adviceSelected;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_user__home);
+        setContentView(R.layout.activity_user_home);
 
         ActionBar actionbar = getSupportActionBar();
         assert actionbar != null;
@@ -102,8 +95,6 @@ public class User_Home extends AppCompatActivity {
         ll_tv_descripcion = findViewById(R.id.UserHome_ll_tv_descripcion);
         btn_ll_chat = findViewById(R.id.UserHome_ll_btn_chat);
         btn_ll_cerrar = findViewById(R.id.UserHome_ll_btn_cerrar);
-
-        tipoUsuario = "usuario";
 
         fab_filter.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -131,7 +122,7 @@ public class User_Home extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 ll_anuncioSeleccionado.setVisibility(View.GONE);
-                anuncioSelected = null;
+                adviceSelected = null;
             }
         });
 
@@ -141,7 +132,7 @@ public class User_Home extends AppCompatActivity {
     }
 
     public boolean onCreateOptionsMenu (Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_userhome, menu);
+        getMenuInflater().inflate(R.menu.menu_user_home, menu);
         return true;
     }
 
@@ -153,12 +144,12 @@ public class User_Home extends AppCompatActivity {
         }
 
         if (id == R.id.UserHome_ic_edit) {
-            startActivity(new Intent(User_Home.this, User_EditarPerfil.class));
+            startActivity(new Intent(User_Home.this, User_EditPerfil.class));
         }
 
         if (id == R.id.UserHome_ic_chat) {
             Intent intent = new Intent(User_Home.this, ChatListActivity.class);
-            intent.putExtra("tipoUsuario", tipoUsuario);
+            intent.putExtra("tipoUsuario", TIPO_USUARIO);
             startActivity(intent);
         }
 
@@ -219,7 +210,7 @@ public class User_Home extends AppCompatActivity {
     public void filtrarBusqueda() {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(User_Home.this);
-        View view = getLayoutInflater().inflate(R.layout.layout_filter, null);
+        View view = getLayoutInflater().inflate(R.layout.layout_advice_filter, null);
 
         EditText et_deporte = view.findViewById(R.id.UserHome_ll_filter_et_deporte);
         EditText et_municipio = view.findViewById(R.id.UserHome_ll_filter_et_municipio);
@@ -310,28 +301,28 @@ public class User_Home extends AppCompatActivity {
 
         Query query = firestore.collection("Anuncios");
 
-        FirestoreRecyclerOptions<Anuncio> firestoreRecyclerOptions = new FirestoreRecyclerOptions.Builder<Anuncio>()
-                .setQuery(query, Anuncio.class).build();
+        FirestoreRecyclerOptions<Advice> firestoreRecyclerOptions = new FirestoreRecyclerOptions.Builder<Advice>()
+                .setQuery(query, Advice.class).build();
 
-        anunciosAdapter = new AnunciosUserAdapter(firestoreRecyclerOptions);
+        anunciosAdapter = new AdvicesUserAdapter(firestoreRecyclerOptions);
         anunciosAdapter.notifyDataSetChanged();
 
         rv_Anuncios.setAdapter(anunciosAdapter);
 
-        anunciosAdapter.setOnItemClickListener(new AnunciosUserAdapter.OnItemClickListener() {
+        anunciosAdapter.setOnItemClickListener(new AdvicesUserAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(DocumentSnapshot documentSnapshot, int position) {
-                anuncioSelected = null;
-                anuncioSelected = documentSnapshot.toObject(Anuncio.class);
+                adviceSelected = null;
+                adviceSelected = documentSnapshot.toObject(Advice.class);
 
                 ll_anuncioSeleccionado.setVisibility(View.VISIBLE);
 
                 String id = documentSnapshot.getId();
-                idTeam = anuncioSelected.getUidcontacto();
-                String contacto = anuncioSelected.getContacto();
-                teamName = anuncioSelected.getEquipo();
-                uriTeamPerfil = anuncioSelected.getImagen();
-                String descripcion = anuncioSelected.getDescripcion();
+                idTeam = adviceSelected.getUidcontacto();
+                String contacto = adviceSelected.getContacto();
+                teamName = adviceSelected.getEquipo();
+                uriTeamPerfil = adviceSelected.getImagen();
+                String descripcion = adviceSelected.getDescripcion();
 
                 ll_tv_contacto.setText(contacto);
                 ll_tv_equipo.setText(teamName);
@@ -346,27 +337,27 @@ public class User_Home extends AppCompatActivity {
 
         Query query = firestore.collection("Anuncios").whereEqualTo("deporte", deporte);
 
-        FirestoreRecyclerOptions<Anuncio> firestoreRecyclerOptions = new FirestoreRecyclerOptions.Builder<Anuncio>()
-                .setQuery(query, Anuncio.class).build();
+        FirestoreRecyclerOptions<Advice> firestoreRecyclerOptions = new FirestoreRecyclerOptions.Builder<Advice>()
+                .setQuery(query, Advice.class).build();
 
-        anunciosAdapter = new AnunciosUserAdapter(firestoreRecyclerOptions);
+        anunciosAdapter = new AdvicesUserAdapter(firestoreRecyclerOptions);
         anunciosAdapter.notifyDataSetChanged();
         rv_Anuncios.setAdapter(anunciosAdapter);
 
-        anunciosAdapter.setOnItemClickListener(new AnunciosUserAdapter.OnItemClickListener() {
+        anunciosAdapter.setOnItemClickListener(new AdvicesUserAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(DocumentSnapshot documentSnapshot, int position) {
-                anuncioSelected = null;
-                anuncioSelected = documentSnapshot.toObject(Anuncio.class);
+                adviceSelected = null;
+                adviceSelected = documentSnapshot.toObject(Advice.class);
 
                 ll_anuncioSeleccionado.setVisibility(View.VISIBLE);
 
                 String id = documentSnapshot.getId();
-                idTeam = anuncioSelected.getUidcontacto();
-                String contacto = anuncioSelected.getContacto();
-                teamName = anuncioSelected.getEquipo();
-                uriTeamPerfil = anuncioSelected.getImagen();
-                String descripcion = anuncioSelected.getDescripcion();
+                idTeam = adviceSelected.getUidcontacto();
+                String contacto = adviceSelected.getContacto();
+                teamName = adviceSelected.getEquipo();
+                uriTeamPerfil = adviceSelected.getImagen();
+                String descripcion = adviceSelected.getDescripcion();
 
                 ll_tv_contacto.setText(contacto);
                 ll_tv_equipo.setText(teamName);
@@ -379,27 +370,27 @@ public class User_Home extends AppCompatActivity {
 
         Query query = firestore.collection("Anuncios").whereEqualTo("municipio", municipio);
         Log.d("respones", "Message 2");
-        FirestoreRecyclerOptions<Anuncio> firestoreRecyclerOptions = new FirestoreRecyclerOptions.Builder<Anuncio>()
-                .setQuery(query, Anuncio.class).build();
+        FirestoreRecyclerOptions<Advice> firestoreRecyclerOptions = new FirestoreRecyclerOptions.Builder<Advice>()
+                .setQuery(query, Advice.class).build();
 
-        anunciosAdapter = new AnunciosUserAdapter(firestoreRecyclerOptions);
+        anunciosAdapter = new AdvicesUserAdapter(firestoreRecyclerOptions);
         anunciosAdapter.notifyDataSetChanged();
         rv_Anuncios.setAdapter(anunciosAdapter);
 
-        anunciosAdapter.setOnItemClickListener(new AnunciosUserAdapter.OnItemClickListener() {
+        anunciosAdapter.setOnItemClickListener(new AdvicesUserAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(DocumentSnapshot documentSnapshot, int position) {
-                anuncioSelected = null;
-                anuncioSelected = documentSnapshot.toObject(Anuncio.class);
+                adviceSelected = null;
+                adviceSelected = documentSnapshot.toObject(Advice.class);
 
                 ll_anuncioSeleccionado.setVisibility(View.VISIBLE);
 
                 String id = documentSnapshot.getId();
-                idTeam = anuncioSelected.getUidcontacto();
-                String contacto = anuncioSelected.getContacto();
-                teamName = anuncioSelected.getEquipo();
-                uriTeamPerfil = anuncioSelected.getImagen();
-                String descripcion = anuncioSelected.getDescripcion();
+                idTeam = adviceSelected.getUidcontacto();
+                String contacto = adviceSelected.getContacto();
+                teamName = adviceSelected.getEquipo();
+                uriTeamPerfil = adviceSelected.getImagen();
+                String descripcion = adviceSelected.getDescripcion();
 
                 ll_tv_contacto.setText(contacto);
                 ll_tv_equipo.setText(teamName);
@@ -411,27 +402,27 @@ public class User_Home extends AppCompatActivity {
     private void getAdvicesByPosition(String posicion) {
 
         Query query = firestore.collection("Anuncios").whereEqualTo("posicion", posicion);
-        FirestoreRecyclerOptions<Anuncio> firestoreRecyclerOptions = new FirestoreRecyclerOptions.Builder<Anuncio>()
-                .setQuery(query, Anuncio.class).build();
+        FirestoreRecyclerOptions<Advice> firestoreRecyclerOptions = new FirestoreRecyclerOptions.Builder<Advice>()
+                .setQuery(query, Advice.class).build();
 
-        anunciosAdapter = new AnunciosUserAdapter(firestoreRecyclerOptions);
+        anunciosAdapter = new AdvicesUserAdapter(firestoreRecyclerOptions);
         anunciosAdapter.notifyDataSetChanged();
         rv_Anuncios.setAdapter(anunciosAdapter);
 
-        anunciosAdapter.setOnItemClickListener(new AnunciosUserAdapter.OnItemClickListener() {
+        anunciosAdapter.setOnItemClickListener(new AdvicesUserAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(DocumentSnapshot documentSnapshot, int position) {
-                anuncioSelected = null;
-                anuncioSelected = documentSnapshot.toObject(Anuncio.class);
+                adviceSelected = null;
+                adviceSelected = documentSnapshot.toObject(Advice.class);
 
                 ll_anuncioSeleccionado.setVisibility(View.VISIBLE);
 
                 String id = documentSnapshot.getId();
-                idTeam = anuncioSelected.getUidcontacto();
-                String contacto = anuncioSelected.getContacto();
-                teamName = anuncioSelected.getEquipo();
-                uriTeamPerfil = anuncioSelected.getImagen();
-                String descripcion = anuncioSelected.getDescripcion();
+                idTeam = adviceSelected.getUidcontacto();
+                String contacto = adviceSelected.getContacto();
+                teamName = adviceSelected.getEquipo();
+                uriTeamPerfil = adviceSelected.getImagen();
+                String descripcion = adviceSelected.getDescripcion();
 
                 ll_tv_contacto.setText(contacto);
                 ll_tv_equipo.setText(teamName);
@@ -443,27 +434,27 @@ public class User_Home extends AppCompatActivity {
     private void getAdvicesBySportByCity (String deporte, String municipio) {
 
         Query query = firestore.collection("Anuncios").whereEqualTo("deporte", deporte).whereEqualTo("municipio", municipio);
-        FirestoreRecyclerOptions<Anuncio> firestoreRecyclerOptions = new FirestoreRecyclerOptions.Builder<Anuncio>()
-                .setQuery(query, Anuncio.class).build();
+        FirestoreRecyclerOptions<Advice> firestoreRecyclerOptions = new FirestoreRecyclerOptions.Builder<Advice>()
+                .setQuery(query, Advice.class).build();
 
-        anunciosAdapter = new AnunciosUserAdapter(firestoreRecyclerOptions);
+        anunciosAdapter = new AdvicesUserAdapter(firestoreRecyclerOptions);
         anunciosAdapter.notifyDataSetChanged();
         rv_Anuncios.setAdapter(anunciosAdapter);
 
-        anunciosAdapter.setOnItemClickListener(new AnunciosUserAdapter.OnItemClickListener() {
+        anunciosAdapter.setOnItemClickListener(new AdvicesUserAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(DocumentSnapshot documentSnapshot, int position) {
-                anuncioSelected = null;
-                anuncioSelected = documentSnapshot.toObject(Anuncio.class);
+                adviceSelected = null;
+                adviceSelected = documentSnapshot.toObject(Advice.class);
 
                 ll_anuncioSeleccionado.setVisibility(View.VISIBLE);
 
                 String id = documentSnapshot.getId();
-                idTeam = anuncioSelected.getUidcontacto();
-                String contacto = anuncioSelected.getContacto();
-                teamName = anuncioSelected.getEquipo();
-                uriTeamPerfil = anuncioSelected.getImagen();
-                String descripcion = anuncioSelected.getDescripcion();
+                idTeam = adviceSelected.getUidcontacto();
+                String contacto = adviceSelected.getContacto();
+                teamName = adviceSelected.getEquipo();
+                uriTeamPerfil = adviceSelected.getImagen();
+                String descripcion = adviceSelected.getDescripcion();
 
                 ll_tv_contacto.setText(contacto);
                 ll_tv_equipo.setText(teamName);
@@ -475,27 +466,27 @@ public class User_Home extends AppCompatActivity {
     private void getAdvicesBySportByPosition (String deporte, String posicion) {
 
         Query query = firestore.collection("Anuncios").whereEqualTo("deporte", deporte).whereEqualTo("posicion", posicion);
-        FirestoreRecyclerOptions<Anuncio> firestoreRecyclerOptions = new FirestoreRecyclerOptions.Builder<Anuncio>()
-                .setQuery(query, Anuncio.class).build();
+        FirestoreRecyclerOptions<Advice> firestoreRecyclerOptions = new FirestoreRecyclerOptions.Builder<Advice>()
+                .setQuery(query, Advice.class).build();
 
-        anunciosAdapter = new AnunciosUserAdapter(firestoreRecyclerOptions);
+        anunciosAdapter = new AdvicesUserAdapter(firestoreRecyclerOptions);
         anunciosAdapter.notifyDataSetChanged();
         rv_Anuncios.setAdapter(anunciosAdapter);
 
-        anunciosAdapter.setOnItemClickListener(new AnunciosUserAdapter.OnItemClickListener() {
+        anunciosAdapter.setOnItemClickListener(new AdvicesUserAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(DocumentSnapshot documentSnapshot, int position) {
-                anuncioSelected = null;
-                anuncioSelected = documentSnapshot.toObject(Anuncio.class);
+                adviceSelected = null;
+                adviceSelected = documentSnapshot.toObject(Advice.class);
 
                 ll_anuncioSeleccionado.setVisibility(View.VISIBLE);
 
                 String id = documentSnapshot.getId();
-                idTeam = anuncioSelected.getUidcontacto();
-                String contacto = anuncioSelected.getContacto();
-                teamName = anuncioSelected.getEquipo();
-                uriTeamPerfil = anuncioSelected.getImagen();
-                String descripcion = anuncioSelected.getDescripcion();
+                idTeam = adviceSelected.getUidcontacto();
+                String contacto = adviceSelected.getContacto();
+                teamName = adviceSelected.getEquipo();
+                uriTeamPerfil = adviceSelected.getImagen();
+                String descripcion = adviceSelected.getDescripcion();
 
                 ll_tv_contacto.setText(contacto);
                 ll_tv_equipo.setText(teamName);
@@ -507,27 +498,27 @@ public class User_Home extends AppCompatActivity {
     private void getAdvicesByCityByPosition (String municipio, String posicion) {
 
         Query query = firestore.collection("Anuncios").whereEqualTo("municipio", municipio).whereEqualTo("posicion", posicion);
-        FirestoreRecyclerOptions<Anuncio> firestoreRecyclerOptions = new FirestoreRecyclerOptions.Builder<Anuncio>()
-                .setQuery(query, Anuncio.class).build();
+        FirestoreRecyclerOptions<Advice> firestoreRecyclerOptions = new FirestoreRecyclerOptions.Builder<Advice>()
+                .setQuery(query, Advice.class).build();
 
-        anunciosAdapter = new AnunciosUserAdapter(firestoreRecyclerOptions);
+        anunciosAdapter = new AdvicesUserAdapter(firestoreRecyclerOptions);
         anunciosAdapter.notifyDataSetChanged();
         rv_Anuncios.setAdapter(anunciosAdapter);
 
-        anunciosAdapter.setOnItemClickListener(new AnunciosUserAdapter.OnItemClickListener() {
+        anunciosAdapter.setOnItemClickListener(new AdvicesUserAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(DocumentSnapshot documentSnapshot, int position) {
-                anuncioSelected = null;
-                anuncioSelected = documentSnapshot.toObject(Anuncio.class);
+                adviceSelected = null;
+                adviceSelected = documentSnapshot.toObject(Advice.class);
 
                 ll_anuncioSeleccionado.setVisibility(View.VISIBLE);
 
                 String id = documentSnapshot.getId();
-                idTeam = anuncioSelected.getUidcontacto();
-                String contacto = anuncioSelected.getContacto();
-                teamName = anuncioSelected.getEquipo();
-                uriTeamPerfil = anuncioSelected.getImagen();
-                String descripcion = anuncioSelected.getDescripcion();
+                idTeam = adviceSelected.getUidcontacto();
+                String contacto = adviceSelected.getContacto();
+                teamName = adviceSelected.getEquipo();
+                uriTeamPerfil = adviceSelected.getImagen();
+                String descripcion = adviceSelected.getDescripcion();
 
                 ll_tv_contacto.setText(contacto);
                 ll_tv_equipo.setText(teamName);
@@ -540,27 +531,27 @@ public class User_Home extends AppCompatActivity {
 
         Query query = firestore.collection("Anuncios").whereEqualTo("deporte", deporte).whereEqualTo("municipio", municipio)
                 .whereEqualTo("posicion", posicion);
-        FirestoreRecyclerOptions<Anuncio> firestoreRecyclerOptions = new FirestoreRecyclerOptions.Builder<Anuncio>()
-                .setQuery(query, Anuncio.class).build();
+        FirestoreRecyclerOptions<Advice> firestoreRecyclerOptions = new FirestoreRecyclerOptions.Builder<Advice>()
+                .setQuery(query, Advice.class).build();
 
-        anunciosAdapter = new AnunciosUserAdapter(firestoreRecyclerOptions);
+        anunciosAdapter = new AdvicesUserAdapter(firestoreRecyclerOptions);
         anunciosAdapter.notifyDataSetChanged();
         rv_Anuncios.setAdapter(anunciosAdapter);
 
-        anunciosAdapter.setOnItemClickListener(new AnunciosUserAdapter.OnItemClickListener() {
+        anunciosAdapter.setOnItemClickListener(new AdvicesUserAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(DocumentSnapshot documentSnapshot, int position) {
-                anuncioSelected = null;
-                anuncioSelected = documentSnapshot.toObject(Anuncio.class);
+                adviceSelected = null;
+                adviceSelected = documentSnapshot.toObject(Advice.class);
 
                 ll_anuncioSeleccionado.setVisibility(View.VISIBLE);
 
                 String id = documentSnapshot.getId();
-                idTeam = anuncioSelected.getUidcontacto();
-                String contacto = anuncioSelected.getContacto();
-                teamName = anuncioSelected.getEquipo();
-                uriTeamPerfil = anuncioSelected.getImagen();
-                String descripcion = anuncioSelected.getDescripcion();
+                idTeam = adviceSelected.getUidcontacto();
+                String contacto = adviceSelected.getContacto();
+                teamName = adviceSelected.getEquipo();
+                uriTeamPerfil = adviceSelected.getImagen();
+                String descripcion = adviceSelected.getDescripcion();
 
                 ll_tv_contacto.setText(contacto);
                 ll_tv_equipo.setText(teamName);

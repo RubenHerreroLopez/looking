@@ -23,14 +23,12 @@
             </intent-filter>
         </activity>
         <activity android:name=".activitys.User_Home" />
-        <activity android:name=".activitys.User_Registro" />
-        <activity android:name=".activitys.User_Opciones" />
-        <activity android:name=".activitys.User_EditarPerfil" />
-        <activity android:name=".activitys.Equipo_Registro" />
-        <activity android:name=".activitys.Equipo_PonerAnuncio" />
-        <activity android:name=".activitys.Equipo_Home" />
-        <activity android:name=".activitys.Equipo_Opciones" />
-        <activity android:name=".activitys.Equipo_EditarPerfil" />
+        <activity android:name=".activitys.User_Register" />
+        <activity android:name=".activitys.User_EditPerfil" />
+        <activity android:name=".activitys.Team_Register" />
+        <activity android:name=".activitys.Team_PutAdvice" />
+        <activity android:name=".activitys.Team_Home" />
+        <activity android:name=".activitys.Team_EditPerfil" />
         <activity
             android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
             android:theme="@style/Base.Theme.AppCompat" />

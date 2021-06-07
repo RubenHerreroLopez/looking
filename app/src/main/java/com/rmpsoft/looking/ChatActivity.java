@@ -38,14 +38,7 @@ public class ChatActivity extends AppCompatActivity {
     EditText et_mensaje;
     ImageButton btn_enviar;
 
-    String idReceiver;
-    String idSender;
-    String chatPath;
-    String receiverName;
-    String dateMessage;
-    String timeMessage;
-    String timeSecondMessage;
-    String tipoUsuario = null;
+    String idReceiver, idSender, chatPath, receiverName, dateMessage, timeMessage, timeSecondMessage;
 
     RecyclerView rv_Messages;
     MessagesAdapter messagesAdapter;
@@ -73,7 +66,6 @@ public class ChatActivity extends AppCompatActivity {
         idSender = getIntent().getExtras().getString("idSender");
         chatPath = getIntent().getExtras().getString("chatPath");
         receiverName = getIntent().getExtras().getString("receiverName");
-        tipoUsuario = getIntent().getExtras().getString("tipoUsuario");
 
         ActionBar actionbar = getSupportActionBar();
         assert actionbar != null;

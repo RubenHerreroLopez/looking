@@ -22,10 +22,10 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.rmpsoft.looking.activitys.Equipo_Home;
-import com.rmpsoft.looking.activitys.Equipo_Registro;
+import com.rmpsoft.looking.activitys.Team_Home;
+import com.rmpsoft.looking.activitys.Team_Register;
 import com.rmpsoft.looking.activitys.User_Home;
-import com.rmpsoft.looking.activitys.User_Registro;
+import com.rmpsoft.looking.activitys.User_Register;
 import com.rmpsoft.looking.utils.Toast_Manager;
 
 public class  LoginActivity extends AppCompatActivity {
@@ -63,7 +63,7 @@ public class  LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 seleccion = spinner_seleccion.getSelectedItem().toString();
-                if(seleccion.equals("Jugador")) {
+                if(!seleccion.equals("(Seleccionar)")) {
 
                     String correo = et_correo.getText().toString();
                     String pass = et_pass.getText().toString();
@@ -78,21 +78,6 @@ public class  LoginActivity extends AppCompatActivity {
                         loginUser(correo, pass);
                     }
 
-                } else if (seleccion.equals("Equipo")) {
-
-                    String correo = et_correo.getText().toString();
-                    String pass = et_pass.getText().toString();
-
-                    if(!Patterns.EMAIL_ADDRESS.matcher(correo).matches()) {
-                        et_correo.setError("Introduzca un correo válido");
-                        et_correo.setFocusable(true);
-                    } else if (pass.length() < 6) {
-                        et_pass.setError("La contraseña debe ser mayor a seis caracteres");
-                        et_pass.setFocusable(true);
-                    } else {
-                        loginTeam(correo, pass);
-                    }
-
                 } else {
                     Toast_Manager.showToast(LoginActivity.this, "Debes seleccionar una categoria");
                 }
@@ -104,9 +89,9 @@ public class  LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 seleccion = spinner_seleccion.getSelectedItem().toString();
                 if(seleccion.equals("Jugador")) {
-                    startActivity(new Intent(LoginActivity.this, User_Registro.class));
-                } else if (seleccion.equals("Equipo")) {
-                    startActivity(new Intent(LoginActivity.this, Equipo_Registro.class));
+                    startActivity(new Intent(LoginActivity.this, User_Register.class));
+                } else if (seleccion.equals("Team")) {
+                    startActivity(new Intent(LoginActivity.this, Team_Register.class));
                 } else {
                     Toast_Manager.showToast(LoginActivity.this, "Debes seleccionar una categoria");
                 }
@@ -123,38 +108,16 @@ public class  LoginActivity extends AppCompatActivity {
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()) {
                         progressdialog.dismiss();
+                        seleccion = spinner_seleccion.getSelectedItem().toString();
 
+                        if(seleccion.equals("Jugador")) {
                             startActivity(new Intent(LoginActivity.this, User_Home.class));
                             finish();
-
-                    } else {
-                        progressdialog.dismiss();
-                        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-                        dialogNoInicio ();
-                    }
-                }
-            }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-                    progressdialog.dismiss();
-                    Toast_Manager.showToast(LoginActivity.this, e.getMessage());
-                }
-            });
-
-        }
-
-        private void loginTeam (String correo, String pass) {
-            progressdialog.setCancelable(false);
-            progressdialog.show();
-            firebaseauth.signInWithEmailAndPassword(correo, pass).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                @Override
-                public void onComplete(@NonNull Task<AuthResult> task) {
-                    if (task.isSuccessful()) {
-                        progressdialog.dismiss();
-
-                            startActivity(new Intent(LoginActivity.this, Equipo_Home.class));
+                        } else if (seleccion.equals("Team")) {
+                            startActivity(new Intent(LoginActivity.this, Team_Home.class));
                             finish();
-                        
+                        }
+
                     } else {
                         progressdialog.dismiss();
                         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
@@ -168,6 +131,7 @@ public class  LoginActivity extends AppCompatActivity {
                     Toast_Manager.showToast(LoginActivity.this, e.getMessage());
                 }
             });
+
         }
 
     private void dialogNoInicio () {

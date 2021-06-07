@@ -27,39 +27,38 @@ import com.google.firebase.firestore.Query;
 import com.rmpsoft.looking.ChatListActivity;
 import com.rmpsoft.looking.LoginActivity;
 import com.rmpsoft.looking.R;
-import com.rmpsoft.looking.adapter.AnunciosAdapter;
-import com.rmpsoft.looking.model.Anuncio;
+import com.rmpsoft.looking.adapter.AdvicesTeamAdapter;
+import com.rmpsoft.looking.model.Advice;
 import com.rmpsoft.looking.utils.Toast_Manager;
 import com.squareup.picasso.Picasso;
 
-public class Equipo_Home extends AppCompatActivity {
+public class Team_Home extends AppCompatActivity {
 
     FirebaseAuth firebaseauth;
     FirebaseUser firebaseuser;
     FirebaseFirestore firestore;
 
     TextView tv_nombreEquipo, tv_municipioEquipo, ll_tv_contacto, ll_tv_posicion, ll_tv_descripcion;
-    FloatingActionButton fab_add;
     ImageButton btn_ll_eliminar, btn_ll_cerrar;
+    FloatingActionButton fab_add;
     ImageView image_perfil;
 
-    String nombreEquipo;
-    String municipioEquipo;
-    String uriImagePerfil;
+    String nombreEquipo, municipioEquipo, uriImagePerfil;
+    String TIPO_USUARIO = "equipo";
+
     Boolean sesionIniciada = false;
-    String tipoUsuario;
 
     RecyclerView rv_Anuncios;
-    AnunciosAdapter anunciosAdapter;
+    AdvicesTeamAdapter advicesTeamAdapter;
 
     LinearLayout ll_anuncioSeleccionado;
-    Anuncio anuncioSeleccionado;
+    Advice adviceSelected;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_equipo__home);
+        setContentView(R.layout.activity_team_home);
 
         ActionBar actionbar = getSupportActionBar();
         assert actionbar != null;
@@ -76,8 +75,6 @@ public class Equipo_Home extends AppCompatActivity {
         image_perfil = findViewById(R.id.EquipoHome_image_perfil);
         fab_add = findViewById(R.id.EquipoHome_fab_add);
 
-        tipoUsuario = "equipo";
-
         rv_Anuncios = findViewById(R.id.EquipoHome_rv_anuncios);
         rv_Anuncios.setLayoutManager(new LinearLayoutManager(this));
 
@@ -91,7 +88,7 @@ public class Equipo_Home extends AppCompatActivity {
         fab_add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(Equipo_Home.this, Equipo_PonerAnuncio.class));
+                startActivity(new Intent(Team_Home.this, Team_PutAdvice.class));
             }
         });
 
@@ -99,7 +96,7 @@ public class Equipo_Home extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 ll_anuncioSeleccionado.setVisibility(View.GONE);
-                anuncioSeleccionado = null; 
+                adviceSelected = null;
             }
         });
 
@@ -110,7 +107,7 @@ public class Equipo_Home extends AppCompatActivity {
     }
 
     public boolean onCreateOptionsMenu (Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_equipohome, menu);
+        getMenuInflater().inflate(R.menu.menu_team_home, menu);
         return true;
     }
 
@@ -122,12 +119,12 @@ public class Equipo_Home extends AppCompatActivity {
         }
 
         if (id == R.id.EquipoHome_ic_edit) {
-            startActivity(new Intent(Equipo_Home.this, Equipo_EditarPerfil.class));
+            startActivity(new Intent(Team_Home.this, Team_EditPerfil.class));
         }
 
         if (id == R.id.UserHome_ic_chat) {
-            Intent intent = new Intent(Equipo_Home.this, ChatListActivity.class);
-            intent.putExtra("tipoUsuario", tipoUsuario);
+            Intent intent = new Intent(Team_Home.this, ChatListActivity.class);
+            intent.putExtra("tipoUsuario", TIPO_USUARIO);
             startActivity(intent);
         }
 
@@ -136,14 +133,14 @@ public class Equipo_Home extends AppCompatActivity {
 
     @Override
     protected void onStart() {
-        anunciosAdapter.startListening();
+        advicesTeamAdapter.startListening();
         super.onStart();
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        anunciosAdapter.stopListening();
+        advicesTeamAdapter.stopListening();
     }
 
     /* Verifica que un usuario ha iniciado sesión, de lo contrario, cierra la activity */
@@ -170,36 +167,31 @@ public class Equipo_Home extends AppCompatActivity {
         finish();
     }
 
-    /* Este método actualiza los datos de un anuncio */
-    private void updateAnuncio() {
-
-    }
-
     /* Este método obtiene los datos de los anuncios del equipo actual*/
     private void getAnuncios() {
         String uid = firebaseuser.getUid();
         Query query = firestore.collection("Anuncios").whereEqualTo("uidcontacto", uid );
 
-        FirestoreRecyclerOptions<Anuncio> firestoreRecyclerOptions = new FirestoreRecyclerOptions.Builder<Anuncio>()
-                .setQuery(query, Anuncio.class).build();
+        FirestoreRecyclerOptions<Advice> firestoreRecyclerOptions = new FirestoreRecyclerOptions.Builder<Advice>()
+                .setQuery(query, Advice.class).build();
 
-        anunciosAdapter = new AnunciosAdapter(firestoreRecyclerOptions);
-        anunciosAdapter.notifyDataSetChanged();
+        advicesTeamAdapter = new AdvicesTeamAdapter(firestoreRecyclerOptions);
+        advicesTeamAdapter.notifyDataSetChanged();
 
-        rv_Anuncios.setAdapter(anunciosAdapter);
+        rv_Anuncios.setAdapter(advicesTeamAdapter);
 
-        anunciosAdapter.setOnItemClickListener(new AnunciosAdapter.OnItemClickListener() {
+        advicesTeamAdapter.setOnItemClickListener(new AdvicesTeamAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(DocumentSnapshot documentSnapshot, int position) {
-                anuncioSeleccionado = null;
-                anuncioSeleccionado = documentSnapshot.toObject(Anuncio.class);
+                adviceSelected = null;
+                adviceSelected = documentSnapshot.toObject(Advice.class);
 
                 ll_anuncioSeleccionado.setVisibility(View.VISIBLE);
 
                 String id = documentSnapshot.getId();
-                String contacto = anuncioSeleccionado.getContacto();
-                String posicion = anuncioSeleccionado.getPosicion();
-                String descripcion = anuncioSeleccionado.getDescripcion();
+                String contacto = adviceSelected.getContacto();
+                String posicion = adviceSelected.getPosicion();
+                String descripcion = adviceSelected.getDescripcion();
 
                 ll_tv_contacto.setText(contacto);
                 ll_tv_posicion.setText(posicion);
@@ -210,7 +202,7 @@ public class Equipo_Home extends AppCompatActivity {
                     public void onClick(View v) {
                         firestore.collection("Anuncios").document(id).delete();
                         ll_anuncioSeleccionado.setVisibility(View.GONE);
-                        anuncioSeleccionado = null;
+                        adviceSelected = null;
                     }
                 });
             }
@@ -236,8 +228,8 @@ public class Equipo_Home extends AppCompatActivity {
                         Picasso.get().load(R.drawable.ic_perfil_equipo).into(image_perfil);
                     }
                 } else {
-                    Toast_Manager.showToast(Equipo_Home.this, "No tienes cuenta de este tipo");
-                    startActivity(new Intent(Equipo_Home.this, LoginActivity.class));
+                    Toast_Manager.showToast(Team_Home.this, "No tienes cuenta de este tipo");
+                    startActivity(new Intent(Team_Home.this, LoginActivity.class));
                     finish();
             }
             }

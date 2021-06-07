@@ -24,13 +24,12 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.rmpsoft.looking.LoginActivity;
 import com.rmpsoft.looking.R;
-import com.rmpsoft.looking.model.Equipo;
+import com.rmpsoft.looking.model.Team;
 import com.rmpsoft.looking.utils.Toast_Manager;
 
 import java.text.Normalizer;
-    /*r import java.util.HashMap; r*/
 
-public class Equipo_Registro extends AppCompatActivity {
+public class Team_Register extends AppCompatActivity {
 
     EditText et_correo, et_equipo, et_deporte, et_municipio, et_dia, et_pass;
     RadioButton rb_masculino, rb_femenino;
@@ -46,7 +45,7 @@ public class Equipo_Registro extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_equipo__registro);
+        setContentView(R.layout.activity_team_register);
 
         ActionBar actionbar = getSupportActionBar();
         assert actionbar != null;
@@ -65,7 +64,7 @@ public class Equipo_Registro extends AppCompatActivity {
 
         firebaseauth = FirebaseAuth.getInstance();
         firestore = FirebaseFirestore.getInstance();
-        progressdialog = new ProgressDialog(Equipo_Registro.this);
+        progressdialog = new ProgressDialog(Team_Register.this);
 
         btn_registro.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -136,41 +135,41 @@ public class Equipo_Registro extends AppCompatActivity {
                         sexo = rb_femenino.getText().toString();
                     }
 
-                    Equipo nuevoEquipo = new Equipo();
+                    Team newTeam = new Team();
 
-                    nuevoEquipo.setUid(uid);
-                    nuevoEquipo.setCorreo(correo);
-                    nuevoEquipo.setPassword(pass);
-                    nuevoEquipo.setEquipo(equipo);
-                    nuevoEquipo.setMunicipio(municipio);
-                    nuevoEquipo.setDeporte(deporte);
-                    nuevoEquipo.setHorario(dia);
-                    nuevoEquipo.setCategoria(sexo);
-                    nuevoEquipo.setImage(null);
+                    newTeam.setUid(uid);
+                    newTeam.setCorreo(correo);
+                    newTeam.setPassword(pass);
+                    newTeam.setEquipo(equipo);
+                    newTeam.setMunicipio(municipio);
+                    newTeam.setDeporte(deporte);
+                    newTeam.setHorario(dia);
+                    newTeam.setCategoria(sexo);
+                    newTeam.setImage(null);
 
-                    firestore.collection("Equipos").document(uid).set(nuevoEquipo).addOnSuccessListener(new OnSuccessListener<Void>() {
+                    firestore.collection("Equipos").document(uid).set(newTeam).addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void aVoid) {
-                            Toast_Manager.showToast(Equipo_Registro.this,"El registro se realizó correctamente");
-                            startActivity(new Intent(Equipo_Registro.this, LoginActivity.class));
+                            Toast_Manager.showToast(Team_Register.this,"El registro se realizó correctamente");
+                            startActivity(new Intent(Team_Register.this, LoginActivity.class));
                             finish();
                         }
                     }).addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
-                            Toast_Manager.showToast(Equipo_Registro.this, "No se pudo realizar el registro");
+                            Toast_Manager.showToast(Team_Register.this, "No se pudo realizar el registro");
                         }
                     });
 
                 } else {
                     progressdialog.dismiss();
-                    Toast_Manager.showToast(Equipo_Registro.this, "No se pudo realizar el registro");
+                    Toast_Manager.showToast(Team_Register.this, "No se pudo realizar el registro");
                 }
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Toast_Manager.showToast(Equipo_Registro.this, e.getMessage());
+                Toast_Manager.showToast(Team_Register.this, e.getMessage());
             }
         });
     }

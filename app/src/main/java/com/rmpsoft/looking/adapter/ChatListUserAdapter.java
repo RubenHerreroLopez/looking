@@ -13,56 +13,46 @@ import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.rmpsoft.looking.R;
-import com.rmpsoft.looking.model.Anuncio;
+import com.rmpsoft.looking.model.Chat;
 import com.squareup.picasso.Picasso;
 
-public class AnunciosUserAdapter extends FirestoreRecyclerAdapter<Anuncio, AnunciosUserAdapter.ViewHolder> {
+public class ChatListUserAdapter extends FirestoreRecyclerAdapter<Chat, ChatListUserAdapter.ViewHolder> {
 
     ImageView iv_perfil;
     String uri_iv_perfil;
-    private OnItemClickListener listener;
 
-    public AnunciosUserAdapter(@NonNull FirestoreRecyclerOptions<Anuncio> options) {
+    private ChatListUserAdapter.OnItemClickListener listener;
+
+    public ChatListUserAdapter(@NonNull FirestoreRecyclerOptions<Chat> options) {
         super(options);
     }
 
     @Override
-    protected void onBindViewHolder(@NonNull AnunciosUserAdapter.ViewHolder viewHolder, int i, @NonNull Anuncio anuncio) {
-        viewHolder.tv_equipo.setText((anuncio.getEquipo()));
-        viewHolder.tv_deporte.setText(anuncio.getDeporte());
-        viewHolder.tv_municipio.setText(anuncio.getMunicipio());
-        viewHolder.tv_posicion.setText(anuncio.getPosicion());
-
-        uri_iv_perfil = anuncio.getImagen();
+    protected void onBindViewHolder(@NonNull ChatListUserAdapter.ViewHolder viewHolder, int i, @NonNull Chat chat) {
+        viewHolder.tv_nombre.setText(chat.getTeamName());
+        uri_iv_perfil = chat.getTeamImage();
         try {
             Picasso.get().load(uri_iv_perfil).placeholder(R.drawable.ic_perfil_equipo).into(iv_perfil);
         } catch (Exception e) {
             Picasso.get().load(R.drawable.ic_perfil_equipo).into(iv_perfil);
         }
-
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.list_anuncios_userhome, viewGroup, false);
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.list_contact_chat, viewGroup, false);
         return new ViewHolder(view);
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView tv_equipo;
-        TextView tv_deporte;
-        TextView tv_municipio;
-        TextView tv_posicion;
+        TextView tv_nombre;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            tv_equipo = itemView.findViewById(R.id.ListAnunciosUser_lbl_equipo);
-            tv_deporte = itemView.findViewById(R.id.ListAnunciosUser_lbl_deporte);
-            tv_municipio = itemView.findViewById(R.id.ListAnunciosUser_lbl_municipio);
-            tv_posicion = itemView.findViewById(R.id.ListAnunciosUser_lbl_posicion);
-            iv_perfil = itemView.findViewById(R.id.ListAnunciosUser_iv);
+            tv_nombre = itemView.findViewById(R.id.ChatList_tv_nombreUser);
+            iv_perfil = itemView.findViewById(R.id.ChatList_iv_perfil);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -80,7 +70,8 @@ public class AnunciosUserAdapter extends FirestoreRecyclerAdapter<Anuncio, Anunc
         void onItemClick(DocumentSnapshot documentSnapshot, int position);
     }
 
-    public void setOnItemClickListener(AnunciosUserAdapter.OnItemClickListener listener) {
+    public void setOnItemClickListener(ChatListUserAdapter.OnItemClickListener listener) {
         this.listener = listener;
     }
+
 }

@@ -4,13 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activitys.User_Home">
+    tools:context=".activitys.Team_Home">
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:background="@color/white"
+        android:gravity="top"
+        android:background="#fff"
         android:padding="25dp">
 
         <!-- LL DATOS USUARIO -->
@@ -20,31 +21,60 @@
             android:orientation="horizontal">
 
             <!-- IMAGEN DE PERFIL -->
-            <ImageView
+            <androidx.appcompat.widget.AppCompatImageView
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                android:id="@+id/UserHome_image_perfil"
-                android:src="@drawable/ic_perfil_user"
+                android:id="@+id/EquipoHome_image_perfil"
+                android:src="@drawable/ic_perfil_equipo"
                 android:scaleType="fitCenter"
-                android:contentDescription="@string/UserHome_iv_perfil" />
-
-            <!-- NOMBRE DE USUARIO -->
-            <TextView
+                android:contentDescription="@string/EqHome_iv_perfil" />
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/UserHome_tv_user"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="35dp"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:text="@string/UserHome_tv_user"/>
+                android:orientation="vertical"
+                android:gravity="center">
+                <!-- NOMBRE DEL EQUIPO -->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/EquipoHome_tv_user"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="15dp"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:text="@string/EqHome_tv_user"/>
+                <!-- CIUDAD -->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/EquipoHome_tv_municipio"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="5dp"
+                    android:textSize="18sp"
+                    android:textStyle="italic"
+                    android:text=" "/>
+            </LinearLayout>
+
         </LinearLayout>
 
         <Space
             android:layout_width="match_parent"
             android:layout_height="20dp"/>
 
-        <!-- LL LISTA DE ANUNCIOS -->
+        <!-- TV MIS ANUNCIOS -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/EqHome_tv_misanuncios"
+            android:textSize="18sp"
+            android:textStyle="italic"
+            android:layout_marginStart="10dp"/>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="10dp"/>
+
+        <!-- LL ANUNCIOS -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -54,12 +84,12 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/UserHome_ll_anuncioSelected"
+                android:id="@+id/EquipoHome_ll_anuncioSelected"
                 android:orientation="vertical"
                 android:background="@drawable/style_selected_anuncio"
                 android:visibility="gone">
 
-                <!-- Datos del anuncio -->
+                <!-- Datos del advice -->
                 <!-- Contacto -->
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -67,43 +97,42 @@
                     android:orientation="horizontal"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="5dp"
-                    android:weightSum="1">
+                    >
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/UserHome_ll_lbl_contacto"
+                        android:text="@string/EqHome_ll_lbl_contacto"
                         android:textSize="18sp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                       />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/UserHome_ll_tv_contacto"
+                        android:id="@+id/EquipoHome_ll_tv_contacto"
                         android:textSize="18sp"
                         android:layout_marginStart="10dp"/>
 
                 </LinearLayout>
 
-                <!-- Equipo -->
+                <!-- Posicion -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:layout_marginStart="10dp"
-                    android:layout_marginTop="5dp"
-                    android:weightSum="1">
+                    android:layout_marginTop="5dp">
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/UserHome_ll_lbl_equipo"
+                        android:text="@string/EqHome_ll_lbl_posicion"
                         android:textSize="18sp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/UserHome_ll_tv_equipo"
+                        android:id="@+id/EquipoHome_ll_tv_posicion"
                         android:textSize="18sp"
                         android:layout_marginStart="10dp"/>
-
                 </LinearLayout>
 
                 <!-- Descripcion -->
@@ -116,18 +145,18 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/UserHome_ll_lbl_descripcion"
+                        android:text="@string/EqHome_ll_lbl_descripcion"
                         android:textSize="18sp"
                         android:textStyle="bold"/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/UserHome_ll_tv_descripcion"
+                        android:id="@+id/EquipoHome_ll_tv_descripcion"
                         android:textSize="18sp"
                         android:layout_marginStart="10dp"/>
                 </LinearLayout>
 
-                <!-- Botones del anuncio -->
+                <!-- Botones del advice -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -139,49 +168,49 @@
                     <ImageButton
                         android:layout_width="40dp"
                         android:layout_height="40dp"
-                        android:id="@+id/UserHome_ll_btn_chat"
-                        android:src="@drawable/ic_action_chat"
+                        android:id="@+id/EquipoHome_ll_btn_eliminar"
+                        android:src="@drawable/ic_action_delete"
                         android:tint="@color/white"
                         android:layout_marginStart="5dp"
                         android:layout_marginEnd="5dp"
                         android:background="@drawable/style_button"
-                        android:contentDescription="@string/UserHome_ll_btn_chat" />
+                        android:contentDescription="@string/EqHome_ll_btn_eliminar" />
 
                     <ImageButton
                         android:layout_width="40dp"
                         android:layout_height="40dp"
-                        android:id="@+id/UserHome_ll_btn_cerrar"
+                        android:id="@+id/EquipoHome_ll_btn_cerrar"
                         android:src="@drawable/ic_action_close"
                         android:tint="@color/white"
                         android:layout_marginStart="5dp"
                         android:layout_marginEnd="5dp"
                         android:background="@drawable/style_button"
-                        android:contentDescription="@string/UserHome_ll_btn_cerrar" />
+                        android:contentDescription="@string/EqHome_ll_btn_cerrar" />
                 </LinearLayout>
 
             </LinearLayout>
 
             <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/EquipoHome_rv_anuncios"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/UserHome_rv_anuncios"/>
+                android:layout_height="match_parent"/>
 
         </LinearLayout>
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 
-    <!-- BOTON FLOTANTE FILTRAR -->
+    <!-- BOTON FLOTANTE AÑADIR -->
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/UserHome_fab_filter"
-        android:src="@drawable/ic_action_filter"
+        android:id="@+id/EquipoHome_fab_add"
+        android:src="@drawable/ic_action_add"
         android:layout_margin="18dp"
         app:borderWidth="0dp"
         android:elevation="4dp"
         android:backgroundTint="@color/principal"
-        android:contentDescription="@string/UserHome_fab_filter"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"/>
+        android:contentDescription="@string/EqHome_fab_add"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"/>
 
 </RelativeLayout>

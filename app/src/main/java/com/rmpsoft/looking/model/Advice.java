@@ -1,6 +1,6 @@
 package com.rmpsoft.looking.model;
 
-public class Anuncio {
+public class Advice {
 
     private String uidcontacto;
     private String uidadvice;
@@ -13,12 +13,12 @@ public class Anuncio {
     private String categoria;
     private String imagen;
 
-    public Anuncio () {
+    public Advice() {
 
     }
 
-    public Anuncio (String uid, String uidadvice, String contacto, String descripcion, String equipo, String deporte,
-                    String posicion, String municipio, String categoria, String imagen) {
+    public Advice(String uid, String uidadvice, String contacto, String descripcion, String equipo, String deporte,
+                  String posicion, String municipio, String categoria, String imagen) {
         this.uidcontacto = uid;
         this.uidadvice = uidadvice;
         this.contacto = contacto;

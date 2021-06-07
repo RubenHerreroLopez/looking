@@ -14,7 +14,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
-import com.rmpsoft.looking.adapter.ChatListAdapter;
+import com.rmpsoft.looking.adapter.ChatListUserAdapter;
 import com.rmpsoft.looking.adapter.ChatListTeamAdapter;
 import com.rmpsoft.looking.model.Chat;
 
@@ -22,18 +22,15 @@ public class ChatListActivity extends AppCompatActivity {
 
     RecyclerView rv_chats;
     ChatListTeamAdapter chatListTeamAdapter;
-    ChatListAdapter chatListAdapter;
+    ChatListUserAdapter chatListUserAdapter;
     Chat chatSelected;
 
     FirebaseAuth firebaseauth;
     FirebaseUser firebaseuser;
     FirebaseFirestore firestore;
 
-    String idSender;
-    String idReceiver;
-    String chatPath;
-    String receiverName;
-    String tipoUsuario = null;
+    String idSender, idReceiver, chatPath, receiverName;
+    String TIPO_USUARIO = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,11 +50,11 @@ public class ChatListActivity extends AppCompatActivity {
         firebaseuser = firebaseauth.getCurrentUser();
         firestore = FirebaseFirestore.getInstance();
 
-        tipoUsuario = getIntent().getExtras().getString("tipoUsuario");
+        TIPO_USUARIO = getIntent().getExtras().getString("tipoUsuario");
 
-        if (tipoUsuario.equals("usuario")) {
+        if (TIPO_USUARIO.equals("usuario")) {
             getUserContacts();
-        } else if (tipoUsuario.equals("equipo")) {
+        } else if (TIPO_USUARIO.equals("equipo")) {
             getTeamContacts();
         }
 
@@ -66,9 +63,9 @@ public class ChatListActivity extends AppCompatActivity {
 
     @Override
     protected void onStart() {
-        if (tipoUsuario.equals("usuario")) {
-            chatListAdapter.startListening();
-        } else if (tipoUsuario.equals("equipo")) {
+        if (TIPO_USUARIO.equals("usuario")) {
+            chatListUserAdapter.startListening();
+        } else if (TIPO_USUARIO.equals("equipo")) {
             chatListTeamAdapter.startListening();
         }
 
@@ -78,9 +75,9 @@ public class ChatListActivity extends AppCompatActivity {
     @Override
     protected void onStop() {
         super.onStop();
-        if (tipoUsuario.equals("usuario")) {
-            chatListAdapter.stopListening();
-        } else if (tipoUsuario.equals("equipo")) {
+        if (TIPO_USUARIO.equals("usuario")) {
+            chatListUserAdapter.stopListening();
+        } else if (TIPO_USUARIO.equals("equipo")) {
             chatListTeamAdapter.stopListening();
         }
     }
@@ -96,7 +93,7 @@ public class ChatListActivity extends AppCompatActivity {
 
         rv_chats.setAdapter(chatListTeamAdapter);
 
-        chatListTeamAdapter.setOnItemClickListener(new ChatListAdapter.OnItemClickListener() {
+        chatListTeamAdapter.setOnItemClickListener(new ChatListUserAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(DocumentSnapshot documentSnapshot, int position) {
                 chatSelected = null;
@@ -111,7 +108,7 @@ public class ChatListActivity extends AppCompatActivity {
                 intent.putExtra("idReceiver", idReceiver);
                 intent.putExtra("chatPath", chatPath);
                 intent.putExtra("receiverName", receiverName);
-                intent.putExtra("tipoUsuario", tipoUsuario);
+                intent.putExtra("tipoUsuario", TIPO_USUARIO);
                 startActivity(intent);
 
             }
@@ -125,12 +122,12 @@ public class ChatListActivity extends AppCompatActivity {
         FirestoreRecyclerOptions<Chat> firestoreRecyclerOptions = new FirestoreRecyclerOptions.Builder<Chat>()
                 .setQuery(query, Chat.class).build();
 
-        chatListAdapter = new ChatListAdapter(firestoreRecyclerOptions);
-        chatListAdapter.notifyDataSetChanged();
+        chatListUserAdapter = new ChatListUserAdapter(firestoreRecyclerOptions);
+        chatListUserAdapter.notifyDataSetChanged();
 
-        rv_chats.setAdapter(chatListAdapter);
+        rv_chats.setAdapter(chatListUserAdapter);
 
-        chatListAdapter.setOnItemClickListener(new ChatListAdapter.OnItemClickListener() {
+        chatListUserAdapter.setOnItemClickListener(new ChatListUserAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(DocumentSnapshot documentSnapshot, int position) {
                 chatSelected = null;

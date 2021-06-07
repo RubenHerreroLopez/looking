@@ -19,15 +19,14 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.rmpsoft.looking.R;
-import com.rmpsoft.looking.model.Anuncio;
+import com.rmpsoft.looking.model.Advice;
 import com.rmpsoft.looking.utils.Toast_Manager;
 
 import java.math.BigInteger;
 import java.text.Normalizer;
-import java.util.HashMap;
 import java.util.Random;
 
-public class Equipo_PonerAnuncio extends AppCompatActivity {
+public class Team_PutAdvice extends AppCompatActivity {
 
     EditText et_contacto, et_posicion, et_descripcion;
     Button btn_descartar, btn_publicar;
@@ -37,17 +36,13 @@ public class Equipo_PonerAnuncio extends AppCompatActivity {
     FirebaseFirestore firestore;
     private ProgressDialog progressdialog;
 
-    private String equipo;
-    private String deporte;
-    private String municipio;
-    private String categoria;
-    private String imagen;
+    private String equipo, deporte, municipio, categoria, imagen;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_equipo__poner_anuncio);
+        setContentView(R.layout.activity_team_put_advice);
 
         ActionBar actionbar = getSupportActionBar();
         assert actionbar != null;
@@ -64,12 +59,12 @@ public class Equipo_PonerAnuncio extends AppCompatActivity {
         firebaseauth = FirebaseAuth.getInstance();
         firebaseuser = firebaseauth.getCurrentUser();
         firestore = FirebaseFirestore.getInstance();
-        progressdialog = new ProgressDialog(Equipo_PonerAnuncio.this);
+        progressdialog = new ProgressDialog(Team_PutAdvice.this);
 
         btn_descartar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(Equipo_PonerAnuncio.this, Equipo_Home.class));
+                startActivity(new Intent(Team_PutAdvice.this, Team_Home.class));
             }
         });
 
@@ -113,31 +108,31 @@ public class Equipo_PonerAnuncio extends AppCompatActivity {
 
         String uid = firebaseuser.getUid();
         Random randomuid = new Random();
-        String uidadvice = new BigInteger(80, randomuid).toString(32);
+        String uidadvice = new BigInteger(100, randomuid).toString(32);
 
-        Anuncio nuevoAnuncio = new Anuncio();
-        nuevoAnuncio.setUidcontacto(uid);
-        nuevoAnuncio.setUidadvice(uidadvice);
-        nuevoAnuncio.setEquipo(equipo);
-        nuevoAnuncio.setDeporte(deporte);
-        nuevoAnuncio.setMunicipio(municipio);
-        nuevoAnuncio.setPosicion(posicion);
-        nuevoAnuncio.setContacto(contacto);
-        nuevoAnuncio.setDescripcion(descripcion);
-        nuevoAnuncio.setCategoria(categoria);
-        nuevoAnuncio.setImagen(imagen);
+        Advice newAdvice = new Advice();
+        newAdvice.setUidcontacto(uid);
+        newAdvice.setUidadvice(uidadvice);
+        newAdvice.setEquipo(equipo);
+        newAdvice.setDeporte(deporte);
+        newAdvice.setMunicipio(municipio);
+        newAdvice.setPosicion(posicion);
+        newAdvice.setContacto(contacto);
+        newAdvice.setDescripcion(descripcion);
+        newAdvice.setCategoria(categoria);
+        newAdvice.setImagen(imagen);
 
-        firestore.collection("Anuncios").document(uidadvice).set(nuevoAnuncio).addOnSuccessListener(new OnSuccessListener<Void>() {
+        firestore.collection("Anuncios").document(uidadvice).set(newAdvice).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
-                Toast_Manager.showToast(Equipo_PonerAnuncio.this, "El anuncio se publicó correctamente");
-                startActivity(new Intent(Equipo_PonerAnuncio.this, Equipo_Home.class));
+                Toast_Manager.showToast(Team_PutAdvice.this, "El anuncio se publicó correctamente");
+                startActivity(new Intent(Team_PutAdvice.this, Team_Home.class));
                 finish();
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Toast_Manager.showToast(Equipo_PonerAnuncio.this, "No se pudo publicar el anuncio");
+                Toast_Manager.showToast(Team_PutAdvice.this, "No se pudo publicar el anuncio");
             }
         });
         progressdialog.dismiss();

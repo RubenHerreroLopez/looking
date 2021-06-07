@@ -12,7 +12,6 @@ import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -32,7 +31,7 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.rmpsoft.looking.R;
-import com.rmpsoft.looking.model.Anuncio;
+import com.rmpsoft.looking.model.Advice;
 import com.rmpsoft.looking.model.Chat;
 import com.rmpsoft.looking.utils.Toast_Manager;
 import com.squareup.picasso.Picasso;
@@ -50,7 +49,7 @@ import java.util.Objects;
 
 import id.zelory.compressor.Compressor;
 
-public class Equipo_EditarPerfil extends AppCompatActivity {
+public class Team_EditPerfil extends AppCompatActivity {
 
     EditText et_equipo, et_deporte, et_municipio, et_dia;
     ImageButton btn_perfil, btn_equipo, btn_equipoOK, btn_deporte, btn_deporteOK, btn_municipio, btn_municipioOK, btn_dia, btn_diaOK;
@@ -75,14 +74,14 @@ public class Equipo_EditarPerfil extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_equipo__editar_perfil);
+        setContentView(R.layout.activity_team_edit_perfil);
 
         firebaseauth = FirebaseAuth.getInstance();
         firebaseuser = firebaseauth.getCurrentUser();
         firestore = FirebaseFirestore.getInstance();
         uid = firebaseuser.getUid();
         storage = FirebaseStorage.getInstance().getReference();
-        progressDialog = new ProgressDialog(Equipo_EditarPerfil.this);
+        progressDialog = new ProgressDialog(Team_EditPerfil.this);
 
         ActionBar actionbar = getSupportActionBar();
         assert actionbar != null;
@@ -113,7 +112,7 @@ public class Equipo_EditarPerfil extends AppCompatActivity {
         btn_perfil.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                CropImage.startPickImageActivity(Equipo_EditarPerfil.this);
+                CropImage.startPickImageActivity(Team_EditPerfil.this);
             }
         });
 
@@ -193,7 +192,7 @@ public class Equipo_EditarPerfil extends AppCompatActivity {
         btn_descartar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(Equipo_EditarPerfil.this, Equipo_Home.class));
+                startActivity(new Intent(Team_EditPerfil.this, Team_Home.class));
             }
         });
 
@@ -201,7 +200,7 @@ public class Equipo_EditarPerfil extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 updateUserData();
-                startActivity(new Intent(Equipo_EditarPerfil.this, Equipo_Home.class));
+                startActivity(new Intent(Team_EditPerfil.this, Team_Home.class));
                 finish();
             }
         });
@@ -214,12 +213,12 @@ public class Equipo_EditarPerfil extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == CropImage.PICK_IMAGE_CHOOSER_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
-            Uri imageuri = CropImage.getPickImageResultUri(Equipo_EditarPerfil.this, data);
+            Uri imageuri = CropImage.getPickImageResultUri(Team_EditPerfil.this, data);
 
             /* Recortando imagen */
             CropImage.activity(imageuri).setGuidelines(CropImageView.Guidelines.ON)
                     .setRequestedSize(480, 480)
-                    .setAspectRatio(1,1).start(Equipo_EditarPerfil.this);
+                    .setAspectRatio(1,1).start(Team_EditPerfil.this);
         }
 
         if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
@@ -231,7 +230,7 @@ public class Equipo_EditarPerfil extends AppCompatActivity {
 
                 /* Comprimiendo imagen */
                 try {
-                    bitmap = new Compressor(Equipo_EditarPerfil.this).setMaxWidth(480).setMaxHeight(480).setQuality(90).compressToBitmap(url);
+                    bitmap = new Compressor(Team_EditPerfil.this).setMaxWidth(480).setMaxHeight(480).setQuality(90).compressToBitmap(url);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -269,7 +268,7 @@ public class Equipo_EditarPerfil extends AppCompatActivity {
                         firestore.collection("Equipos").document(uid).update(values);
 
                         progressDialog.dismiss();
-                        Toast_Manager.showToast(Equipo_EditarPerfil.this, "Imagen subida con éxito");
+                        Toast_Manager.showToast(Team_EditPerfil.this, "Imagen subida con éxito");
 
                         updateImageData();
                         getCurrentUserData();
@@ -293,7 +292,7 @@ public class Equipo_EditarPerfil extends AppCompatActivity {
                 List<DocumentSnapshot> listDocuments = querySnapshot.getDocuments();
                 if(!listDocuments.isEmpty()) {
                     for (DocumentSnapshot document : listDocuments) {
-                        String dato = document.toObject(Anuncio.class).getUidadvice();
+                        String dato = document.toObject(Advice.class).getUidadvice();
                         idAdvices.add(dato);
                     }
                     for (String id : idAdvices) firestore.collection("Anuncios").document(id).update(adviceValue);
@@ -340,7 +339,7 @@ public class Equipo_EditarPerfil extends AppCompatActivity {
 
         firestore.collection("Equipos").document(uid).update(values);
         progressDialog.dismiss();
-        Toast_Manager.showToast(Equipo_EditarPerfil.this, "Datos actualizados con éxito");
+        Toast_Manager.showToast(Team_EditPerfil.this, "Datos actualizados con éxito");
     }
 
     /* Método que obtiene los datos del usuario actual y los asigna a los EditText */

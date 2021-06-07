@@ -31,7 +31,6 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.rmpsoft.looking.R;
-import com.rmpsoft.looking.model.Anuncio;
 import com.rmpsoft.looking.model.Chat;
 import com.rmpsoft.looking.utils.Toast_Manager;
 import com.squareup.picasso.Picasso;
@@ -49,12 +48,11 @@ import java.util.Objects;
 
 import id.zelory.compressor.Compressor;
 
-public class User_EditarPerfil extends AppCompatActivity {
+public class User_EditPerfil extends AppCompatActivity {
 
-    ImageView perfil;
+    EditText et_nombre, et_apellido, et_edad;
     ImageButton btn_perfil, btn_nombre, btn_nombreOK, btn_apellido, btn_apellidoOK, btn_edad, btn_edadOK;
     ImageView image_perfil;
-    EditText et_nombre, et_apellido, et_edad;
     Button btn_descartar, btn_confirmar;
 
     FirebaseAuth firebaseauth;
@@ -74,14 +72,14 @@ public class User_EditarPerfil extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_user__editar_perfil);
+        setContentView(R.layout.activity_user_edit_perfil);
 
         firebaseauth = FirebaseAuth.getInstance();
         firebaseuser = firebaseauth.getCurrentUser();
         firestore = FirebaseFirestore.getInstance();
         uid = firebaseuser.getUid();
-        storage = FirebaseStorage.getInstance().getReference().child(uid);
-        progressDialog = new ProgressDialog(User_EditarPerfil.this);
+        storage = FirebaseStorage.getInstance().getReference();
+        progressDialog = new ProgressDialog(User_EditPerfil.this);
 
         ActionBar actionbar = getSupportActionBar();
         assert actionbar != null;
@@ -89,7 +87,6 @@ public class User_EditarPerfil extends AppCompatActivity {
         actionbar.setTitle(" ");
         actionbar.setIcon(R.drawable.ic_actionbar_logo);
 
-        perfil = findViewById(R.id.UserEdit_image_perfil);
         et_nombre = findViewById(R.id.UserEdit_et_nombre);
         et_apellido = findViewById(R.id.UserEdit_et_apellido);
         et_edad = findViewById(R.id.UserEdit_et_edad);
@@ -110,7 +107,7 @@ public class User_EditarPerfil extends AppCompatActivity {
         btn_perfil.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                CropImage.startPickImageActivity(User_EditarPerfil.this);
+                CropImage.startPickImageActivity(User_EditPerfil.this);
             }
         });
 
@@ -171,7 +168,7 @@ public class User_EditarPerfil extends AppCompatActivity {
         btn_descartar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(User_EditarPerfil.this, User_Home.class));
+                startActivity(new Intent(User_EditPerfil.this, User_Home.class));
             }
         });
 
@@ -179,7 +176,7 @@ public class User_EditarPerfil extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 updateData();
-                startActivity(new Intent(User_EditarPerfil.this, User_Home.class));
+                startActivity(new Intent(User_EditPerfil.this, User_Home.class));
                 finish();
             }
         });
@@ -191,12 +188,12 @@ public class User_EditarPerfil extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == CropImage.PICK_IMAGE_CHOOSER_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
-            Uri imageuri = CropImage.getPickImageResultUri(User_EditarPerfil.this, data);
+            Uri imageuri = CropImage.getPickImageResultUri(User_EditPerfil.this, data);
 
             /* Recortando imagen */
             CropImage.activity(imageuri).setGuidelines(CropImageView.Guidelines.ON)
                     .setRequestedSize(480, 480)
-                    .setAspectRatio(1,1).start(User_EditarPerfil.this);
+                    .setAspectRatio(1,1).start(User_EditPerfil.this);
         }
 
         if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
@@ -208,7 +205,7 @@ public class User_EditarPerfil extends AppCompatActivity {
 
                 /* Comprimiendo imagen */
                 try {
-                    bitmap = new Compressor(User_EditarPerfil.this).setMaxWidth(480).setMaxHeight(480).setQuality(90).compressToBitmap(url);
+                    bitmap = new Compressor(User_EditPerfil.this).setMaxWidth(480).setMaxHeight(480).setQuality(90).compressToBitmap(url);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -246,7 +243,7 @@ public class User_EditarPerfil extends AppCompatActivity {
                         firestore.collection("Usuarios").document(uid).update(values);
 
                         progressDialog.dismiss();
-                        Toast_Manager.showToast(User_EditarPerfil.this, "Imagen subida con éxito");
+                        Toast_Manager.showToast(User_EditPerfil.this, "Imagen subida con éxito");
 
                         updateImageData();
                         getData();
@@ -298,7 +295,7 @@ public class User_EditarPerfil extends AppCompatActivity {
 
         firestore.collection("Usuarios").document(uid).update(values);
         progressDialog.dismiss();
-        Toast_Manager.showToast(User_EditarPerfil.this, "Datos actualizados con éxito");
+        Toast_Manager.showToast(User_EditPerfil.this, "Datos actualizados con éxito");
     }
 
     /* Método que obtiene los datos del usuario y los asigna a los EditText */

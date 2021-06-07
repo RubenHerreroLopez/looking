@@ -23,13 +23,14 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.rmpsoft.looking.LoginActivity;
 import com.rmpsoft.looking.R;
-import com.rmpsoft.looking.model.Usuario;
+import com.rmpsoft.looking.model.User;
 import com.rmpsoft.looking.utils.Toast_Manager;
 
-public class User_Registro extends AppCompatActivity {
+public class User_Register extends AppCompatActivity {
 
     EditText et_correo, et_nombre, et_apellido, et_edad, et_pass;
     Button btn_registo;
+
     FirebaseAuth firebaseauth;
     FirebaseFirestore firestore;
     private ProgressDialog progressdialog;
@@ -38,7 +39,7 @@ public class User_Registro extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_user__registro);
+        setContentView(R.layout.activity_user_register);
 
         ActionBar actionbar = getSupportActionBar();
         assert actionbar != null;
@@ -54,7 +55,7 @@ public class User_Registro extends AppCompatActivity {
 
         firebaseauth = FirebaseAuth.getInstance();
         firestore = FirebaseFirestore.getInstance();
-        progressdialog = new ProgressDialog(User_Registro.this);
+        progressdialog = new ProgressDialog(User_Register.this);
 
         btn_registo.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -110,39 +111,39 @@ public class User_Registro extends AppCompatActivity {
                     String apellido = et_apellido.getText().toString();
                     String edad = et_edad.getText().toString();
 
-                    Usuario nuevoUsuario = new Usuario();
+                    User newUser = new User();
 
-                    nuevoUsuario.setUid(uid);
-                    nuevoUsuario.setCorreo(correo);
-                    nuevoUsuario.setPassword(pass);
-                    nuevoUsuario.setNombre(nombre);
-                    nuevoUsuario.setApellido(apellido);
-                    nuevoUsuario.setEdad(edad);
+                    newUser.setUid(uid);
+                    newUser.setCorreo(correo);
+                    newUser.setPassword(pass);
+                    newUser.setNombre(nombre);
+                    newUser.setApellido(apellido);
+                    newUser.setEdad(edad);
 
-                    firestore.collection("Usuarios").document(uid).set(nuevoUsuario).addOnSuccessListener(new OnSuccessListener<Void>() {
+                    firestore.collection("Usuarios").document(uid).set(newUser).addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void aVoid) {
-                            Toast_Manager.showToast(User_Registro.this, "El registro se realizó correctamente");
+                            Toast_Manager.showToast(User_Register.this, "El registro se realizó correctamente");
 
-                            startActivity(new Intent(User_Registro.this, LoginActivity.class));
+                            startActivity(new Intent(User_Register.this, LoginActivity.class));
                             finish();
                         }
                     }).addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
-                            Toast_Manager.showToast(User_Registro.this, "No se pudo realizar el registro");
+                            Toast_Manager.showToast(User_Register.this, "No se pudo realizar el registro");
                         }
                     });
 
                 } else {
                     progressdialog.dismiss();
-                    Toast_Manager.showToast(User_Registro.this, "No se pudo realizar el registro");
+                    Toast_Manager.showToast(User_Register.this, "No se pudo realizar el registro");
                 }
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Toast_Manager.showToast(User_Registro.this, e.getMessage());
+                Toast_Manager.showToast(User_Register.this, e.getMessage());
             }
         });
     }
