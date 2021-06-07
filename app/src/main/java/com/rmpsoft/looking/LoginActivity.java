@@ -90,7 +90,7 @@ public class  LoginActivity extends AppCompatActivity {
                 seleccion = spinner_seleccion.getSelectedItem().toString();
                 if(seleccion.equals("Jugador")) {
                     startActivity(new Intent(LoginActivity.this, User_Register.class));
-                } else if (seleccion.equals("Team")) {
+                } else if (seleccion.equals("Equipo")) {
                     startActivity(new Intent(LoginActivity.this, Team_Register.class));
                 } else {
                     Toast_Manager.showToast(LoginActivity.this, "Debes seleccionar una categoria");
@@ -113,7 +113,7 @@ public class  LoginActivity extends AppCompatActivity {
                         if(seleccion.equals("Jugador")) {
                             startActivity(new Intent(LoginActivity.this, User_Home.class));
                             finish();
-                        } else if (seleccion.equals("Team")) {
+                        } else if (seleccion.equals("Equipo")) {
                             startActivity(new Intent(LoginActivity.this, Team_Home.class));
                             finish();
                         }
