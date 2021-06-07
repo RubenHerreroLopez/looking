@@ -53,7 +53,6 @@ public class ChatListActivity extends AppCompatActivity {
         firebaseuser = firebaseauth.getCurrentUser();
         firestore = FirebaseFirestore.getInstance();
 
-
         tipoUsuario = getIntent().getExtras().getString("tipoUsuario");
 
         if (tipoUsuario.equals("usuario")) {
@@ -151,6 +150,5 @@ public class ChatListActivity extends AppCompatActivity {
             }
         });
     }
-
 
 }

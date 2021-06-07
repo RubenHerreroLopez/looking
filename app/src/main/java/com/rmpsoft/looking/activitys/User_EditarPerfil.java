@@ -26,10 +26,13 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.rmpsoft.looking.R;
+import com.rmpsoft.looking.model.Anuncio;
+import com.rmpsoft.looking.model.Chat;
 import com.rmpsoft.looking.utils.Toast_Manager;
 import com.squareup.picasso.Picasso;
 import com.theartofdev.edmodo.cropper.CropImage;
@@ -38,7 +41,9 @@ import com.theartofdev.edmodo.cropper.CropImageView;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
@@ -59,12 +64,11 @@ public class User_EditarPerfil extends AppCompatActivity {
     ProgressDialog progressDialog;
 
     Bitmap bitmap = null;
+    Uri uploaduri;
 
-    String nombre;
-    String apellido;
-    String edad;
-    String uid;
-    String uriImagePerfil;
+    String nombre, apellido, edad, uid, uriImagePerfil;
+
+    ArrayList<String> idChatPath = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -234,7 +238,7 @@ public class User_EditarPerfil extends AppCompatActivity {
                 }).addOnCompleteListener(new OnCompleteListener<Uri>() {
                     @Override
                     public void onComplete(@NonNull Task<Uri> task) {
-                        Uri uploaduri = task.getResult();
+                        uploaduri = task.getResult();
 
                         Map<String, Object> values = new HashMap<>();
                         values.put("image", uploaduri.toString());
@@ -244,6 +248,7 @@ public class User_EditarPerfil extends AppCompatActivity {
                         progressDialog.dismiss();
                         Toast_Manager.showToast(User_EditarPerfil.this, "Imagen subida con éxito");
 
+                        updateImageData();
                         getData();
 
                     }
@@ -252,6 +257,28 @@ public class User_EditarPerfil extends AppCompatActivity {
             }
         }
     }
+
+    /* Actualiza el path de la imagen en los chats correspondientes */
+    public void updateImageData() {
+
+        Map<String, Object> chatValue = new HashMap<>();
+        chatValue.put("userImage", uploaduri.toString());
+
+        firestore.collection("Chat").whereEqualTo("idUser", uid).get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot querySnapshot) {
+                        List<DocumentSnapshot> listDocuments = querySnapshot.getDocuments();
+                        if(!listDocuments.isEmpty()) {
+                            for (DocumentSnapshot document : listDocuments) {
+                                String dato = document.toObject(Chat.class).getChatPath();
+                                idChatPath.add(dato);
+                            }
+                            for (String id : idChatPath) firestore.collection("Chat").document(id).update(chatValue);
+                        }
+                    }
+                });
+             }
 
     /* Método que actualiza los datos introducidos por el usuario */
     public void updateData() {

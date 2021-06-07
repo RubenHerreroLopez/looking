@@ -47,24 +47,17 @@ public class MessagesAdapter extends FirestoreRecyclerAdapter<Message, MessagesA
 
     @Override
     public int getItemViewType(int position) {
-        Log.d("response", "itemviewtype");
         if (messages.get(position).getIdSender().equals(currentUserID)) {
             return MESSAGE_SENDER;
         } else {
             return MESSAGE_RECEIVE;
         }
 
-
-        /*int viewType = 0;
-        if (position == 0) viewType = 1;
-        return viewType; */
-
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
-        Log.d("response", "oncreateviewholder");
         View view;
 
         if (viewType == MESSAGE_SENDER) {
@@ -80,13 +73,11 @@ public class MessagesAdapter extends FirestoreRecyclerAdapter<Message, MessagesA
 
     @Override
     protected void onBindViewHolder(@NonNull ViewHolder viewHolder, int i, @NonNull Message message) {
-        Log.d("response", "onbindviewholder");
         viewHolder.tv_mensaje.setText(message.getMessage());
         viewHolder.tv_time.setText(message.getTime());
     }
 
     public void setData (List<Message> messages) {
         this.messages = messages;
-        Log.d("response", "messageadaptersetdata");
     }
 }

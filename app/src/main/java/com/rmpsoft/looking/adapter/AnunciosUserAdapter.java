@@ -32,6 +32,7 @@ public class AnunciosUserAdapter extends FirestoreRecyclerAdapter<Anuncio, Anunc
         viewHolder.tv_deporte.setText(anuncio.getDeporte());
         viewHolder.tv_municipio.setText(anuncio.getMunicipio());
         viewHolder.tv_posicion.setText(anuncio.getPosicion());
+
         uri_iv_perfil = anuncio.getImagen();
         try {
             Picasso.get().load(uri_iv_perfil).placeholder(R.drawable.ic_perfil_equipo).into(iv_perfil);

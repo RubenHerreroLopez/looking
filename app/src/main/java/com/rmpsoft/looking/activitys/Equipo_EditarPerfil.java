@@ -12,6 +12,7 @@ import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -26,10 +27,13 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.rmpsoft.looking.R;
+import com.rmpsoft.looking.model.Anuncio;
+import com.rmpsoft.looking.model.Chat;
 import com.rmpsoft.looking.utils.Toast_Manager;
 import com.squareup.picasso.Picasso;
 import com.theartofdev.edmodo.cropper.CropImage;
@@ -38,7 +42,9 @@ import com.theartofdev.edmodo.cropper.CropImageView;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
@@ -46,7 +52,6 @@ import id.zelory.compressor.Compressor;
 
 public class Equipo_EditarPerfil extends AppCompatActivity {
 
-    ImageView perfil;
     EditText et_equipo, et_deporte, et_municipio, et_dia;
     ImageButton btn_perfil, btn_equipo, btn_equipoOK, btn_deporte, btn_deporteOK, btn_municipio, btn_municipioOK, btn_dia, btn_diaOK;
     ImageView image_perfil;
@@ -59,13 +64,12 @@ public class Equipo_EditarPerfil extends AppCompatActivity {
     ProgressDialog progressDialog;
 
     Bitmap bitmap = null;
+    Uri uploaduri;
 
-    String equipo;
-    String deporte;
-    String municipio;
-    String dia;
-    String uid;
-    String uriImagePerfil;
+    String equipo, deporte, municipio, dia, uid, uriImagePerfil;
+
+    ArrayList<String> idAdvices = new ArrayList<>();
+    ArrayList<String> idChatPath = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,7 +81,7 @@ public class Equipo_EditarPerfil extends AppCompatActivity {
         firebaseuser = firebaseauth.getCurrentUser();
         firestore = FirebaseFirestore.getInstance();
         uid = firebaseuser.getUid();
-        storage = FirebaseStorage.getInstance().getReference().child(uid);
+        storage = FirebaseStorage.getInstance().getReference();
         progressDialog = new ProgressDialog(Equipo_EditarPerfil.this);
 
         ActionBar actionbar = getSupportActionBar();
@@ -86,11 +90,11 @@ public class Equipo_EditarPerfil extends AppCompatActivity {
         actionbar.setTitle(" ");
         actionbar.setIcon(R.drawable.ic_actionbar_logo);
 
-        perfil = findViewById(R.id.EqEdit_image_perfil);
         et_equipo = findViewById(R.id.EqEdit_et_equipo);
         et_deporte = findViewById(R.id.EqEdit_et_deporte);
         et_municipio = findViewById(R.id.EqEdit_et_municipio);
         et_dia = findViewById(R.id.EqEdit_et_dia);
+        image_perfil = findViewById(R.id.EqEdit_image_perfil);
 
         btn_perfil = findViewById(R.id.EqEdit_btn_edit_IP);
         btn_equipo = findViewById(R.id.EqEdit_btn_edit_EQ);
@@ -104,7 +108,7 @@ public class Equipo_EditarPerfil extends AppCompatActivity {
         btn_descartar = findViewById(R.id.EqEdit_btn_descartar);
         btn_confirmar = findViewById(R.id.EqEdit_btn_confirmar);
 
-        getData();
+        getCurrentUserData();
 
         btn_perfil.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -196,7 +200,7 @@ public class Equipo_EditarPerfil extends AppCompatActivity {
         btn_confirmar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                updateData();
+                updateUserData();
                 startActivity(new Intent(Equipo_EditarPerfil.this, Equipo_Home.class));
                 finish();
             }
@@ -236,7 +240,7 @@ public class Equipo_EditarPerfil extends AppCompatActivity {
                 bitmap.compress(Bitmap.CompressFormat.JPEG, 90, byteArrayOutputStream);
                 final byte[] bitmap_byte = byteArrayOutputStream.toByteArray();
 
-                final String nombreArchivo = uid + "comprimido.jpg";
+                final String nombreArchivo = uid + "photo.jpg";
 
                 progressDialog.setTitle("Subiendo foto...");
                 progressDialog.setMessage("Por favor, espere. Esta \nacción puede llevar unos segundos");
@@ -257,7 +261,7 @@ public class Equipo_EditarPerfil extends AppCompatActivity {
                 }).addOnCompleteListener(new OnCompleteListener<Uri>() {
                     @Override
                     public void onComplete(@NonNull Task<Uri> task) {
-                        Uri uploaduri = task.getResult();
+                        uploaduri = task.getResult();
 
                         Map<String, Object> values = new HashMap<>();
                         values.put("image", uploaduri.toString());
@@ -267,7 +271,8 @@ public class Equipo_EditarPerfil extends AppCompatActivity {
                         progressDialog.dismiss();
                         Toast_Manager.showToast(Equipo_EditarPerfil.this, "Imagen subida con éxito");
 
-                        getData();
+                        updateImageData();
+                        getCurrentUserData();
                     }
                 });
 
@@ -275,8 +280,48 @@ public class Equipo_EditarPerfil extends AppCompatActivity {
         }
     }
 
+    /* Actualiza el path de la imagen en los anuncios y los chats correspondientes */
+    public void updateImageData() {
+
+        Map<String, Object> adviceValue = new HashMap<>();
+        adviceValue.put("imagen", uploaduri.toString());
+
+        firestore.collection("Anuncios").whereEqualTo("uidcontacto", uid).get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            @Override
+            public void onSuccess(QuerySnapshot querySnapshot) {
+                List<DocumentSnapshot> listDocuments = querySnapshot.getDocuments();
+                if(!listDocuments.isEmpty()) {
+                    for (DocumentSnapshot document : listDocuments) {
+                        String dato = document.toObject(Anuncio.class).getUidadvice();
+                        idAdvices.add(dato);
+                    }
+                    for (String id : idAdvices) firestore.collection("Anuncios").document(id).update(adviceValue);
+                }
+            }
+        });
+
+        Map<String, Object> chatValue = new HashMap<>();
+        chatValue.put("teamImage", uploaduri.toString());
+
+        firestore.collection("Chat").whereEqualTo("idTeam", uid).get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            @Override
+            public void onSuccess(QuerySnapshot querySnapshot) {
+                List<DocumentSnapshot> listDocuments = querySnapshot.getDocuments();
+                if(!listDocuments.isEmpty()) {
+                    for (DocumentSnapshot document : listDocuments) {
+                        String dato = document.toObject(Chat.class).getChatPath();
+                        idChatPath.add(dato);
+                    }
+                    for (String id : idChatPath) firestore.collection("Chat").document(id).update(chatValue);
+                }
+            }
+        });
+    }
+
     /* Método que actualiza los datos introducidos por el usuario */
-    public void updateData() {
+    public void updateUserData() {
         progressDialog.setTitle("Actualizando datos...");
         progressDialog.setMessage("Por favor, espere. Esta \nacción puede llevar unos segundos");
         progressDialog.show();
@@ -298,9 +343,9 @@ public class Equipo_EditarPerfil extends AppCompatActivity {
         Toast_Manager.showToast(Equipo_EditarPerfil.this, "Datos actualizados con éxito");
     }
 
-    /* Método que obtiene los datos del usuario y los asigna a los EditText */
-    public void getData () {
-        String uid = firebaseuser.getUid();
+    /* Método que obtiene los datos del usuario actual y los asigna a los EditText */
+    public void getCurrentUserData() {
+        //String uid = firebaseuser.getUid();
         firestore.collection("Equipos").document(uid).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {

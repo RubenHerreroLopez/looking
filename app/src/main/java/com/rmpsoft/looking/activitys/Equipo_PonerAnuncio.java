@@ -22,8 +22,10 @@ import com.rmpsoft.looking.R;
 import com.rmpsoft.looking.model.Anuncio;
 import com.rmpsoft.looking.utils.Toast_Manager;
 
+import java.math.BigInteger;
 import java.text.Normalizer;
 import java.util.HashMap;
+import java.util.Random;
 
 public class Equipo_PonerAnuncio extends AppCompatActivity {
 
@@ -106,13 +108,16 @@ public class Equipo_PonerAnuncio extends AppCompatActivity {
 
     /* Método que guarda el anuncio en la bbdd */
     private void publicarAnuncio(String contacto, String posicion, String descripcion) {
-        String uid = firebaseuser.getUid();
-
         progressdialog.setCancelable(false);
         progressdialog.show();
 
+        String uid = firebaseuser.getUid();
+        Random randomuid = new Random();
+        String uidadvice = new BigInteger(80, randomuid).toString(32);
+
         Anuncio nuevoAnuncio = new Anuncio();
         nuevoAnuncio.setUidcontacto(uid);
+        nuevoAnuncio.setUidadvice(uidadvice);
         nuevoAnuncio.setEquipo(equipo);
         nuevoAnuncio.setDeporte(deporte);
         nuevoAnuncio.setMunicipio(municipio);
@@ -122,7 +127,7 @@ public class Equipo_PonerAnuncio extends AppCompatActivity {
         nuevoAnuncio.setCategoria(categoria);
         nuevoAnuncio.setImagen(imagen);
 
-        firestore.collection("Anuncios").document().set(nuevoAnuncio).addOnSuccessListener(new OnSuccessListener<Void>() {
+        firestore.collection("Anuncios").document(uidadvice).set(nuevoAnuncio).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
                 Toast_Manager.showToast(Equipo_PonerAnuncio.this, "El anuncio se publicó correctamente");
